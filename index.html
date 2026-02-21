@@ -1342,17 +1342,17 @@
 
     const PRODUCT_DATA = {
       kadi: {
-        title: "Kadi One",
-        sub: "NFC business card + optional retro gamepad assembly",
-        icon: "KadiOne.png",
+        title: "OBIOS Card v1",
+        sub: "NFC Business Card",
+        icon: "OBIOS Card v1.png",
         docsUrl: "#",
         ctaText: "Request Kadi One build",
         steps: [
-          "Define requirements: NFC tap flow, profile payload, optional USB gamepad mode.",
-          "Schematic: NFC tag/NTAG, ESD protection, USB-C, LED indicator, optional MCU header.",
+          "Define requirements: NFC tap flow, profile payload OBIOS UI.",
+          "Schematic: NFC tag/NTAG, ESD protection, USB-C, LED indicator.",
           "PCB layout: antenna keepout rules, trace impedance awareness, clean ground + stitching vias.",
-          "Prototype order: small batch + bring-up checklist (power, USB, NFC read/write).",
-          "Firmware (if MCU): USB HID gamepad mapping + debounce; NFC UX testing on iOS/Android.",
+          "Prototype order: small batch + bring-up checklist (NFC read/write).",
+          "Firmware: NFC UX testing on iOS/Android.",
           "Enclosure/finish: card laminate, soldermask color, and user onboarding instructions.",
           "Docs: build guide + how-to update contact payload + troubleshooting."
         ],
@@ -1364,9 +1364,8 @@
         ],
         parts: [
           "NFC: NTAG/compatible tag (or NFC IC module)",
-          "USB-C: connector + ESD diodes",
+          "Antenna: 6 tracks"
           "Indicators: 1x LED + resistor",
-          "Optional: MCU (RP2040/ATmega32U4) for USB gamepad mode",
           "Mechanical: edge plating / card thickness target"
         ],
       },
