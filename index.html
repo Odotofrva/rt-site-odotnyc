@@ -16,22 +16,21 @@
 
   <style>
     :root{
-      /* Light Gold / White sci-fi theme (logo-matching) */
-      --bg: #FBF7EA;            /* very light gold */
-      --bg2:#FFFFFF;            /* clean white */
+      --bg: #FBF7EA;
+      --bg2:#FFFFFF;
       --panel: rgba(10,14,20,.05);
       --panel2: rgba(10,14,20,.07);
       --line: rgba(10,14,20,.12);
 
-      --text: rgba(10,14,20,.92);   /* deep charcoal */
+      --text: rgba(10,14,20,.92);
       --muted: rgba(10,14,20,.70);
       --muted2: rgba(10,14,20,.55);
 
-      --gold: #E7C34D;          /* bolt gold */
-      --gold2:#F3DE8A;          /* lighter gold */
-      --ink: #0A0E14;           /* charcoal */
-      --blue:#2C7CFF;           /* electric blue */
-      --mint:#32D6A0;           /* mint accent */
+      --gold: #E7C34D;
+      --gold2:#F3DE8A;
+      --ink: #0A0E14;
+      --blue:#2C7CFF;
+      --mint:#32D6A0;
 
       --radius: 18px;
       --shadow: 0 18px 55px rgba(10,14,20,.10);
@@ -47,7 +46,6 @@
       line-height:1.4;
       overflow-x:hidden;
 
-      /* Sci-fi light background */
       background:
         radial-gradient(900px 600px at 15% 5%, rgba(231,195,77,.22), transparent 60%),
         radial-gradient(900px 600px at 85% 15%, rgba(44,124,255,.10), transparent 55%),
@@ -58,14 +56,13 @@
     a{color:inherit; text-decoration:none}
     .container{width:min(1120px, 92vw); margin:0 auto}
 
-    /* Utility */
     .mono{
       font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       letter-spacing:.2px;
     }
 
     /* =========================
-       SCI-FI OVERLAY (site-wide)
+       SCI-FI OVERLAY
        ========================= */
     .site-overlay{
       position:fixed;
@@ -494,7 +491,6 @@
       border-color: rgba(10,14,20,.20);
     }
 
-    /* Service image placeholders */
     .service-media{
       width:100%;
       aspect-ratio: 16/10;
@@ -561,7 +557,6 @@
       font-weight:900;
     }
 
-    /* Product thumbs */
     .product-row{display:grid; grid-template-columns: 1fr; gap:12px}
     .product-card{display:grid; gap:12px}
     .product-thumb{
@@ -601,7 +596,6 @@
       color: rgba(10,14,20,.70);
     }
 
-    /* Make product cards feel clickable */
     .product-card.clickable{
       cursor:pointer;
       position:relative;
@@ -629,7 +623,6 @@
     }
     .product-card.clickable:hover::after{opacity:1; transform: translateY(0);}
 
-    /* Forms */
     form{display:grid; gap:10px}
     label{
       font-size:12px;
@@ -649,7 +642,6 @@
     textarea{min-height: 120px; resize: vertical}
     .row{display:grid; grid-template-columns: 1fr; gap:10px}
 
-    /* Footer */
     footer{
       padding: 22px 0 34px;
       border-top:1px solid rgba(10,14,20,.12);
@@ -664,7 +656,7 @@
     .footer-inner{display:flex; flex-direction:column; gap:10px;}
 
     /* =========================
-       PRODUCT MODAL (POPUP)
+       PRODUCT MODAL
        ========================= */
     .modal{
       position:fixed;
@@ -770,7 +762,6 @@
       color: var(--ink);
     }
 
-    /* timeline */
     .timeline{margin:0; padding:0; list-style:none; display:grid; gap:10px;}
     .step{
       display:grid;
@@ -797,10 +788,9 @@
       line-height:1.45;
     }
 
-    /* Bigger gallery tiles in popup */
     .img-strip{
       display:grid;
-      grid-template-columns: 1fr; /* mobile: 1 per row */
+      grid-template-columns: 1fr;
       gap: 12px;
     }
     .img-ph{
@@ -815,7 +805,7 @@
       position:relative;
       display:grid;
       place-items:center;
-      cursor: zoom-in; /* click to expand */
+      cursor: zoom-in;
     }
     .img-ph img{
       width:100%;
@@ -846,10 +836,8 @@
       padding-top: 2px;
     }
 
-    /* lock scroll when modal/lightbox open */
     body.modal-open{overflow:hidden;}
 
-    /* Responsive */
     @media (min-width: 760px){
       .links{display:flex; gap:4px; align-items:center}
       .menu-btn{display:none}
@@ -857,14 +845,8 @@
       .row{grid-template-columns: 1fr 1fr}
       .footer-inner{flex-direction:row; justify-content:space-between; align-items:center}
       .product-row{grid-template-columns: 1fr 1fr}
-
       .modal-grid{grid-template-columns: 1.35fr .65fr;}
-
-      /* desktop: 2 per row */
-      .img-strip{
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
+      .img-strip{grid-template-columns: 1fr 1fr; gap: 14px;}
     }
     @media (min-width: 1050px){
       .grid{grid-template-columns: 1fr 1fr 1fr}
@@ -876,21 +858,19 @@
     .lightbox{
       position:fixed;
       inset:0;
-      z-index:11000; /* above product modal */
+      z-index:11000;
       display:none;
       align-items:center;
       justify-content:center;
       padding: 18px;
     }
     .lightbox[aria-hidden="false"]{display:flex;}
-
     .lightbox-backdrop{
       position:absolute;
       inset:0;
       background: rgba(10,14,20,.72);
       backdrop-filter: blur(6px);
     }
-
     .lightbox-panel{
       position:relative;
       width:min(1100px, 96vw);
@@ -901,17 +881,14 @@
       background: rgba(255,255,255,.92);
       box-shadow: 0 50px 140px rgba(10,14,20,.45);
     }
-
-    /* viewer area where we pan/zoom */
     .lightbox-viewer{
       position:relative;
       width:100%;
       height:min(78vh, 760px);
       background: rgba(10,14,20,.06);
       overflow:hidden;
-      touch-action: none; /* ✅ required for pinch zoom on mobile */
+      touch-action: none; /* pinch zoom */
     }
-
     .lightbox-img{
       width:100%;
       height:100%;
@@ -922,7 +899,6 @@
       transform-origin: 50% 50%;
       will-change: transform;
     }
-
     .lightbox-caption{
       padding: 10px 12px;
       border-top: 1px solid rgba(10,14,20,.10);
@@ -936,7 +912,6 @@
       gap:10px;
       flex-wrap:wrap;
     }
-
     .lightbox-close{
       position:absolute;
       top:10px;
@@ -950,10 +925,140 @@
       box-shadow: var(--shadow2);
       z-index:2;
     }
-
     .lightbox-hint{
       font-size:11px;
       color: rgba(10,14,20,.60);
+    }
+
+    /* =========================
+       RoboTechi Facts Modal
+       ========================= */
+    .facts-modal{
+      position:fixed;
+      inset:0;
+      z-index:9500; /* above site, below product modal (10000) */
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    .facts-modal[aria-hidden="false"]{display:flex;}
+    .facts-backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(10,14,20,.48);
+      backdrop-filter: blur(6px);
+    }
+    .facts-panel{
+      position:relative;
+      width:min(720px, 96vw);
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(700px 240px at 20% 10%, rgba(231,195,77,.16), transparent 60%),
+        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.12), transparent 60%),
+        rgba(255,255,255,.92);
+      box-shadow: 0 40px 120px rgba(10,14,20,.28);
+      overflow:hidden;
+    }
+    .facts-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 16px 12px;
+      border-bottom:1px solid rgba(10,14,20,.12);
+      background: rgba(255,255,255,.90);
+      backdrop-filter: blur(8px);
+    }
+    .facts-title{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      min-width:0;
+    }
+    .facts-badge{
+      width:44px; height:44px;
+      border-radius:16px;
+      border:1px solid rgba(10,14,20,.14);
+      background: linear-gradient(135deg, rgba(231,195,77,.35), rgba(44,124,255,.14));
+      display:grid;
+      place-items:center;
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-weight:900;
+      color: rgba(10,14,20,.9);
+    }
+    .facts-title h3{
+      margin:0;
+      font-size:18px;
+      color: var(--ink);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .facts-title p{
+      margin:2px 0 0;
+      color: rgba(10,14,20,.62);
+      font-size:12px;
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+    }
+    .facts-close{
+      border-radius: 14px;
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.75);
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:800;
+      box-shadow: var(--shadow2);
+    }
+    .facts-body{
+      padding:14px 16px 16px;
+      display:grid;
+      gap:12px;
+    }
+    .fact-card{
+      border-radius: 18px;
+      border:1px solid rgba(10,14,20,.12);
+      background: rgba(255,255,255,.75);
+      box-shadow: var(--shadow2);
+      padding:14px;
+    }
+    .fact-topline{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:8px;
+    }
+    .fact-chip{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(10,14,20,.04);
+      color: rgba(10,14,20,.72);
+    }
+    .fact-text{
+      margin:0;
+      font-size:14px;
+      color: rgba(10,14,20,.80);
+      line-height:1.55;
+    }
+    .facts-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+      padding-top:2px;
+    }
+    .facts-note{
+      margin:0;
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size:11px;
+      color: rgba(10,14,20,.55);
     }
   </style>
 </head>
@@ -1151,7 +1256,7 @@
 
         <article class="card">
           <div class="service-media">
-            <img src="rt-manual.png" alt="Workshops and Education service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <img src="rtlogo.png" alt="Workshops and Education service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
             <span class="ph" style="display:none;">PNG Placeholder</span>
           </div>
           <div class="icon">EDU</div>
@@ -1176,13 +1281,8 @@
       </div>
 
       <div class="product-row">
-        <article
-          class="card product-card clickable"
-          tabindex="0"
-          role="button"
-          aria-label="Open build process for OBIOS Card v1"
-          data-product="kadi"
-        >
+        <article class="card product-card clickable" tabindex="0" role="button"
+          aria-label="Open build process for OBIOS Card v1" data-product="kadi">
           <div class="product-thumb">
             <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="OBIOS Card v1"></span>
             <span class="pill">Hardware</span>
@@ -1199,13 +1299,8 @@
           </div>
         </article>
 
-        <article
-          class="card product-card clickable"
-          tabindex="0"
-          role="button"
-          aria-label="Open build process for MP9K v1 (Macropad)"
-          data-product="mp9k"
-        >
+        <article class="card product-card clickable" tabindex="0" role="button"
+          aria-label="Open build process for MP9K v1 (Macropad)" data-product="mp9k">
           <div class="product-thumb">
             <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="MP9K v1"></span>
             <span class="pill">Hardware</span>
@@ -1367,6 +1462,41 @@
     </div>
   </div>
 
+  <!-- RoboTechi Facts Modal -->
+  <div class="facts-modal" id="factsModal" aria-hidden="true" aria-label="RoboTechi beginner electronics facts">
+    <div class="facts-backdrop" data-facts-close="true" aria-hidden="true"></div>
+
+    <div class="facts-panel" role="dialog" aria-modal="true" aria-labelledby="factsTitle">
+      <div class="facts-head">
+        <div class="facts-title">
+          <div class="facts-badge">RT</div>
+          <div style="min-width:0">
+            <h3 id="factsTitle">RoboTechi Facts</h3>
+            <p class="mono">Beginner electronics • quick knowledge</p>
+          </div>
+        </div>
+        <button class="facts-close" id="factsCloseBtn" aria-label="Close facts popup">Close ✕</button>
+      </div>
+
+      <div class="facts-body">
+        <div class="fact-card">
+          <div class="fact-topline">
+            <span class="fact-chip" id="factsChip">FACT</span>
+            <span class="fact-chip mono" id="factsCounter">1 / 1</span>
+          </div>
+          <p class="fact-text" id="factsText">Loading a fact…</p>
+        </div>
+
+        <div class="facts-actions">
+          <button class="btn" id="factsNextBtn" type="button">Another fact</button>
+          <button class="btn primary" id="factsStartBtn" type="button"><span class="dot"></span> Let’s build</button>
+        </div>
+
+        <p class="facts-note">Tip: Press <strong>ESC</strong> to close. This pops once per session.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
     try {
       // ============================
@@ -1380,7 +1510,7 @@
       const start = performance.now();
       function tick(now){
         const t = Math.min(1, (now - start) / SPLASH_DURATION);
-        const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+        const eased = 1 - Math.pow(1 - t, 3);
         fill.style.width = (eased * 100).toFixed(1) + "%";
         if (t < 1) requestAnimationFrame(tick);
       }
@@ -1389,6 +1519,9 @@
       setTimeout(() => {
         splash.classList.add("splash-hide");
         setTimeout(() => splash.remove(), 650);
+
+        // ✅ after splash: show facts modal (once per session)
+        setTimeout(() => maybeShowFactsModal(), 420);
       }, SPLASH_DURATION);
 
       // ============================
@@ -1446,7 +1579,6 @@
       const modalDocBtn = document.getElementById("modalDocBtn");
       const modalCtaBtn = document.getElementById("modalCtaBtn");
 
-      // ✅ FIXED: added missing comma in kadi.parts list
       const PRODUCT_DATA = {
         kadi: {
           title: "OBIOS Card v1",
@@ -1523,7 +1655,6 @@
         modalDocBtn.href = data.docsUrl || "#";
         modalCtaBtn.textContent = data.ctaText || "Request this build";
 
-        // Steps
         modalSteps.innerHTML = "";
         data.steps.forEach((s, i) => {
           const li = document.createElement("li");
@@ -1535,7 +1666,7 @@
           modalSteps.appendChild(li);
         });
 
-        // Gallery (click => lightbox)
+        // Gallery -> lightbox
         modalGallery.innerHTML = "";
         data.gallery.forEach((g, i) => {
           const wrap = document.createElement("div");
@@ -1561,14 +1692,12 @@
           modalGallery.appendChild(wrap);
         });
 
-        // Parts
         modalParts.innerHTML = `
           <ul style="margin:0; padding-left:18px;">
             ${data.parts.map(p => `<li>${p}</li>`).join("")}
           </ul>
         `;
 
-        // Show
         modal.setAttribute("aria-hidden", "false");
         document.body.classList.add("modal-open");
         modalCloseBtn.focus();
@@ -1576,14 +1705,12 @@
 
       function closeModal(){
         modal.setAttribute("aria-hidden", "true");
-        // If lightbox isn't open, unlock scroll
-        if (lightbox.getAttribute("aria-hidden") === "true") {
+        if (lightbox.getAttribute("aria-hidden") === "true" && factsModal.getAttribute("aria-hidden") === "true") {
           document.body.classList.remove("modal-open");
         }
         if(lastFocusEl && typeof lastFocusEl.focus === "function") lastFocusEl.focus();
       }
 
-      // Open on click (or Enter/Space)
       document.querySelectorAll(".product-card.clickable").forEach(card => {
         card.addEventListener("click", () => openModal(card.dataset.product));
         card.addEventListener("keydown", (e) => {
@@ -1594,38 +1721,13 @@
         });
       });
 
-      // Close actions
       modalCloseBtn.addEventListener("click", closeModal);
       modal.addEventListener("click", (e) => {
         if(e.target?.dataset?.close === "true") closeModal();
       });
-      document.addEventListener("keydown", (e) => {
-        if(modal.getAttribute("aria-hidden") === "false" && e.key === "Escape") closeModal();
-      });
-
-      // Minimal focus trap (keeps tab inside modal)
-      document.addEventListener("keydown", (e) => {
-        if(modal.getAttribute("aria-hidden") !== "false") return;
-        if(e.key !== "Tab") return;
-
-        const focusables = modal.querySelectorAll(
-          'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        const list = Array.from(focusables).filter(el => !el.hasAttribute("disabled") && el.offsetParent !== null);
-        if(!list.length) return;
-
-        const first = list[0];
-        const last = list[list.length - 1];
-
-        if(e.shiftKey && document.activeElement === first){
-          e.preventDefault(); last.focus();
-        } else if(!e.shiftKey && document.activeElement === last){
-          e.preventDefault(); first.focus();
-        }
-      });
 
       // ============================
-      // Lightbox + Pinch Zoom (mobile)
+      // Lightbox + Pinch Zoom
       // ============================
       const lightbox = document.getElementById("lightbox");
       const lightboxViewer = document.getElementById("lightboxViewer");
@@ -1635,7 +1737,6 @@
 
       let lastFocusBeforeLightbox = null;
 
-      // transform state
       let scale = 1;
       let tx = 0;
       let ty = 0;
@@ -1643,21 +1744,15 @@
       function applyTransform(){
         lightboxImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
       }
-
       function resetTransform(){
-        scale = 1;
-        tx = 0;
-        ty = 0;
+        scale = 1; tx = 0; ty = 0;
         applyTransform();
       }
-
       function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
 
       function openLightbox(src, caption, alt){
         if(!src) return;
         lastFocusBeforeLightbox = document.activeElement;
-
-        // reset zoom/pan each time
         resetTransform();
 
         lightboxImg.src = src;
@@ -1671,11 +1766,9 @@
 
       function closeLightbox(){
         lightbox.setAttribute("aria-hidden", "true");
-
-        // if product modal still open, keep scroll locked
         const modalIsOpen = modal.getAttribute("aria-hidden") === "false";
-        if(!modalIsOpen) document.body.classList.remove("modal-open");
-
+        const factsIsOpen = factsModal.getAttribute("aria-hidden") === "false";
+        if(!modalIsOpen && !factsIsOpen) document.body.classList.remove("modal-open");
         if(lastFocusBeforeLightbox && typeof lastFocusBeforeLightbox.focus === "function"){
           lastFocusBeforeLightbox.focus();
         }
@@ -1685,17 +1778,13 @@
       lightbox?.addEventListener("click", (e) => {
         if(e.target?.dataset?.lightboxClose === "true") closeLightbox();
       });
-      document.addEventListener("keydown", (e) => {
-        if(lightbox.getAttribute("aria-hidden") === "false" && e.key === "Escape") closeLightbox();
-      });
 
-      // ----- Pinch/drag with Pointer Events -----
-      const pointers = new Map(); // pointerId -> {x,y}
+      // Pointer Events pinch/drag
+      const pointers = new Map();
       let isPanning = false;
       let panStart = {x:0, y:0};
       let startTx = 0, startTy = 0;
 
-      // pinch baseline
       let pinchStartDist = 0;
       let pinchStartScale = 1;
       let pinchMid = {x:0, y:0};
@@ -1715,7 +1804,6 @@
         lightboxViewer.setPointerCapture(e.pointerId);
         pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
 
-        // Two pointers = pinch
         if(pointers.size === 2){
           const pts = Array.from(pointers.values());
           pinchStartDist = getDist(pts[0], pts[1]);
@@ -1724,7 +1812,6 @@
           pinchStartTx = tx;
           pinchStartTy = ty;
         } else if(pointers.size === 1){
-          // One pointer = pan (only meaningful when zoomed, but allow anyway)
           isPanning = true;
           panStart = {x:e.clientX, y:e.clientY};
           startTx = tx; startTy = ty;
@@ -1745,25 +1832,19 @@
           const rawScale = pinchStartScale * (d / (pinchStartDist || 1));
           const newScale = clamp(rawScale, 1, 4);
 
-          // Keep the pinch midpoint feeling stable:
-          // shift translation by the midpoint delta while scaling
           const midDx = mid.x - pinchMid.x;
           const midDy = mid.y - pinchMid.y;
 
           scale = newScale;
           tx = pinchStartTx + midDx;
           ty = pinchStartTy + midDy;
-
           applyTransform();
         } else if(pointers.size === 1 && isPanning){
           const dx = e.clientX - panStart.x;
           const dy = e.clientY - panStart.y;
-
-          // Slightly reduce panning sensitivity at low zoom
           const panFactor = Math.max(1, scale);
           tx = startTx + dx / panFactor;
           ty = startTy + dy / panFactor;
-
           applyTransform();
         }
       });
@@ -1771,43 +1852,161 @@
       function endPointer(e){
         if(!pointers.has(e.pointerId)) return;
         pointers.delete(e.pointerId);
-
-        if(pointers.size < 2){
-          pinchStartDist = 0;
-        }
+        if(pointers.size < 2) pinchStartDist = 0;
         if(pointers.size === 0){
           isPanning = false;
-
-          // snap back if user let go with tiny zoom
           if(scale < 1.02) resetTransform();
         }
       }
-
       lightboxViewer.addEventListener("pointerup", endPointer);
       lightboxViewer.addEventListener("pointercancel", endPointer);
-      lightboxViewer.addEventListener("pointerleave", (e) => {
-        // don't aggressively end; pointer capture should handle it, but keep safe:
-        if (pointers.has(e.pointerId)) endPointer(e);
-      });
 
-      // Double-tap / double-click to reset zoom
+      // double-tap to reset
       let lastTapTime = 0;
-      lightboxViewer.addEventListener("pointerup", (e) => {
-        // Only treat as tap if not in pinch
+      lightboxViewer.addEventListener("pointerup", () => {
         if(pointers.size !== 0) return;
         const now = Date.now();
         if(now - lastTapTime < 300){
           resetTransform();
           lastTapTime = 0;
-        } else {
-          lastTapTime = now;
-        }
+        } else lastTapTime = now;
       });
 
-      // Prevent iOS double-tap zoom on the page
-      lightboxViewer.addEventListener("gesturestart", (e) => e.preventDefault?.(), {passive:false});
-      lightboxViewer.addEventListener("gesturechange", (e) => e.preventDefault?.(), {passive:false});
-      lightboxViewer.addEventListener("gestureend", (e) => e.preventDefault?.(), {passive:false});
+      // ============================
+      // RoboTechi Facts Modal (random facts)
+      // ============================
+      const factsModal = document.getElementById("factsModal");
+      const factsCloseBtn = document.getElementById("factsCloseBtn");
+      const factsNextBtn = document.getElementById("factsNextBtn");
+      const factsStartBtn = document.getElementById("factsStartBtn");
+      const factsText = document.getElementById("factsText");
+      const factsChip = document.getElementById("factsChip");
+      const factsCounter = document.getElementById("factsCounter");
+
+      const FACTS_SESSION_KEY = "rt_facts_seen_session";
+
+      const FACTS = [
+        { tag:"Ohm’s Law", text:"Ohm’s Law is V = I × R. Voltage (V) is the push, current (I) is the flow, and resistance (R) is what slows it down." },
+        { tag:"Resistors", text:"Resistor values are often shown with color bands. If you forget, a quick color-code chart can save you a lot of time." },
+        { tag:"LEDs", text:"LEDs are polarized: long leg is usually + (anode). Use a resistor in series, or you can burn the LED out." },
+        { tag:"Power", text:"Power is P = V × I. This helps you pick resistor wattage and understand heat in components." },
+        { tag:"Polarity", text:"Electrolytic capacitors and many diodes have polarity—reversing them can cause failures (and sometimes pops)." },
+        { tag:"Capacitors", text:"Capacitors smooth noise. A common beginner move is putting a 0.1µF decoupling cap near each IC’s power pins." },
+        { tag:"Ground", text:"“Ground” is your reference point. Good grounding (and short return paths) reduces noise and weird behavior." },
+        { tag:"Breadboards", text:"Breadboards have connected rows/rails under the plastic. Always check the internal connections before wiring." },
+        { tag:"Short Circuits", text:"If +V touches GND directly, that’s a short. Use current limiting or a bench supply to avoid frying parts." },
+        { tag:"Diodes", text:"Diodes let current flow one way. The stripe on the diode body usually marks the cathode (-)." },
+        { tag:"Multimeter", text:"Your multimeter is your best friend. Learn to measure DC voltage, continuity, and resistance early." },
+        { tag:"Series vs Parallel", text:"In series, current is the same through parts; in parallel, voltage is the same across branches." },
+        { tag:"Datasheets", text:"Datasheets tell you pinouts, voltage limits, and typical circuits. Always check max ratings before powering up." },
+        { tag:"Pull-ups", text:"Buttons often need pull-up or pull-down resistors to avoid floating inputs (random on/off readings)." },
+        { tag:"I²C", text:"I²C uses two lines: SDA (data) and SCL (clock). It usually needs pull-up resistors on both lines." },
+        { tag:"SPI", text:"SPI is fast and uses MOSI, MISO, SCK, plus a chip-select (CS) line per device." },
+        { tag:"ESD", text:"Static electricity can damage chips. Touch grounded metal first and avoid rubbing socks on carpet while handling ICs." },
+        { tag:"PCB Tip", text:"Keep power traces wider than signal traces (especially for LEDs, motors, or anything that pulls more current)." },
+        { tag:"Soldering", text:"Heat the pad and the lead together, then feed solder. Shiny joints are usually healthier than dull, grainy ones." },
+        { tag:"Debug", text:"If it doesn’t work: check power, ground, polarity, and continuity first—then check your code." }
+      ];
+
+      let factsShown = 0;
+      let currentFactIndex = -1;
+      let factsLastFocus = null;
+
+      function pickRandomFact(){
+        if(FACTS.length === 0) return {tag:"FACT", text:"No facts loaded."};
+        let idx = Math.floor(Math.random() * FACTS.length);
+        if(FACTS.length > 1 && idx === currentFactIndex){
+          idx = (idx + 1) % FACTS.length;
+        }
+        currentFactIndex = idx;
+        return FACTS[idx];
+      }
+
+      function renderFact(){
+        const f = pickRandomFact();
+        factsChip.textContent = f.tag || "FACT";
+        factsText.textContent = f.text || "";
+        factsShown += 1;
+        factsCounter.textContent = `${factsShown} / ∞`;
+      }
+
+      function openFactsModal(){
+        // do not interrupt if product modal or lightbox already open
+        if(modal.getAttribute("aria-hidden") === "false") return;
+        if(lightbox.getAttribute("aria-hidden") === "false") return;
+
+        factsLastFocus = document.activeElement;
+        renderFact();
+        factsModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        factsCloseBtn.focus();
+      }
+
+      function closeFactsModal(){
+        factsModal.setAttribute("aria-hidden", "true");
+
+        const modalIsOpen = modal.getAttribute("aria-hidden") === "false";
+        const lightboxIsOpen = lightbox.getAttribute("aria-hidden") === "false";
+        if(!modalIsOpen && !lightboxIsOpen) document.body.classList.remove("modal-open");
+
+        if(factsLastFocus && typeof factsLastFocus.focus === "function"){
+          factsLastFocus.focus();
+        }
+      }
+
+      function maybeShowFactsModal(){
+        // once per session/tab
+        if (sessionStorage.getItem(FACTS_SESSION_KEY) === "1") return;
+        sessionStorage.setItem(FACTS_SESSION_KEY, "1");
+        openFactsModal();
+      }
+
+      factsCloseBtn.addEventListener("click", closeFactsModal);
+      factsStartBtn.addEventListener("click", closeFactsModal);
+      factsNextBtn.addEventListener("click", renderFact);
+
+      factsModal.addEventListener("click", (e) => {
+        if(e.target?.dataset?.factsClose === "true") closeFactsModal();
+      });
+
+      // ============================
+      // Global ESC handling
+      // Priority: lightbox > product modal > facts modal
+      // ============================
+      document.addEventListener("keydown", (e) => {
+        if(e.key !== "Escape") return;
+
+        if(lightbox.getAttribute("aria-hidden") === "false"){ closeLightbox(); return; }
+        if(modal.getAttribute("aria-hidden") === "false"){ closeModal(); return; }
+        if(factsModal.getAttribute("aria-hidden") === "false"){ closeFactsModal(); return; }
+      });
+
+      // Minimal focus trap for product modal + facts modal
+      document.addEventListener("keydown", (e) => {
+        const modalOpen = modal.getAttribute("aria-hidden") === "false";
+        const factsOpen = factsModal.getAttribute("aria-hidden") === "false";
+        const lightboxOpen = lightbox.getAttribute("aria-hidden") === "false";
+        if(!modalOpen && !factsOpen) return;
+        if(lightboxOpen) return; // lightbox sits above
+
+        if(e.key !== "Tab") return;
+
+        const root = factsOpen ? factsModal : modal;
+        const focusables = root.querySelectorAll(
+          'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const list = Array.from(focusables).filter(el => !el.hasAttribute("disabled") && el.offsetParent !== null);
+        if(!list.length) return;
+
+        const first = list[0];
+        const last = list[list.length - 1];
+
+        if(e.shiftKey && document.activeElement === first){
+          e.preventDefault(); last.focus();
+        } else if(!e.shiftKey && document.activeElement === last){
+          e.preventDefault(); first.focus();
+        }
+      });
 
     } catch (err) {
       console.error("RoboTechi site script error:", err);
