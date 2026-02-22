@@ -16,21 +16,22 @@
 
   <style>
     :root{
-      --bg: #FBF7EA;
-      --bg2:#FFFFFF;
+      /* Light Gold / White sci-fi theme (logo-matching) */
+      --bg: #FBF7EA;            /* very light gold */
+      --bg2:#FFFFFF;            /* clean white */
       --panel: rgba(10,14,20,.05);
       --panel2: rgba(10,14,20,.07);
       --line: rgba(10,14,20,.12);
 
-      --text: rgba(10,14,20,.92);
+      --text: rgba(10,14,20,.92);   /* deep charcoal */
       --muted: rgba(10,14,20,.70);
       --muted2: rgba(10,14,20,.55);
 
-      --gold: #E7C34D;
-      --gold2:#F3DE8A;
-      --ink: #0A0E14;
-      --blue:#2C7CFF;
-      --mint:#32D6A0;
+      --gold: #E7C34D;          /* bolt gold */
+      --gold2:#F3DE8A;          /* lighter gold */
+      --ink: #0A0E14;           /* charcoal */
+      --blue:#2C7CFF;           /* electric blue */
+      --mint:#32D6A0;           /* mint accent */
 
       --radius: 18px;
       --shadow: 0 18px 55px rgba(10,14,20,.10);
@@ -45,6 +46,8 @@
       font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.4;
       overflow-x:hidden;
+
+      /* Sci-fi light background */
       background:
         radial-gradient(900px 600px at 15% 5%, rgba(231,195,77,.22), transparent 60%),
         radial-gradient(900px 600px at 85% 15%, rgba(44,124,255,.10), transparent 55%),
@@ -54,11 +57,16 @@
 
     a{color:inherit; text-decoration:none}
     .container{width:min(1120px, 92vw); margin:0 auto}
+
+    /* Utility */
     .mono{
       font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       letter-spacing:.2px;
     }
 
+    /* =========================
+       SCI-FI OVERLAY (site-wide)
+       ========================= */
     .site-overlay{
       position:fixed;
       inset:0;
@@ -78,6 +86,9 @@
       background-size: 34px 34px, 34px 34px, auto;
     }
 
+    /* =========================
+       SPLASH SCREEN
+       ========================= */
     .splash{
       position:fixed;
       inset:0;
@@ -187,6 +198,9 @@
       .splash::after, .loading::after{ animation:none !important; }
     }
 
+    /* =========================
+       NAV
+       ========================= */
     header.nav{
       position:sticky;
       top:0;
@@ -296,6 +310,9 @@
     }
     .drawer a:hover{background: rgba(10,14,20,.06); color: rgba(10,14,20,.92)}
 
+    /* =========================
+       MASTHEAD
+       ========================= */
     .masthead{
       padding: 18px 0 10px;
       position:relative;
@@ -322,6 +339,9 @@
       margin-top: 4px;
     }
 
+    /* =========================
+       VIDEO
+       ========================= */
     .video-wrap{
       margin-top: 12px;
       border-radius: var(--radius);
@@ -366,6 +386,9 @@
       border:0;
     }
 
+    /* =========================
+       TICKER
+       ========================= */
     .ticker{
       margin-top: 12px;
       border-radius: var(--radius);
@@ -431,6 +454,9 @@
       .ticker-track{animation:none}
     }
 
+    /* =========================
+       SECTIONS / CARDS
+       ========================= */
     section{padding: 28px 0; position:relative; z-index:1}
     .section-title{
       display:flex;
@@ -468,6 +494,7 @@
       border-color: rgba(10,14,20,.20);
     }
 
+    /* Service image placeholders */
     .service-media{
       width:100%;
       aspect-ratio: 16/10;
@@ -534,6 +561,7 @@
       font-weight:900;
     }
 
+    /* Product thumbs */
     .product-row{display:grid; grid-template-columns: 1fr; gap:12px}
     .product-card{display:grid; gap:12px}
     .product-thumb{
@@ -573,6 +601,7 @@
       color: rgba(10,14,20,.70);
     }
 
+    /* Make product cards feel clickable */
     .product-card.clickable{
       cursor:pointer;
       position:relative;
@@ -600,6 +629,7 @@
     }
     .product-card.clickable:hover::after{opacity:1; transform: translateY(0);}
 
+    /* Forms */
     form{display:grid; gap:10px}
     label{
       font-size:12px;
@@ -619,6 +649,7 @@
     textarea{min-height: 120px; resize: vertical}
     .row{display:grid; grid-template-columns: 1fr; gap:10px}
 
+    /* Footer */
     footer{
       padding: 22px 0 34px;
       border-top:1px solid rgba(10,14,20,.12);
@@ -632,6 +663,9 @@
     }
     .footer-inner{display:flex; flex-direction:column; gap:10px;}
 
+    /* =========================
+       PRODUCT MODAL (POPUP)
+       ========================= */
     .modal{
       position:fixed;
       inset:0;
@@ -735,12 +769,8 @@
       letter-spacing:.2px;
       color: var(--ink);
     }
-    .panel p{
-      margin:0;
-      color: rgba(10,14,20,.72);
-      font-size: 13px;
-    }
 
+    /* timeline */
     .timeline{margin:0; padding:0; list-style:none; display:grid; gap:10px;}
     .step{
       display:grid;
@@ -767,9 +797,10 @@
       line-height:1.45;
     }
 
+    /* Bigger gallery tiles in popup */
     .img-strip{
       display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr; /* mobile: 1 per row */
       gap: 12px;
     }
     .img-ph{
@@ -784,12 +815,15 @@
       position:relative;
       display:grid;
       place-items:center;
+      cursor: zoom-in; /* click to expand */
     }
     .img-ph img{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
+      user-select:none;
+      -webkit-user-drag:none;
     }
     .img-ph span{
       position:absolute;
@@ -812,8 +846,10 @@
       padding-top: 2px;
     }
 
+    /* lock scroll when modal/lightbox open */
     body.modal-open{overflow:hidden;}
 
+    /* Responsive */
     @media (min-width: 760px){
       .links{display:flex; gap:4px; align-items:center}
       .menu-btn{display:none}
@@ -821,11 +857,103 @@
       .row{grid-template-columns: 1fr 1fr}
       .footer-inner{flex-direction:row; justify-content:space-between; align-items:center}
       .product-row{grid-template-columns: 1fr 1fr}
+
       .modal-grid{grid-template-columns: 1.35fr .65fr;}
-      .img-strip{grid-template-columns: 1fr 1fr; gap: 14px;}
+
+      /* desktop: 2 per row */
+      .img-strip{
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
     }
     @media (min-width: 1050px){
       .grid{grid-template-columns: 1fr 1fr 1fr}
+    }
+
+    /* =========================
+       LIGHTBOX (expanded image + pinch zoom)
+       ========================= */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:11000; /* above product modal */
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+    }
+    .lightbox[aria-hidden="false"]{display:flex;}
+
+    .lightbox-backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(10,14,20,.72);
+      backdrop-filter: blur(6px);
+    }
+
+    .lightbox-panel{
+      position:relative;
+      width:min(1100px, 96vw);
+      max-height: 90vh;
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 50px 140px rgba(10,14,20,.45);
+    }
+
+    /* viewer area where we pan/zoom */
+    .lightbox-viewer{
+      position:relative;
+      width:100%;
+      height:min(78vh, 760px);
+      background: rgba(10,14,20,.06);
+      overflow:hidden;
+      touch-action: none; /* ✅ required for pinch zoom on mobile */
+    }
+
+    .lightbox-img{
+      width:100%;
+      height:100%;
+      object-fit: contain;
+      display:block;
+      user-select:none;
+      -webkit-user-drag:none;
+      transform-origin: 50% 50%;
+      will-change: transform;
+    }
+
+    .lightbox-caption{
+      padding: 10px 12px;
+      border-top: 1px solid rgba(10,14,20,.10);
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size:12px;
+      color: rgba(10,14,20,.70);
+      background: rgba(255,255,255,.90);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .lightbox-close{
+      position:absolute;
+      top:10px;
+      right:10px;
+      border-radius: 14px;
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.85);
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:800;
+      box-shadow: var(--shadow2);
+      z-index:2;
+    }
+
+    .lightbox-hint{
+      font-size:11px;
+      color: rgba(10,14,20,.60);
     }
   </style>
 </head>
@@ -833,6 +961,7 @@
 <body>
   <div class="site-overlay" aria-hidden="true"></div>
 
+  <!-- SPLASH -->
   <div class="splash" id="splash" aria-label="Loading RoboTechi">
     <div class="splash-card">
       <div class="glow" aria-hidden="true"></div>
@@ -849,6 +978,7 @@
     </div>
   </div>
 
+  <!-- NAV -->
   <header class="nav">
     <div class="container">
       <div class="nav-inner">
@@ -882,6 +1012,7 @@
     </div>
   </header>
 
+  <!-- LOGO + VIDEO -->
   <section class="masthead" id="top">
     <div class="container">
       <div class="center-logo">
@@ -930,6 +1061,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1035,6 +1167,7 @@
     </div>
   </section>
 
+  <!-- PRODUCTS -->
   <section id="products">
     <div class="container">
       <div class="section-title">
@@ -1043,12 +1176,15 @@
       </div>
 
       <div class="product-row">
-        <article class="card product-card clickable" tabindex="0" role="button"
-          aria-label="Open build process for OBIOS Card v1" data-product="kadi">
+        <article
+          class="card product-card clickable"
+          tabindex="0"
+          role="button"
+          aria-label="Open build process for OBIOS Card v1"
+          data-product="kadi"
+        >
           <div class="product-thumb">
-            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)">
-              <img src="rtlogo.png" alt="OBIOS Card v1">
-            </span>
+            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="OBIOS Card v1"></span>
             <span class="pill">Hardware</span>
           </div>
           <div>
@@ -1063,12 +1199,15 @@
           </div>
         </article>
 
-        <article class="card product-card clickable" tabindex="0" role="button"
-          aria-label="Open build process for MP9K v1 (Macropad)" data-product="mp9k">
+        <article
+          class="card product-card clickable"
+          tabindex="0"
+          role="button"
+          aria-label="Open build process for MP9K v1 (Macropad)"
+          data-product="mp9k"
+        >
           <div class="product-thumb">
-            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)">
-              <img src="rtlogo.png" alt="MP9K v1">
-            </span>
+            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="MP9K v1"></span>
             <span class="pill">Hardware</span>
           </div>
           <div>
@@ -1087,6 +1226,7 @@
     </div>
   </section>
 
+  <!-- ABOUT + CONTACT -->
   <section id="about">
     <div class="container">
       <div class="section-title">
@@ -1163,6 +1303,7 @@
     </div>
   </footer>
 
+  <!-- PRODUCT MODAL -->
   <div class="modal" id="productModal" aria-hidden="true" aria-label="Product build process modal">
     <div class="modal-backdrop" data-close="true" aria-hidden="true"></div>
 
@@ -1202,15 +1343,35 @@
         </div>
 
         <p class="mono" style="margin:0; color:rgba(10,14,20,.55); font-size:11px;">
-          Tip: Press <strong>ESC</strong> to close.
+          Tip: Press <strong>ESC</strong> to close. Tap an image to expand (pinch to zoom on mobile).
         </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX (Expanded image + pinch zoom) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" aria-label="Expanded image viewer">
+    <div class="lightbox-backdrop" data-lightbox-close="true" aria-hidden="true"></div>
+
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
+      <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close expanded image">Close ✕</button>
+
+      <div class="lightbox-viewer" id="lightboxViewer" aria-label="Pinch to zoom viewer">
+        <img id="lightboxImg" class="lightbox-img" alt="">
+      </div>
+
+      <div class="lightbox-caption" id="lightboxCaptionWrap">
+        <div id="lightboxCaption"></div>
+        <div class="lightbox-hint">Pinch to zoom • Drag to pan • Double-tap to reset</div>
       </div>
     </div>
   </div>
 
   <script>
     try {
-      // Splash duration (ms)
+      // ============================
+      // Splash
+      // ============================
       const SPLASH_DURATION = 2600;
 
       const splash = document.getElementById("splash");
@@ -1219,7 +1380,7 @@
       const start = performance.now();
       function tick(now){
         const t = Math.min(1, (now - start) / SPLASH_DURATION);
-        const eased = 1 - Math.pow(1 - t, 3);
+        const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
         fill.style.width = (eased * 100).toFixed(1) + "%";
         if (t < 1) requestAnimationFrame(tick);
       }
@@ -1230,7 +1391,9 @@
         setTimeout(() => splash.remove(), 650);
       }, SPLASH_DURATION);
 
+      // ============================
       // Mobile menu
+      // ============================
       const menuBtn = document.getElementById("menuBtn");
       const drawer = document.getElementById("drawer");
 
@@ -1247,7 +1410,9 @@
         });
       });
 
+      // ============================
       // Contact: mailto fallback
+      // ============================
       const form = document.getElementById("contactForm");
       form?.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -1261,7 +1426,7 @@
           `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject Details:\n${message}\n`
         );
 
-        const to = "YOUR_EMAIL@DOMAIN.COM";
+        const to = "YOUR_EMAIL@DOMAIN.COM"; // <-- change this
         window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       });
 
@@ -1281,12 +1446,13 @@
       const modalDocBtn = document.getElementById("modalDocBtn");
       const modalCtaBtn = document.getElementById("modalCtaBtn");
 
+      // ✅ FIXED: added missing comma in kadi.parts list
       const PRODUCT_DATA = {
         kadi: {
           title: "OBIOS Card v1",
           sub: "NFC Business Card",
           icon: "OBIOS Card v1.png",
-          docsUrl: "https://substack.com/@odotofrva",
+          docsUrl: "#",
           ctaText: "Request OBIOS Card build",
           steps: [
             "Define requirements: NFC tap flow, profile payload OBIOS UI.",
@@ -1298,23 +1464,23 @@
             "Docs: build guide + how-to update contact payload + troubleshooting."
           ],
           gallery: [
-            { src: "OBIOS Card v1.png", label: "Concept / Sketch" },
-            { src: "OBIOS Card v1 - 2.png", label: "PCB Layout" },
-            { src: "OBIOS Card v1 - 3.png", label: "Prototype" },
-            { src: "OBIOS Card v1 - 4.png", label: "Final / Demo" }
+            { src: "obios card v1.png", label: "Concept / Sketch" },
+            { src: "OBIOS Card v1-2.png", label: "PCB Layout" },
+            { src: "OBIOS Card v1-3.png", label: "Prototype" },
+            { src: "OBIOS Card v1-4.png", label: "Final / Demo" },
           ],
           parts: [
             "NFC: NTAG/compatible tag (or NFC IC module)",
             "Antenna: 6 tracks",
             "Indicators: 1x LED + resistor",
             "Mechanical: edge plating / card thickness target"
-          ]
+          ],
         },
         mp9k: {
           title: "MP9K v1 (Macropad)",
           sub: "Compact macropad with keys + knob (QMK/VIA-ready)",
           icon: "macropad.png",
-          docsUrl: "https://substack.com/@odotofrva",
+          docsUrl: "#",
           ctaText: "Request MP9K build",
           steps: [
             "Define layout: key count, knob placement, OLED (optional), case constraints.",
@@ -1329,7 +1495,7 @@
             { src: "mp-step1.png", label: "Layout / Matrix" },
             { src: "mp-step2.png", label: "Schematic" },
             { src: "mp-step3.png", label: "Assembled Board" },
-            { src: "mp-step4.png", label: "Keymap Layers" }
+            { src: "mp-step4.png", label: "Keymap Layers" },
           ],
           parts: [
             "MCU: RP2040 (or ATmega32U4)",
@@ -1337,7 +1503,7 @@
             "Input: rotary encoder + knob",
             "USB-C: connector + ESD diodes",
             "Optional: OLED + buzzer + RGB"
-          ]
+          ],
         }
       };
 
@@ -1357,6 +1523,7 @@
         modalDocBtn.href = data.docsUrl || "#";
         modalCtaBtn.textContent = data.ctaText || "Request this build";
 
+        // Steps
         modalSteps.innerHTML = "";
         data.steps.forEach((s, i) => {
           const li = document.createElement("li");
@@ -1368,24 +1535,40 @@
           modalSteps.appendChild(li);
         });
 
+        // Gallery (click => lightbox)
         modalGallery.innerHTML = "";
         data.gallery.forEach((g, i) => {
           const wrap = document.createElement("div");
           wrap.className = "img-ph";
+          wrap.setAttribute("role", "button");
+          wrap.setAttribute("tabindex", "0");
+          wrap.setAttribute("aria-label", `Expand image ${i+1}: ${g.label || "Gallery image"}`);
+
           wrap.innerHTML = `
             <img src="${g.src}" alt="${data.title} image ${i+1}"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <span style="display:none;">${g.label || "Image Placeholder"}</span>
           `;
+
+          wrap.addEventListener("click", () => openLightbox(g.src, g.label || "", `${data.title} image ${i+1}`));
+          wrap.addEventListener("keydown", (e) => {
+            if(e.key === "Enter" || e.key === " "){
+              e.preventDefault();
+              openLightbox(g.src, g.label || "", `${data.title} image ${i+1}`);
+            }
+          });
+
           modalGallery.appendChild(wrap);
         });
 
+        // Parts
         modalParts.innerHTML = `
           <ul style="margin:0; padding-left:18px;">
             ${data.parts.map(p => `<li>${p}</li>`).join("")}
           </ul>
         `;
 
+        // Show
         modal.setAttribute("aria-hidden", "false");
         document.body.classList.add("modal-open");
         modalCloseBtn.focus();
@@ -1393,10 +1576,14 @@
 
       function closeModal(){
         modal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("modal-open");
+        // If lightbox isn't open, unlock scroll
+        if (lightbox.getAttribute("aria-hidden") === "true") {
+          document.body.classList.remove("modal-open");
+        }
         if(lastFocusEl && typeof lastFocusEl.focus === "function") lastFocusEl.focus();
       }
 
+      // Open on click (or Enter/Space)
       document.querySelectorAll(".product-card.clickable").forEach(card => {
         card.addEventListener("click", () => openModal(card.dataset.product));
         card.addEventListener("keydown", (e) => {
@@ -1407,6 +1594,7 @@
         });
       });
 
+      // Close actions
       modalCloseBtn.addEventListener("click", closeModal);
       modal.addEventListener("click", (e) => {
         if(e.target?.dataset?.close === "true") closeModal();
@@ -1415,6 +1603,7 @@
         if(modal.getAttribute("aria-hidden") === "false" && e.key === "Escape") closeModal();
       });
 
+      // Minimal focus trap (keeps tab inside modal)
       document.addEventListener("keydown", (e) => {
         if(modal.getAttribute("aria-hidden") !== "false") return;
         if(e.key !== "Tab") return;
@@ -1434,9 +1623,195 @@
           e.preventDefault(); first.focus();
         }
       });
+
+      // ============================
+      // Lightbox + Pinch Zoom (mobile)
+      // ============================
+      const lightbox = document.getElementById("lightbox");
+      const lightboxViewer = document.getElementById("lightboxViewer");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      const lightboxCloseBtn = document.getElementById("lightboxCloseBtn");
+
+      let lastFocusBeforeLightbox = null;
+
+      // transform state
+      let scale = 1;
+      let tx = 0;
+      let ty = 0;
+
+      function applyTransform(){
+        lightboxImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+      }
+
+      function resetTransform(){
+        scale = 1;
+        tx = 0;
+        ty = 0;
+        applyTransform();
+      }
+
+      function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+      function openLightbox(src, caption, alt){
+        if(!src) return;
+        lastFocusBeforeLightbox = document.activeElement;
+
+        // reset zoom/pan each time
+        resetTransform();
+
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "Expanded image";
+        lightboxCaption.textContent = caption || "";
+
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        lightboxCloseBtn.focus();
+      }
+
+      function closeLightbox(){
+        lightbox.setAttribute("aria-hidden", "true");
+
+        // if product modal still open, keep scroll locked
+        const modalIsOpen = modal.getAttribute("aria-hidden") === "false";
+        if(!modalIsOpen) document.body.classList.remove("modal-open");
+
+        if(lastFocusBeforeLightbox && typeof lastFocusBeforeLightbox.focus === "function"){
+          lastFocusBeforeLightbox.focus();
+        }
+      }
+
+      lightboxCloseBtn?.addEventListener("click", closeLightbox);
+      lightbox?.addEventListener("click", (e) => {
+        if(e.target?.dataset?.lightboxClose === "true") closeLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if(lightbox.getAttribute("aria-hidden") === "false" && e.key === "Escape") closeLightbox();
+      });
+
+      // ----- Pinch/drag with Pointer Events -----
+      const pointers = new Map(); // pointerId -> {x,y}
+      let isPanning = false;
+      let panStart = {x:0, y:0};
+      let startTx = 0, startTy = 0;
+
+      // pinch baseline
+      let pinchStartDist = 0;
+      let pinchStartScale = 1;
+      let pinchMid = {x:0, y:0};
+      let pinchStartTx = 0, pinchStartTy = 0;
+
+      function getDist(a,b){
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        return Math.hypot(dx, dy);
+      }
+      function getMid(a,b){
+        return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      }
+
+      lightboxViewer.addEventListener("pointerdown", (e) => {
+        if(lightbox.getAttribute("aria-hidden") === "true") return;
+        lightboxViewer.setPointerCapture(e.pointerId);
+        pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+
+        // Two pointers = pinch
+        if(pointers.size === 2){
+          const pts = Array.from(pointers.values());
+          pinchStartDist = getDist(pts[0], pts[1]);
+          pinchStartScale = scale;
+          pinchMid = getMid(pts[0], pts[1]);
+          pinchStartTx = tx;
+          pinchStartTy = ty;
+        } else if(pointers.size === 1){
+          // One pointer = pan (only meaningful when zoomed, but allow anyway)
+          isPanning = true;
+          panStart = {x:e.clientX, y:e.clientY};
+          startTx = tx; startTy = ty;
+        }
+      });
+
+      lightboxViewer.addEventListener("pointermove", (e) => {
+        if(lightbox.getAttribute("aria-hidden") === "true") return;
+        if(!pointers.has(e.pointerId)) return;
+
+        pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+
+        if(pointers.size === 2){
+          const pts = Array.from(pointers.values());
+          const d = getDist(pts[0], pts[1]);
+          const mid = getMid(pts[0], pts[1]);
+
+          const rawScale = pinchStartScale * (d / (pinchStartDist || 1));
+          const newScale = clamp(rawScale, 1, 4);
+
+          // Keep the pinch midpoint feeling stable:
+          // shift translation by the midpoint delta while scaling
+          const midDx = mid.x - pinchMid.x;
+          const midDy = mid.y - pinchMid.y;
+
+          scale = newScale;
+          tx = pinchStartTx + midDx;
+          ty = pinchStartTy + midDy;
+
+          applyTransform();
+        } else if(pointers.size === 1 && isPanning){
+          const dx = e.clientX - panStart.x;
+          const dy = e.clientY - panStart.y;
+
+          // Slightly reduce panning sensitivity at low zoom
+          const panFactor = Math.max(1, scale);
+          tx = startTx + dx / panFactor;
+          ty = startTy + dy / panFactor;
+
+          applyTransform();
+        }
+      });
+
+      function endPointer(e){
+        if(!pointers.has(e.pointerId)) return;
+        pointers.delete(e.pointerId);
+
+        if(pointers.size < 2){
+          pinchStartDist = 0;
+        }
+        if(pointers.size === 0){
+          isPanning = false;
+
+          // snap back if user let go with tiny zoom
+          if(scale < 1.02) resetTransform();
+        }
+      }
+
+      lightboxViewer.addEventListener("pointerup", endPointer);
+      lightboxViewer.addEventListener("pointercancel", endPointer);
+      lightboxViewer.addEventListener("pointerleave", (e) => {
+        // don't aggressively end; pointer capture should handle it, but keep safe:
+        if (pointers.has(e.pointerId)) endPointer(e);
+      });
+
+      // Double-tap / double-click to reset zoom
+      let lastTapTime = 0;
+      lightboxViewer.addEventListener("pointerup", (e) => {
+        // Only treat as tap if not in pinch
+        if(pointers.size !== 0) return;
+        const now = Date.now();
+        if(now - lastTapTime < 300){
+          resetTransform();
+          lastTapTime = 0;
+        } else {
+          lastTapTime = now;
+        }
+      });
+
+      // Prevent iOS double-tap zoom on the page
+      lightboxViewer.addEventListener("gesturestart", (e) => e.preventDefault?.(), {passive:false});
+      lightboxViewer.addEventListener("gesturechange", (e) => e.preventDefault?.(), {passive:false});
+      lightboxViewer.addEventListener("gestureend", (e) => e.preventDefault?.(), {passive:false});
+
     } catch (err) {
       console.error("RoboTechi site script error:", err);
-      // If something breaks, at least kill the splash so the user can still see the site
+      // Fail-open: remove splash so the user can still see the site
       const splash = document.getElementById("splash");
       if (splash) splash.remove();
     }
