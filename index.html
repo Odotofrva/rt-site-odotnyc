@@ -16,22 +16,21 @@
 
   <style>
     :root{
-      /* Light Gold / White sci-fi theme (logo-matching) */
-      --bg: #FBF7EA;            /* very light gold */
-      --bg2:#FFFFFF;            /* clean white */
+      --bg: #FBF7EA;
+      --bg2:#FFFFFF;
       --panel: rgba(10,14,20,.05);
       --panel2: rgba(10,14,20,.07);
       --line: rgba(10,14,20,.12);
 
-      --text: rgba(10,14,20,.92);   /* deep charcoal */
+      --text: rgba(10,14,20,.92);
       --muted: rgba(10,14,20,.70);
       --muted2: rgba(10,14,20,.55);
 
-      --gold: #E7C34D;          /* bolt gold */
-      --gold2:#F3DE8A;          /* lighter gold */
-      --ink: #0A0E14;           /* charcoal */
-      --blue:#2C7CFF;           /* electric blue */
-      --mint:#32D6A0;           /* mint accent */
+      --gold: #E7C34D;
+      --gold2:#F3DE8A;
+      --ink: #0A0E14;
+      --blue:#2C7CFF;
+      --mint:#32D6A0;
 
       --radius: 18px;
       --shadow: 0 18px 55px rgba(10,14,20,.10);
@@ -46,8 +45,6 @@
       font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.4;
       overflow-x:hidden;
-
-      /* Sci-fi light background */
       background:
         radial-gradient(900px 600px at 15% 5%, rgba(231,195,77,.22), transparent 60%),
         radial-gradient(900px 600px at 85% 15%, rgba(44,124,255,.10), transparent 55%),
@@ -57,16 +54,11 @@
 
     a{color:inherit; text-decoration:none}
     .container{width:min(1120px, 92vw); margin:0 auto}
-
-    /* Utility */
     .mono{
       font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       letter-spacing:.2px;
     }
 
-    /* =========================
-       SCI-FI OVERLAY (site-wide)
-       ========================= */
     .site-overlay{
       position:fixed;
       inset:0;
@@ -86,9 +78,6 @@
       background-size: 34px 34px, 34px 34px, auto;
     }
 
-    /* =========================
-       SPLASH SCREEN
-       ========================= */
     .splash{
       position:fixed;
       inset:0;
@@ -198,9 +187,6 @@
       .splash::after, .loading::after{ animation:none !important; }
     }
 
-    /* =========================
-       NAV
-       ========================= */
     header.nav{
       position:sticky;
       top:0;
@@ -310,9 +296,6 @@
     }
     .drawer a:hover{background: rgba(10,14,20,.06); color: rgba(10,14,20,.92)}
 
-    /* =========================
-       MASTHEAD
-       ========================= */
     .masthead{
       padding: 18px 0 10px;
       position:relative;
@@ -339,9 +322,6 @@
       margin-top: 4px;
     }
 
-    /* =========================
-       VIDEO
-       ========================= */
     .video-wrap{
       margin-top: 12px;
       border-radius: var(--radius);
@@ -386,9 +366,6 @@
       border:0;
     }
 
-    /* =========================
-       TICKER
-       ========================= */
     .ticker{
       margin-top: 12px;
       border-radius: var(--radius);
@@ -454,9 +431,6 @@
       .ticker-track{animation:none}
     }
 
-    /* =========================
-       SECTIONS / CARDS
-       ========================= */
     section{padding: 28px 0; position:relative; z-index:1}
     .section-title{
       display:flex;
@@ -494,7 +468,6 @@
       border-color: rgba(10,14,20,.20);
     }
 
-    /* Service image placeholders */
     .service-media{
       width:100%;
       aspect-ratio: 16/10;
@@ -561,7 +534,6 @@
       font-weight:900;
     }
 
-    /* Product thumbs */
     .product-row{display:grid; grid-template-columns: 1fr; gap:12px}
     .product-card{display:grid; gap:12px}
     .product-thumb{
@@ -601,7 +573,6 @@
       color: rgba(10,14,20,.70);
     }
 
-    /* Make product cards feel clickable */
     .product-card.clickable{
       cursor:pointer;
       position:relative;
@@ -629,7 +600,6 @@
     }
     .product-card.clickable:hover::after{opacity:1; transform: translateY(0);}
 
-    /* Forms */
     form{display:grid; gap:10px}
     label{
       font-size:12px;
@@ -649,7 +619,6 @@
     textarea{min-height: 120px; resize: vertical}
     .row{display:grid; grid-template-columns: 1fr; gap:10px}
 
-    /* Footer */
     footer{
       padding: 22px 0 34px;
       border-top:1px solid rgba(10,14,20,.12);
@@ -663,10 +632,6 @@
     }
     .footer-inner{display:flex; flex-direction:column; gap:10px;}
 
-    /* =========================
-       PRODUCT MODAL (POPUP)
-       Option A: Bigger images INSIDE popup (no extra zoom/lightbox)
-       ========================= */
     .modal{
       position:fixed;
       inset:0;
@@ -776,7 +741,6 @@
       font-size: 13px;
     }
 
-    /* timeline */
     .timeline{margin:0; padding:0; list-style:none; display:grid; gap:10px;}
     .step{
       display:grid;
@@ -803,14 +767,13 @@
       line-height:1.45;
     }
 
-    /* ✅ OPTION A: Bigger gallery tiles in popup */
     .img-strip{
       display:grid;
-      grid-template-columns: 1fr;     /* mobile: 1 big tile per row */
+      grid-template-columns: 1fr;
       gap: 12px;
     }
     .img-ph{
-      aspect-ratio: 16/9;            /* taller + more cinematic */
+      aspect-ratio: 16/9;
       border-radius: 18px;
       border:1px dashed rgba(10,14,20,.22);
       background:
@@ -825,7 +788,7 @@
     .img-ph img{
       width:100%;
       height:100%;
-      object-fit:cover;              /* fills the larger tile */
+      object-fit:cover;
       display:block;
     }
     .img-ph span{
@@ -849,10 +812,8 @@
       padding-top: 2px;
     }
 
-    /* lock scroll when modal open */
     body.modal-open{overflow:hidden;}
 
-    /* Responsive */
     @media (min-width: 760px){
       .links{display:flex; gap:4px; align-items:center}
       .menu-btn{display:none}
@@ -860,15 +821,8 @@
       .row{grid-template-columns: 1fr 1fr}
       .footer-inner{flex-direction:row; justify-content:space-between; align-items:center}
       .product-row{grid-template-columns: 1fr 1fr}
-
-      /* ✅ Give gallery area more room in modal */
       .modal-grid{grid-template-columns: 1.35fr .65fr;}
-
-      /* desktop: 2 big tiles per row */
-      .img-strip{
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
+      .img-strip{grid-template-columns: 1fr 1fr; gap: 14px;}
     }
     @media (min-width: 1050px){
       .grid{grid-template-columns: 1fr 1fr 1fr}
@@ -879,7 +833,6 @@
 <body>
   <div class="site-overlay" aria-hidden="true"></div>
 
-  <!-- SPLASH -->
   <div class="splash" id="splash" aria-label="Loading RoboTechi">
     <div class="splash-card">
       <div class="glow" aria-hidden="true"></div>
@@ -896,7 +849,6 @@
     </div>
   </div>
 
-  <!-- NAV -->
   <header class="nav">
     <div class="container">
       <div class="nav-inner">
@@ -930,7 +882,6 @@
     </div>
   </header>
 
-  <!-- LOGO + VIDEO -->
   <section class="masthead" id="top">
     <div class="container">
       <div class="center-logo">
@@ -979,7 +930,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1085,7 +1035,6 @@
     </div>
   </section>
 
-  <!-- PRODUCTS -->
   <section id="products">
     <div class="container">
       <div class="section-title">
@@ -1094,15 +1043,12 @@
       </div>
 
       <div class="product-row">
-        <article
-          class="card product-card clickable"
-          tabindex="0"
-          role="button"
-          aria-label="Open build process for OBIOS Card v1"
-          data-product="kadi"
-        >
+        <article class="card product-card clickable" tabindex="0" role="button"
+          aria-label="Open build process for OBIOS Card v1" data-product="kadi">
           <div class="product-thumb">
-            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="OBIOS Card v1"></span>
+            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)">
+              <img src="rtlogo.png" alt="OBIOS Card v1">
+            </span>
             <span class="pill">Hardware</span>
           </div>
           <div>
@@ -1117,15 +1063,12 @@
           </div>
         </article>
 
-        <article
-          class="card product-card clickable"
-          tabindex="0"
-          role="button"
-          aria-label="Open build process for MP9K v1 (Macropad)"
-          data-product="mp9k"
-        >
+        <article class="card product-card clickable" tabindex="0" role="button"
+          aria-label="Open build process for MP9K v1 (Macropad)" data-product="mp9k">
           <div class="product-thumb">
-            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="MP9K v1"></span>
+            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)">
+              <img src="rtlogo.png" alt="MP9K v1">
+            </span>
             <span class="pill">Hardware</span>
           </div>
           <div>
@@ -1144,7 +1087,6 @@
     </div>
   </section>
 
-  <!-- ABOUT + CONTACT -->
   <section id="about">
     <div class="container">
       <div class="section-title">
@@ -1221,7 +1163,6 @@
     </div>
   </footer>
 
-  <!-- PRODUCT MODAL -->
   <div class="modal" id="productModal" aria-hidden="true" aria-label="Product build process modal">
     <div class="modal-backdrop" data-close="true" aria-hidden="true"></div>
 
@@ -1268,237 +1209,237 @@
   </div>
 
   <script>
-    // Splash duration (ms)
-    const SPLASH_DURATION = 2600;
+    try {
+      // Splash duration (ms)
+      const SPLASH_DURATION = 2600;
 
-    const splash = document.getElementById("splash");
-    const fill = document.getElementById("loadFill");
+      const splash = document.getElementById("splash");
+      const fill = document.getElementById("loadFill");
 
-    const start = performance.now();
-    function tick(now){
-      const t = Math.min(1, (now - start) / SPLASH_DURATION);
-      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
-      fill.style.width = (eased * 100).toFixed(1) + "%";
-      if (t < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-
-    setTimeout(() => {
-      splash.classList.add("splash-hide");
-      setTimeout(() => splash.remove(), 650);
-    }, SPLASH_DURATION);
-
-    // Mobile menu
-    const menuBtn = document.getElementById("menuBtn");
-    const drawer = document.getElementById("drawer");
-
-    menuBtn?.addEventListener("click", () => {
-      const open = drawer.style.display === "block";
-      drawer.style.display = open ? "none" : "block";
-      menuBtn.setAttribute("aria-expanded", String(!open));
-    });
-
-    drawer?.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", () => {
-        drawer.style.display = "none";
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    // Contact: mailto fallback
-    const form = document.getElementById("contactForm");
-    form?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const service = document.getElementById("service").value;
-      const message = document.getElementById("message").value.trim();
-
-      const subject = encodeURIComponent(`RoboTechi Quote Request — ${service}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject Details:\n${message}\n`
-      );
-
-      const to = "YOUR_EMAIL@DOMAIN.COM"; // <-- change this
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ============================
-    // Product Popup (Modal)
-    // ============================
-    const modal = document.getElementById("productModal");
-    const modalCloseBtn = document.getElementById("modalCloseBtn");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalSub = document.getElementById("modalSub");
-    const modalIcon = document.getElementById("modalIcon");
-    const modalSteps = document.getElementById("modalSteps");
-    const modalGallery = document.getElementById("modalGallery");
-    const modalParts = document.getElementById("modalParts");
-    const modalDocBtn = document.getElementById("modalDocBtn");
-    const modalCtaBtn = document.getElementById("modalCtaBtn");
-
-    const PRODUCT_DATA = {
-      kadi: {
-        title: "OBIOS Card v1",
-        sub: "NFC Business Card",
-        icon: "OBIOS Card v1.png",
-        docsUrl: "#",
-        ctaText: "Request OBIOS Card build",
-        steps: [
-          "Define requirements: NFC tap flow, profile payload OBIOS UI.",
-          "Schematic: NFC tag/NTAG, ESD protection, USB-C, LED indicator.",
-          "PCB layout: antenna keepout rules, trace impedance awareness, clean ground + stitching vias.",
-          "Prototype order: small batch + bring-up checklist (NFC read/write).",
-          "Firmware: NFC UX testing on iOS/Android.",
-          "Enclosure/finish: card laminate, soldermask color, and user onboarding instructions.",
-          "Docs: build guide + how-to update contact payload + troubleshooting."
-        ],
-        gallery: [
-          { src: "obios card v1.png", label: "Concept / Sketch" },
-          { src: "OBIOS Card v1-2.png", label: "PCB Layout" },
-          { src: "OBIOS Card v1-3.png", label: "Prototype" },
-          { src: "OBIOS Card v1-4.png", label: "Final / Demo" },
-        ],
-        parts: [
-          "NFC: NTAG/compatible tag (or NFC IC module)",
-          "Antenna: 6 tracks"
-          "Indicators: 1x LED + resistor",
-          "Mechanical: edge plating / card thickness target"
-        ],
-      },
-      mp9k: {
-        title: "MP9K v1 (Macropad)",
-        sub: "Compact macropad with keys + knob (QMK/VIA-ready)",
-        icon: "macropad.png",
-        docsUrl: "#",
-        ctaText: "Request MP9K build",
-        steps: [
-          "Define layout: key count, knob placement, OLED (optional), case constraints.",
-          "Schematic: MCU (RP2040/ATmega32U4), switch matrix, encoder, ESD, USB-C.",
-          "PCB layout: matrix routing, diode placement, encoder footprint alignment.",
-          "Firmware: QMK/VIA keymap, layers, knob functions, macros.",
-          "Prototype: test matrix, encoder direction, USB enumeration, latency check.",
-          "Case + assembly: plate, standoffs, keycaps; finalize BOM + manufacturing notes.",
-          "Release: quick-start guide + default profiles for creators/gamers."
-        ],
-        gallery: [
-          { src: "mp-step1.png", label: "Layout / Matrix" },
-          { src: "mp-step2.png", label: "Schematic" },
-          { src: "mp-step3.png", label: "Assembled Board" },
-          { src: "mp-step4.png", label: "Keymap Layers" },
-        ],
-        parts: [
-          "MCU: RP2040 (or ATmega32U4)",
-          "Keys: MX-style switches + diodes",
-          "Input: rotary encoder + knob",
-          "USB-C: connector + ESD diodes",
-          "Optional: OLED + buzzer + RGB"
-        ],
+      const start = performance.now();
+      function tick(now){
+        const t = Math.min(1, (now - start) / SPLASH_DURATION);
+        const eased = 1 - Math.pow(1 - t, 3);
+        fill.style.width = (eased * 100).toFixed(1) + "%";
+        if (t < 1) requestAnimationFrame(tick);
       }
-    };
+      requestAnimationFrame(tick);
 
-    let lastFocusEl = null;
+      setTimeout(() => {
+        splash.classList.add("splash-hide");
+        setTimeout(() => splash.remove(), 650);
+      }, SPLASH_DURATION);
 
-    function openModal(key){
-      const data = PRODUCT_DATA[key];
-      if(!data) return;
+      // Mobile menu
+      const menuBtn = document.getElementById("menuBtn");
+      const drawer = document.getElementById("drawer");
 
-      lastFocusEl = document.activeElement;
-
-      modalTitle.textContent = data.title;
-      modalSub.textContent = data.sub;
-      modalIcon.src = data.icon || "rtlogo.png";
-      modalIcon.alt = data.title;
-
-      modalDocBtn.href = data.docsUrl || "#";
-      modalCtaBtn.textContent = data.ctaText || "Request this build";
-
-      // Steps
-      modalSteps.innerHTML = "";
-      data.steps.forEach((s, i) => {
-        const li = document.createElement("li");
-        li.className = "step";
-        li.innerHTML = `
-          <div class="node">${i+1}</div>
-          <div class="txt">${s}</div>
-        `;
-        modalSteps.appendChild(li);
+      menuBtn?.addEventListener("click", () => {
+        const open = drawer.style.display === "block";
+        drawer.style.display = open ? "none" : "block";
+        menuBtn.setAttribute("aria-expanded", String(!open));
       });
 
-      // Gallery (bigger tiles via CSS Option A)
-      modalGallery.innerHTML = "";
-      data.gallery.forEach((g, i) => {
-        const wrap = document.createElement("div");
-        wrap.className = "img-ph";
-        wrap.innerHTML = `
-          <img src="${g.src}" alt="${data.title} image ${i+1}"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <span style="display:none;">${g.label || "Image Placeholder"}</span>
-        `;
-        modalGallery.appendChild(wrap);
+      drawer?.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          drawer.style.display = "none";
+          menuBtn.setAttribute("aria-expanded", "false");
+        });
       });
 
-      // Parts
-      modalParts.innerHTML = `
-        <ul style="margin:0; padding-left:18px;">
-          ${data.parts.map(p => `<li>${p}</li>`).join("")}
-        </ul>
-      `;
+      // Contact: mailto fallback
+      const form = document.getElementById("contactForm");
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const service = document.getElementById("service").value;
+        const message = document.getElementById("message").value.trim();
 
-      // Show
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
-      modalCloseBtn.focus();
-    }
+        const subject = encodeURIComponent(`RoboTechi Quote Request — ${service}`);
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject Details:\n${message}\n`
+        );
 
-    function closeModal(){
-      modal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("modal-open");
-      if(lastFocusEl && typeof lastFocusEl.focus === "function") lastFocusEl.focus();
-    }
+        const to = "YOUR_EMAIL@DOMAIN.COM";
+        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      });
 
-    // Open on click (or Enter/Space)
-    document.querySelectorAll(".product-card.clickable").forEach(card => {
-      card.addEventListener("click", () => openModal(card.dataset.product));
-      card.addEventListener("keydown", (e) => {
-        if(e.key === "Enter" || e.key === " "){
-          e.preventDefault();
-          openModal(card.dataset.product);
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ============================
+      // Product Popup (Modal)
+      // ============================
+      const modal = document.getElementById("productModal");
+      const modalCloseBtn = document.getElementById("modalCloseBtn");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalSub = document.getElementById("modalSub");
+      const modalIcon = document.getElementById("modalIcon");
+      const modalSteps = document.getElementById("modalSteps");
+      const modalGallery = document.getElementById("modalGallery");
+      const modalParts = document.getElementById("modalParts");
+      const modalDocBtn = document.getElementById("modalDocBtn");
+      const modalCtaBtn = document.getElementById("modalCtaBtn");
+
+      const PRODUCT_DATA = {
+        kadi: {
+          title: "OBIOS Card v1",
+          sub: "NFC Business Card",
+          icon: "OBIOS Card v1.png",
+          docsUrl: "#",
+          ctaText: "Request OBIOS Card build",
+          steps: [
+            "Define requirements: NFC tap flow, profile payload OBIOS UI.",
+            "Schematic: NFC tag/NTAG, ESD protection, USB-C, LED indicator.",
+            "PCB layout: antenna keepout rules, trace impedance awareness, clean ground + stitching vias.",
+            "Prototype order: small batch + bring-up checklist (NFC read/write).",
+            "Firmware: NFC UX testing on iOS/Android.",
+            "Enclosure/finish: card laminate, soldermask color, and user onboarding instructions.",
+            "Docs: build guide + how-to update contact payload + troubleshooting."
+          ],
+          gallery: [
+            { src: "OBIOS Card v1.png", label: "Concept / Sketch" },
+            { src: "OBIOS Card v1 - 2.png", label: "PCB Layout" },
+            { src: "OBIOS Card v1 - 3.png", label: "Prototype" },
+            { src: "OBIOS Card v1 - 4.png", label: "Final / Demo" }
+          ],
+          parts: [
+            "NFC: NTAG/compatible tag (or NFC IC module)",
+            "Antenna: 6 tracks",
+            "Indicators: 1x LED + resistor",
+            "Mechanical: edge plating / card thickness target"
+          ]
+        },
+        mp9k: {
+          title: "MP9K v1 (Macropad)",
+          sub: "Compact macropad with keys + knob (QMK/VIA-ready)",
+          icon: "macropad.png",
+          docsUrl: "#",
+          ctaText: "Request MP9K build",
+          steps: [
+            "Define layout: key count, knob placement, OLED (optional), case constraints.",
+            "Schematic: MCU (RP2040/ATmega32U4), switch matrix, encoder, ESD, USB-C.",
+            "PCB layout: matrix routing, diode placement, encoder footprint alignment.",
+            "Firmware: QMK/VIA keymap, layers, knob functions, macros.",
+            "Prototype: test matrix, encoder direction, USB enumeration, latency check.",
+            "Case + assembly: plate, standoffs, keycaps; finalize BOM + manufacturing notes.",
+            "Release: quick-start guide + default profiles for creators/gamers."
+          ],
+          gallery: [
+            { src: "mp-step1.png", label: "Layout / Matrix" },
+            { src: "mp-step2.png", label: "Schematic" },
+            { src: "mp-step3.png", label: "Assembled Board" },
+            { src: "mp-step4.png", label: "Keymap Layers" }
+          ],
+          parts: [
+            "MCU: RP2040 (or ATmega32U4)",
+            "Keys: MX-style switches + diodes",
+            "Input: rotary encoder + knob",
+            "USB-C: connector + ESD diodes",
+            "Optional: OLED + buzzer + RGB"
+          ]
+        }
+      };
+
+      let lastFocusEl = null;
+
+      function openModal(key){
+        const data = PRODUCT_DATA[key];
+        if(!data) return;
+
+        lastFocusEl = document.activeElement;
+
+        modalTitle.textContent = data.title;
+        modalSub.textContent = data.sub;
+        modalIcon.src = data.icon || "rtlogo.png";
+        modalIcon.alt = data.title;
+
+        modalDocBtn.href = data.docsUrl || "#";
+        modalCtaBtn.textContent = data.ctaText || "Request this build";
+
+        modalSteps.innerHTML = "";
+        data.steps.forEach((s, i) => {
+          const li = document.createElement("li");
+          li.className = "step";
+          li.innerHTML = `
+            <div class="node">${i+1}</div>
+            <div class="txt">${s}</div>
+          `;
+          modalSteps.appendChild(li);
+        });
+
+        modalGallery.innerHTML = "";
+        data.gallery.forEach((g, i) => {
+          const wrap = document.createElement("div");
+          wrap.className = "img-ph";
+          wrap.innerHTML = `
+            <img src="${g.src}" alt="${data.title} image ${i+1}"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none;">${g.label || "Image Placeholder"}</span>
+          `;
+          modalGallery.appendChild(wrap);
+        });
+
+        modalParts.innerHTML = `
+          <ul style="margin:0; padding-left:18px;">
+            ${data.parts.map(p => `<li>${p}</li>`).join("")}
+          </ul>
+        `;
+
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        modalCloseBtn.focus();
+      }
+
+      function closeModal(){
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+        if(lastFocusEl && typeof lastFocusEl.focus === "function") lastFocusEl.focus();
+      }
+
+      document.querySelectorAll(".product-card.clickable").forEach(card => {
+        card.addEventListener("click", () => openModal(card.dataset.product));
+        card.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            openModal(card.dataset.product);
+          }
+        });
+      });
+
+      modalCloseBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if(e.target?.dataset?.close === "true") closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if(modal.getAttribute("aria-hidden") === "false" && e.key === "Escape") closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if(modal.getAttribute("aria-hidden") !== "false") return;
+        if(e.key !== "Tab") return;
+
+        const focusables = modal.querySelectorAll(
+          'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const list = Array.from(focusables).filter(el => !el.hasAttribute("disabled") && el.offsetParent !== null);
+        if(!list.length) return;
+
+        const first = list[0];
+        const last = list[list.length - 1];
+
+        if(e.shiftKey && document.activeElement === first){
+          e.preventDefault(); last.focus();
+        } else if(!e.shiftKey && document.activeElement === last){
+          e.preventDefault(); first.focus();
         }
       });
-    });
-
-    // Close actions
-    modalCloseBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => {
-      if(e.target?.dataset?.close === "true") closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if(modal.getAttribute("aria-hidden") === "false" && e.key === "Escape") closeModal();
-    });
-
-    // Minimal focus trap (keeps tab inside modal)
-    document.addEventListener("keydown", (e) => {
-      if(modal.getAttribute("aria-hidden") !== "false") return;
-      if(e.key !== "Tab") return;
-
-      const focusables = modal.querySelectorAll(
-        'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      const list = Array.from(focusables).filter(el => !el.hasAttribute("disabled") && el.offsetParent !== null);
-      if(!list.length) return;
-
-      const first = list[0];
-      const last = list[list.length - 1];
-
-      if(e.shiftKey && document.activeElement === first){
-        e.preventDefault(); last.focus();
-      } else if(!e.shiftKey && document.activeElement === last){
-        e.preventDefault(); first.focus();
-      }
-    });
+    } catch (err) {
+      console.error("RoboTechi site script error:", err);
+      // If something breaks, at least kill the splash so the user can still see the site
+      const splash = document.getElementById("splash");
+      if (splash) splash.remove();
+    }
   </script>
 </body>
 </html>
