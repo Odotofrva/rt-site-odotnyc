@@ -1299,21 +1299,22 @@
           </div>
         </article>
 
+        <!-- ✅ Replaced MP9K hardware with Munchie Hacim Retro Video Game insights -->
         <article class="card product-card clickable" tabindex="0" role="button"
-          aria-label="Open build process for MP9K v1 (Macropad)" data-product="mp9k">
+          aria-label="Open build process for Munchie Hacim (Retro Game)" data-product="hacim">
           <div class="product-thumb">
-            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="MP9K v1"></span>
-            <span class="pill">Hardware</span>
+            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="Munchie Hacim"></span>
+            <span class="pill">Game</span>
           </div>
           <div>
-            <h4 style="margin:0 0 6px;">MP9K v1 (Macropad)</h4>
+            <h4 style="margin:0 0 6px;">Munchie Hacim (Retro Game)</h4>
             <p style="margin:0; color:rgba(10,14,20,.70); font-size:14px;">
-              A macropad that boosts productivity for business, gaming, and more.
+              Retro platformer insights: 32px sprites, boss powers, and the Golden Floppy end-goal—built for a classic handheld vibe.
             </p>
             <div class="meta">
-              <span class="tag2">Keys</span>
-              <span class="tag2">Knob</span>
-              <span class="tag2">QMK/VIA</span>
+              <span class="tag2">Godot</span>
+              <span class="tag2">32px sprites</span>
+              <span class="tag2">Boss powers</span>
             </div>
           </div>
         </article>
@@ -1431,7 +1432,7 @@
             <div id="modalParts" class="mono" style="font-size:12px; color:rgba(10,14,20,.72); line-height:1.5;"></div>
 
             <div class="modal-actions" style="margin-top:12px;">
-              <a class="btn" id="modalDocBtn" href="https://open.substack.com/pub/odotofrva/p/obios-card-v1?r=5cwq3m&utm_campaign=post&utm_medium=web" target="_blank" rel="noopener">Docs</a>
+              <a class="btn" id="modalDocBtn" href="#" target="_blank" rel="noopener">Docs</a>
               <a class="btn primary" id="modalCtaBtn" href="#contact"><span class="dot"></span> Request this build</a>
             </div>
           </div>
@@ -1608,33 +1609,37 @@
             "Mechanical: edge plating / card thickness target"
           ],
         },
-        mp9k: {
-          title: "MP9K v1 (Macropad)",
-          sub: "Compact macropad with keys + knob (QMK/VIA-ready)",
-          icon: "macropad.png",
-          docsUrl: "#",
-          ctaText: "Request MP9K build",
+
+        // ✅ New: Munchie Hacim Retro Video Game insights (replacing MP9K)
+        hacim: {
+          title: "Munchie Hacim (Retro Game)",
+          sub: "Platformer • Boss Powers • Golden Floppy Quest",
+          icon: "hacim-icon.png",
+          docsUrl: "#", // put your devlog / itch.io / GitHub link here
+          ctaText: "Collaborate on the game",
           steps: [
-            "Define layout: key count, knob placement, OLED (optional), case constraints.",
-            "Schematic: MCU (RP2040/ATmega32U4), switch matrix, encoder, ESD, USB-C.",
-            "PCB layout: matrix routing, diode placement, encoder footprint alignment.",
-            "Firmware: QMK/VIA keymap, layers, knob functions, macros.",
-            "Prototype: test matrix, encoder direction, USB enumeration, latency check.",
-            "Case + assembly: plate, standoffs, keycaps; finalize BOM + manufacturing notes.",
-            "Release: quick-start guide + default profiles for creators/gamers."
+            "Define the retro rules: 32px sprite grid, limited palette, and snappy arcade movement.",
+            "Set the viewport: choose a fixed internal resolution (ex: 320×180 or 256×144) and scale to fullscreen (integer scaling preferred).",
+            "Core movement: run, jump, land, and air-control tuned for “classic” feel; add coyote time + jump buffer.",
+            "Combat loop: basic attack + invulnerability frames; enemies teach timing.",
+            "Boss design: each boss is a pattern puzzle; reward is a new power (MegaMan-style).",
+            "Power-ups: map each power to a simple input (A attack, B item/power) with cooldown or energy.",
+            "Level flow: stages that introduce one mechanic at a time; checkpoints before boss doors.",
+            "UI/feedback: health, power meter, hit flashes, screen shake (subtle), and crisp sound cues.",
+            "Polish pass: particles, camera bounds, difficulty ramp, and performance sanity checks for handheld targets."
           ],
           gallery: [
-            { src: "mp-step1.png", label: "Layout / Matrix" },
-            { src: "mp-step2.png", label: "Schematic" },
-            { src: "mp-step3.png", label: "Assembled Board" },
-            { src: "mp-step4.png", label: "Keymap Layers" },
+            { src: "hacim-sprite.png", label: "Hacim Sprite (32px)" },
+            { src: "hacim-tileset.png", label: "Tileset / Palette" },
+            { src: "hacim-level-mock.png", label: "Level Mockup" },
+            { src: "hacim-boss.png", label: "Boss Concept" },
           ],
           parts: [
-            "MCU: RP2040 (or ATmega32U4)",
-            "Keys: MX-style switches + diodes",
-            "Input: rotary encoder + knob",
-            "USB-C: connector + ESD diodes",
-            "Optional: OLED + buzzer + RGB"
+            "Engine: Godot (2D)",
+            "Art: 32px sprites + tiles (limited palette for retro vibe)",
+            "Display: fixed internal resolution + fullscreen scale (integer scaling recommended)",
+            "Controls: Left/Right + Jump + Attack (A) + Item/Power (B)",
+            "Design Pillars: boss patterns, power rewards, Golden Floppy finale"
           ],
         }
       };
