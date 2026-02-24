@@ -1299,7 +1299,6 @@
           </div>
         </article>
 
-        <!-- ✅ Replaced MP9K hardware with Munchie Hacim Retro Video Game insights -->
         <article class="card product-card clickable" tabindex="0" role="button"
           aria-label="Open build process for Munchie Hacim (Retro Game)" data-product="hacim">
           <div class="product-thumb">
@@ -1417,11 +1416,32 @@
 
       <div class="modal-body">
         <div class="modal-grid">
+          <!-- LEFT PANEL (Build Steps OR Playable Game) -->
           <div class="panel">
-            <h4>Build Process</h4>
+            <h4 id="leftPanelTitle">Build Process</h4>
+
+            <!-- Normal build steps -->
             <ol class="timeline" id="modalSteps"></ol>
+
+            <!-- Game container (hidden unless product has playUrl) -->
+            <div id="modalGameWrap" style="display:none;">
+              <div style="width:100%; aspect-ratio:16/9; border-radius:18px; overflow:hidden; border:1px solid rgba(10,14,20,.12); background: rgba(10,14,20,.06);">
+                <iframe
+                  id="modalGameFrame"
+                  src=""
+                  title="Munchie Hacim Beta"
+                  style="width:100%; height:100%; border:0;"
+                  allow="fullscreen; gamepad *; autoplay *; clipboard-read; clipboard-write"
+                ></iframe>
+              </div>
+
+              <p class="mono" style="margin:10px 0 0; font-size:11px; color:rgba(10,14,20,.60); line-height:1.45;">
+                Tip: Click inside the game to enable controls/audio. Fullscreen is available in-game (if enabled in export).
+              </p>
+            </div>
           </div>
 
+          <!-- RIGHT PANEL -->
           <div class="panel">
             <h4>Build Gallery</h4>
             <div class="img-strip" id="modalGallery"></div>
@@ -1580,6 +1600,11 @@
       const modalDocBtn = document.getElementById("modalDocBtn");
       const modalCtaBtn = document.getElementById("modalCtaBtn");
 
+      // Left panel (steps vs game)
+      const leftPanelTitle = document.getElementById("leftPanelTitle");
+      const modalGameWrap = document.getElementById("modalGameWrap");
+      const modalGameFrame = document.getElementById("modalGameFrame");
+
       const PRODUCT_DATA = {
         kadi: {
           title: "OBIOS Card v1",
@@ -1610,12 +1635,13 @@
           ],
         },
 
-        // ✅ New: Munchie Hacim Retro Video Game insights (replacing MP9K)
+        // ✅ Munchie Hacim: plays in the left panel
         hacim: {
           title: "Munchie Hacim (Retro Game)",
           sub: "Platformer • Boss Powers • Golden Floppy Quest",
           icon: "hacim-icon.png",
-          docsUrl: "https://open.substack.com/pub/odotofrva/p/munchie-hacim-retro-video-game?r=5cwq3m&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true", // put your devlog / itch.io / GitHub link here
+          docsUrl: "https://open.substack.com/pub/odotofrva/p/munchie-hacim-retro-video-game?r=5cwq3m&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+          playUrl: "game/munchie-hacim/", // ✅ IMPORTANT for GitHub Pages: no leading slash
           ctaText: "Collaborate on the game",
           steps: [
             "Define the retro rules: 32px sprite grid, limited palette, and snappy arcade movement.",
@@ -1635,7 +1661,7 @@
             { src: "hacim-boss.png", label: "Boss Concept" },
           ],
           parts: [
-            "Engine: Godot (2D)",
+            "Engine: Godot (2D) → Web export (threads OFF for GitHub Pages)",
             "Art: 32px sprites + tiles (limited palette for retro vibe)",
             "Display: fixed internal resolution + fullscreen scale (integer scaling recommended)",
             "Controls: Left/Right + Jump + Attack (A) + Item/Power (B)",
@@ -1660,16 +1686,35 @@
         modalDocBtn.href = data.docsUrl || "#";
         modalCtaBtn.textContent = data.ctaText || "Request this build";
 
-        modalSteps.innerHTML = "";
-        data.steps.forEach((s, i) => {
-          const li = document.createElement("li");
-          li.className = "step";
-          li.innerHTML = `
-            <div class="node">${i+1}</div>
-            <div class="txt">${s}</div>
-          `;
-          modalSteps.appendChild(li);
-        });
+        // ============================
+        // Left Panel: Build Steps OR Playable Game
+        // ============================
+        const hasGame = !!data.playUrl;
+
+        if (hasGame) {
+          leftPanelTitle.textContent = "Play Beta";
+          modalSteps.style.display = "none";
+          modalGameWrap.style.display = "block";
+
+          // Load the game
+          modalGameFrame.src = data.playUrl;
+        } else {
+          leftPanelTitle.textContent = "Build Process";
+          modalGameWrap.style.display = "none";
+          modalGameFrame.src = ""; // ensure nothing keeps running
+          modalSteps.style.display = "grid";
+
+          modalSteps.innerHTML = "";
+          (data.steps || []).forEach((s, i) => {
+            const li = document.createElement("li");
+            li.className = "step";
+            li.innerHTML = `
+              <div class="node">${i+1}</div>
+              <div class="txt">${s}</div>
+            `;
+            modalSteps.appendChild(li);
+          });
+        }
 
         // Gallery -> lightbox
         modalGallery.innerHTML = "";
@@ -1699,7 +1744,7 @@
 
         modalParts.innerHTML = `
           <ul style="margin:0; padding-left:18px;">
-            ${data.parts.map(p => `<li>${p}</li>`).join("")}
+            ${(data.parts || []).map(p => `<li>${p}</li>`).join("")}
           </ul>
         `;
 
@@ -1710,6 +1755,10 @@
 
       function closeModal(){
         modal.setAttribute("aria-hidden", "true");
+
+        // ✅ Stop game when modal closes (prevents audio/CPU continuing)
+        modalGameFrame.src = "";
+
         if (lightbox.getAttribute("aria-hidden") === "true" && factsModal.getAttribute("aria-hidden") === "true") {
           document.body.classList.remove("modal-open");
         }
