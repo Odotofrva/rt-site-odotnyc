@@ -861,6 +861,232 @@
     }
     .product-card.clickable:hover::after{opacity:1; transform: translateY(0);}
 
+    /* =========================
+       EVENTS CAROUSEL (NEW)
+       ========================= */
+    .events-wrap{
+      border-radius: var(--radius);
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .events-wrap::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(700px 240px at 20% 10%, rgba(231,195,77,.14), transparent 60%),
+        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.10), transparent 60%),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
+      opacity:.70;
+      pointer-events:none;
+      mix-blend-mode:multiply;
+    }
+    .events-head{
+      position:relative;
+      z-index:1;
+      padding: 14px 14px 12px;
+      border-bottom:1px solid rgba(10,14,20,.10);
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(8px);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .events-head h4{
+      margin:0;
+      font-size: 16px;
+      color: var(--ink);
+      letter-spacing:.2px;
+    }
+    .events-head p{
+      margin:2px 0 0;
+      font-size: 12px;
+      color: rgba(10,14,20,.62);
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+    }
+    .events-controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+    .icon-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:42px; height:42px;
+      border-radius:14px;
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.65);
+      cursor:pointer;
+      box-shadow: var(--shadow2);
+      font-weight:900;
+      user-select:none;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .icon-btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.82)}
+    .events-window{
+      position:relative;
+      z-index:1;
+      overflow:hidden;
+      padding: 14px;
+      touch-action: pan-y;
+    }
+    .events-track{
+      display:flex;
+      gap:12px;
+      transition: transform .35s ease;
+      will-change: transform;
+    }
+    .event-slide{
+      min-width: 100%;
+      display:grid;
+      gap:12px;
+    }
+    .event-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      align-items:start;
+    }
+    @media (min-width: 860px){
+      .event-slide{min-width: 100%;}
+      .event-grid{grid-template-columns: 1.05fr .95fr;}
+    }
+
+    .flyer{
+      border-radius: 18px;
+      border:1px dashed rgba(10,14,20,.22);
+      background:
+        radial-gradient(320px 190px at 20% 40%, rgba(231,195,77,.18), transparent 60%),
+        radial-gradient(320px 190px at 80% 60%, rgba(44,124,255,.12), transparent 60%),
+        rgba(10,14,20,.03);
+      overflow:hidden;
+      position:relative;
+      aspect-ratio: 4/5;
+      display:grid;
+      place-items:center;
+      cursor: zoom-in;
+    }
+    .flyer img{width:100%; height:100%; object-fit:cover; display:block;}
+    .flyer .flyer-cap{
+      position:absolute;
+      bottom:10px; left:10px;
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.80);
+      color: rgba(10,14,20,.72);
+    }
+
+    .event-meta{
+      border-radius: 18px;
+      border:1px solid rgba(10,14,20,.12);
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow2);
+      padding: 14px;
+      display:grid;
+      gap:10px;
+    }
+    .event-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .event-chip{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(10,14,20,.14);
+      background: rgba(231,195,77,.18);
+      color: rgba(10,14,20,.74);
+      white-space:nowrap;
+    }
+    .event-when{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(10,14,20,.62);
+      white-space:nowrap;
+    }
+    .event-title{
+      margin:0;
+      font-size: 18px;
+      letter-spacing:.2px;
+      color: var(--ink);
+      line-height:1.25;
+      font-weight:900;
+    }
+    .event-desc{
+      margin:0;
+      color: rgba(10,14,20,.74);
+      font-size: 14px;
+      line-height:1.55;
+    }
+    .event-details{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+    .event-detail{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11.5px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(10,14,20,.04);
+      color: rgba(10,14,20,.72);
+    }
+    .events-dots{
+      position:relative;
+      z-index:1;
+      padding: 0 14px 14px;
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .dot-btn{
+      width:10px; height:10px;
+      border-radius: 999px;
+      border:1px solid rgba(10,14,20,.24);
+      background: rgba(10,14,20,.12);
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .dot-btn[aria-current="true"]{
+      background: rgba(231,195,77,.90);
+      border-color: rgba(231,195,77,.55);
+      box-shadow: 0 0 0 6px rgba(231,195,77,.18);
+      transform: scale(1.05);
+    }
+    .events-foot{
+      position:relative;
+      z-index:1;
+      padding: 10px 14px 14px;
+      border-top:1px solid rgba(10,14,20,.10);
+      background: rgba(255,255,255,.86);
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(10,14,20,.62);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     form{display:grid; gap:10px}
     label{
       font-size:12px;
@@ -1337,6 +1563,7 @@
         <nav class="links" aria-label="Primary">
           <a href="#services">Services</a>
           <a href="#products">Products</a>
+          <a href="#events">Events</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -1350,6 +1577,7 @@
       <div class="drawer" id="drawer" aria-label="Mobile Menu">
         <a href="#services">Services</a>
         <a href="#products">Products</a>
+        <a href="#events">Events</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
@@ -1387,7 +1615,7 @@
           </div>
         </div>
 
-        <!-- NEW: Vertical US Tech News Ticker -->
+        <!-- Vertical US Tech News Ticker -->
         <aside class="vticker" aria-label="US Technology news highlights">
           <div class="vt-head">
             <div>
@@ -1434,102 +1662,102 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- SERVICES (updated list + click-to-learn/book via existing contact section) -->
   <section id="services">
     <div class="container">
       <div class="section-title">
         <h3>Services</h3>
-        <p>What RoboTechi can build</p>
+        <p>Tap a service to learn more + book a consult</p>
       </div>
 
       <div class="grid">
-        <article class="card">
+        <article class="card service-card clickable" tabindex="0" role="button" data-service="Computer Repair">
           <div class="service-media">
-            <img src="RT-Uno-Shield-Front.jpg" alt="Electronics Design service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">PNG Placeholder</span>
+            <img src="service-computer-repair.jpg" alt="Computer Repair" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
           </div>
-          <div class="icon">PCB</div>
-          <h4>Electronics Design</h4>
-          <p>From concept to schematic to PCB layout — designed for manufacturing and real-world use.</p>
+          <div class="icon">PC</div>
+          <h4>Computer Repair</h4>
+          <p>Diagnostics, upgrades, virus cleanup, performance tuning, and small-business support.</p>
           <ul class="bullets">
-            <li><span class="check">✓</span> Schematic + PCB layout (KiCad)</li>
-            <li><span class="check">✓</span> BOM + part selection (budget focused)</li>
-            <li><span class="check">✓</span> DFM checks (JLCPCB / PCBWay)</li>
+            <li><span class="check">✓</span> Hardware upgrades + installs</li>
+            <li><span class="check">✓</span> OS repair + data recovery basics</li>
+            <li><span class="check">✓</span> Maintenance plans (small teams)</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card service-card clickable" tabindex="0" role="button" data-service="Hardware Development">
           <div class="service-media">
-            <img src="wowki-hourglass-ex.png" alt="Embedded Prototyping service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">PNG Placeholder</span>
+            <img src="service-hardware-dev.jpg" alt="Hardware Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
           </div>
-          <div class="icon">µC</div>
-          <h4>Embedded Prototyping</h4>
-          <p>Firmware + bring-up support for microcontrollers and sensors — rapid iteration.</p>
+          <div class="icon">HW</div>
+          <h4>Hardware Development</h4>
+          <p>From concept to prototype — electronics design, testing, and manufacturing-ready deliverables.</p>
           <ul class="bullets">
-            <li><span class="check">✓</span> Arduino / ESP32 / RP2040</li>
-            <li><span class="check">✓</span> Sensor integration + Debugging</li>
-            <li><span class="check">✓</span> Documentation + Handoff</li>
+            <li><span class="check">✓</span> Schematics + PCB layout</li>
+            <li><span class="check">✓</span> BOM + DFM checks</li>
+            <li><span class="check">✓</span> Prototype bring-up support</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card service-card clickable" tabindex="0" role="button" data-service="Software Design / Development">
           <div class="service-media">
-            <img src="robotard.png" alt="IoT and Smart Systems service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">PNG Placeholder</span>
+            <img src="service-software-dev.jpg" alt="Software Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
+          </div>
+          <div class="icon">DEV</div>
+          <h4>Software Design / Development</h4>
+          <p>Apps and internal tools — clean UX, reliable backends, and practical delivery.</p>
+          <ul class="bullets">
+            <li><span class="check">✓</span> Prototypes → MVP builds</li>
+            <li><span class="check">✓</span> Dashboards + admin panels</li>
+            <li><span class="check">✓</span> API integrations</li>
+          </ul>
+        </article>
+
+        <article class="card service-card clickable" tabindex="0" role="button" data-service="IoT Systems">
+          <div class="service-media">
+            <img src="service-iot.jpg" alt="IoT Systems" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
           </div>
           <div class="icon">IoT</div>
-          <h4>IoT + Smart Systems</h4>
-          <p>Connected devices that report data, trigger actions, and integrate with dashboards.</p>
+          <h4>IoT Systems</h4>
+          <p>Connected devices that stream data, trigger actions, and integrate with dashboards.</p>
           <ul class="bullets">
-            <li><span class="check">✓</span> Wi-Fi/BLE workflows</li>
-            <li><span class="check">✓</span> API integration + data logging</li>
-            <li><span class="check">✓</span> Security best practices</li>
+            <li><span class="check">✓</span> Wi-Fi/BLE + sensor integration</li>
+            <li><span class="check">✓</span> Device ↔ cloud workflows</li>
+            <li><span class="check">✓</span> Security-minded deployments</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card service-card clickable" tabindex="0" role="button" data-service="Web Development">
           <div class="service-media">
-            <img src="webdev.png" alt="Web Design and Development service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">PNG Placeholder</span>
+            <img src="service-web.jpg" alt="Web Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
           </div>
-          <div class="icon">UI</div>
-          <h4>Web Design + Development</h4>
-          <p>Mobile-first sites with clean UI, strong branding, and fast load performance.</p>
+          <div class="icon">WEB</div>
+          <h4>Web Development</h4>
+          <p>Mobile-first sites with clean UI, strong branding, and fast performance.</p>
           <ul class="bullets">
             <li><span class="check">✓</span> Landing pages + portfolios</li>
-            <li><span class="check">✓</span> E-commerce-ready layouts</li>
-            <li><span class="check">✓</span> SEO basics + analytics setup</li>
+            <li><span class="check">✓</span> Booking + forms + analytics</li>
+            <li><span class="check">✓</span> SEO basics</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card service-card clickable" tabindex="0" role="button" data-service="Social Media Marketing">
           <div class="service-media">
-            <img src="cpt.png" alt="System Integration service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">PNG Placeholder</span>
+            <img src="service-social.jpg" alt="Social Media Marketing" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
           </div>
-          <div class="icon">SYS</div>
-          <h4>System Integration</h4>
-          <p>Combine hardware + software into one smooth experience with reliable workflows.</p>
+          <div class="icon">SMM</div>
+          <h4>Social Media Marketing</h4>
+          <p>Content strategy + creative execution to grow awareness and convert attention into leads.</p>
           <ul class="bullets">
-            <li><span class="check">✓</span> Device ↔ dashboard pairing</li>
-            <li><span class="check">✓</span> Testing checklist + QA</li>
-            <li><span class="check">✓</span> Deployment support</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="service-media">
-            <img src="rt-manual.png" alt="Workshops and Education service" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">PNG Placeholder</span>
-          </div>
-          <div class="icon">EDU</div>
-          <h4>Workshops + Education</h4>
-          <p>Hands-on maker lessons for youth programs and community classes.</p>
-          <ul class="bullets">
-            <li><span class="check">✓</span> Cardboard electronics builds</li>
-            <li><span class="check">✓</span> Beginner circuits + microcontrollers</li>
-            <li><span class="check">✓</span> Printable worksheets + kits</li>
+            <li><span class="check">✓</span> Content calendar + posting plan</li>
+            <li><span class="check">✓</span> Brand visuals + templates</li>
+            <li><span class="check">✓</span> Campaign support</li>
           </ul>
         </article>
       </div>
@@ -1585,6 +1813,41 @@
     </div>
   </section>
 
+  <!-- EVENTS (NEW) -->
+  <section id="events">
+    <div class="container">
+      <div class="section-title">
+        <h3>RoboTechi Events</h3>
+        <p>Workshops • Pop-ups • Community builds</p>
+      </div>
+
+      <div class="events-wrap" aria-label="RoboTechi events carousel">
+        <div class="events-head">
+          <div>
+            <h4>Upcoming + Recent</h4>
+            <p class="mono">Swipe on mobile • Click flyer to expand</p>
+          </div>
+
+          <div class="events-controls">
+            <button class="icon-btn" id="evPrev" type="button" aria-label="Previous event">‹</button>
+            <button class="icon-btn" id="evNext" type="button" aria-label="Next event">›</button>
+          </div>
+        </div>
+
+        <div class="events-window" id="eventsWindow">
+          <div class="events-track" id="eventsTrack" aria-live="polite"></div>
+        </div>
+
+        <div class="events-dots" id="eventsDots" aria-label="Event slide dots"></div>
+
+        <div class="events-foot">
+          <span>Tip: Replace flyer images (PNG/JPG) in <span class="mono">EVENTS_DATA</span>.</span>
+          <a class="vt-link" href="#contact" style="text-decoration:none;">Host RoboTechi →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT + CONTACT -->
   <section id="about">
     <div class="container">
@@ -1601,7 +1864,7 @@
             The mission is to make electronics and modern web tech accessible, practical, and professional.
           </p>
           <p style="margin-top:10px; color:rgba(10,14,20,.70)">
-            Whether you need a PCB designed, a prototype brought to life, or a clean website that sells your idea,
+            Whether you need a repair, a prototype brought to life, or a clean website that sells your idea,
             RoboTechi delivers with documentation and a strong handoff.
           </p>
         </article>
@@ -1624,18 +1887,18 @@
             <div>
               <label for="service">Service</label>
               <select id="service" name="service">
-                <option>Electronics Design (PCB)</option>
-                <option>Embedded Prototyping</option>
-                <option>IoT + Smart Systems</option>
-                <option>Web Design + Development</option>
-                <option>System Integration</option>
-                <option>Workshops + Education</option>
+                <option>Computer Repair</option>
+                <option>Hardware Development</option>
+                <option>Software Design / Development</option>
+                <option>IoT Systems</option>
+                <option>Web Development</option>
+                <option>Social Media Marketing</option>
               </select>
             </div>
 
             <div>
               <label for="message">Project details</label>
-              <textarea id="message" name="message" placeholder="What are you building? Timeline? Budget range?"></textarea>
+              <textarea id="message" name="message" placeholder="What do you need? Timeline? Budget range?"></textarea>
             </div>
 
             <button class="btn primary" type="submit">
@@ -1655,6 +1918,8 @@
           <a href="#services">Services</a>
           <span style="opacity:.45;">•</span>
           <a href="#products">Products</a>
+          <span style="opacity:.45;">•</span>
+          <a href="#events">Events</a>
           <span style="opacity:.45;">•</span>
           <a href="#contact">Contact</a>
         </div>
@@ -1799,7 +2064,6 @@
         const burst = () => {
           splash.classList.add("glitch-burst");
           setTimeout(() => splash.classList.remove("glitch-burst"), 420);
-          // next burst random
           glitchTimer = setTimeout(burst, 320 + Math.random() * 620);
         };
         glitchTimer = setTimeout(burst, 220 + Math.random() * 420);
@@ -1822,17 +2086,16 @@
         splash.classList.add("splash-hide");
         setTimeout(() => splash.remove(), 650);
 
-        // ✅ after splash: show facts modal (once per session)
+        // after splash: show facts modal (once per session)
         setTimeout(() => maybeShowFactsModal(), 420);
       }, SPLASH_DURATION);
 
       // ============================
-      // NEW: Vertical US Tech News Ticker
+      // Vertical US Tech News Ticker
       // ============================
       const vtTrack = document.getElementById("vtTrack");
       const vtStatus = document.getElementById("vtStatus");
 
-      // Fallback headlines (used if fetch fails)
       const TECH_NEWS_FALLBACK = [
         { topic:"Cyber", date:"Feb 2026", title:"US hospitality company reports employee-data theft after cyber incident", url:"#"},
         { topic:"AI + Work", date:"Feb 2026", title:"More firms restructure as spending shifts toward AI projects and automation", url:"#"},
@@ -1854,7 +2117,7 @@
       function renderVerticalTicker(items){
         if(!vtTrack) return;
         const safe = (items || []).map(normalizeItem).slice(0, 14);
-        const doubled = safe.concat(safe); // seamless loop
+        const doubled = safe.concat(safe);
 
         vtTrack.innerHTML = doubled.map(i => `
           <div class="vt-item">
@@ -1867,18 +2130,14 @@
           </div>
         `).join("");
 
-        // Tune speed by count (more items => longer loop)
-        const base = 18; // seconds
+        const base = 18;
         const extra = Math.max(0, safe.length - 6) * 1.2;
         vtTrack.style.animationDuration = (base + extra).toFixed(1) + "s";
       }
 
-      // Try to fetch from GDELT (public). If it fails, fallback.
       async function loadTechNews(){
         if(vtStatus) vtStatus.textContent = "Fetching…";
 
-        // GDELT 2 DOC API: broad tech query + US focus (good for highlights)
-        // NOTE: GDELT sometimes returns many sources; we’ll just pick top titles.
         const url =
           "https://api.gdeltproject.org/api/v2/doc/doc" +
           "?query=" + encodeURIComponent('(technology OR "artificial intelligence" OR cybersecurity OR semiconductor OR "data center") sourceCountry:US') +
@@ -1920,7 +2179,6 @@
       }
 
       loadTechNews();
-      // refresh every ~10 minutes
       setInterval(loadTechNews, 10 * 60 * 1000);
 
       // ============================
@@ -1965,6 +2223,35 @@
       document.getElementById("year").textContent = new Date().getFullYear();
 
       // ============================
+      // NEW: Services → auto-fill contact + scroll
+      // ============================
+      const serviceSelect = document.getElementById("service");
+      const msgBox = document.getElementById("message");
+
+      function focusBooking(serviceName){
+        if(serviceSelect){
+          const opts = Array.from(serviceSelect.options).map(o => o.value);
+          if(opts.includes(serviceName)) serviceSelect.value = serviceName;
+        }
+        if(msgBox && msgBox.value.trim() === ""){
+          msgBox.value = `I'm interested in: ${serviceName}\n\nDetails:\n- What I need help with:\n- Timeline:\n- Budget range:\n`;
+        }
+        document.getElementById("contact")?.scrollIntoView({ behavior:"smooth", block:"start" });
+        setTimeout(() => document.getElementById("name")?.focus(), 450);
+      }
+
+      document.querySelectorAll(".service-card.clickable").forEach(card => {
+        const svc = card.dataset.service;
+        card.addEventListener("click", () => focusBooking(svc));
+        card.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            focusBooking(svc);
+          }
+        });
+      });
+
+      // ============================
       // Product Popup (Modal)
       // ============================
       const modal = document.getElementById("productModal");
@@ -1978,7 +2265,6 @@
       const modalDocBtn = document.getElementById("modalDocBtn");
       const modalCtaBtn = document.getElementById("modalCtaBtn");
 
-      // Left panel (steps vs game)
       const leftPanelTitle = document.getElementById("leftPanelTitle");
       const modalGameWrap = document.getElementById("modalGameWrap");
       const modalGameFrame = document.getElementById("modalGameFrame");
@@ -2294,6 +2580,178 @@
       });
 
       // ============================
+      // NEW: Events Carousel
+      // ============================
+      const EVENTS_DATA = [
+        {
+          type: "Workshop",
+          date: "TBD • 2026",
+          time: "6:00 PM",
+          location: "Hoboken / NYC (TBD)",
+          title: "Intro to Electronics: LEDs + Sensors",
+          description: "Hands-on beginner build night. Learn wiring basics, resistors, and how to read a simple circuit — then leave with a working mini project.",
+          flyer: "event-electronics-workshop.jpg",
+          rsvpUrl: "#"
+        },
+        {
+          type: "Community",
+          date: "TBD • 2026",
+          time: "12:00 PM",
+          location: "Community Space (TBD)",
+          title: "RoboTechi Open Lab",
+          description: "Bring your broken device, unfinished project, or idea. We’ll troubleshoot together, share tools, and help you move it forward.",
+          flyer: "event-open-lab.jpg",
+          rsvpUrl: "#"
+        },
+        {
+          type: "Build Session",
+          date: "TBD • 2026",
+          time: "7:00 PM",
+          location: "Online / Hybrid",
+          title: "IoT Sprint Night: Device → Dashboard",
+          description: "We’ll wire a sensor, send data over Wi-Fi, and visualize it on a simple dashboard. Great for makers and beginners.",
+          flyer: "event-iot-sprint.jpg",
+          rsvpUrl: "#"
+        }
+      ];
+
+      const eventsTrack = document.getElementById("eventsTrack");
+      const eventsDots = document.getElementById("eventsDots");
+      const eventsWindow = document.getElementById("eventsWindow");
+      const evPrev = document.getElementById("evPrev");
+      const evNext = document.getElementById("evNext");
+
+      let evIndex = 0;
+
+      function renderEvents(){
+        if(!eventsTrack || !eventsDots) return;
+
+        eventsTrack.innerHTML = EVENTS_DATA.map((e, i) => `
+          <div class="event-slide" data-idx="${i}">
+            <div class="event-grid">
+              <div class="flyer" role="button" tabindex="0" aria-label="Expand flyer for ${escapeHtml(e.title)}" data-flyer="${escapeAttr(e.flyer)}" data-caption="${escapeAttr(e.title)}">
+                <img src="${escapeAttr(e.flyer)}" alt="${escapeAttr(e.title)} flyer"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="flyer-cap" style="display:none;">Flyer placeholder</div>
+                <div class="flyer-cap">Tap to expand</div>
+              </div>
+
+              <div class="event-meta">
+                <div class="event-top">
+                  <span class="event-chip">${escapeHtml(e.type || "Event")}</span>
+                  <span class="event-when">${escapeHtml(e.date || "")} • ${escapeHtml(e.time || "")}</span>
+                </div>
+                <h3 class="event-title">${escapeHtml(e.title || "RoboTechi Event")}</h3>
+                <p class="event-desc">${escapeHtml(e.description || "")}</p>
+
+                <div class="event-details">
+                  <span class="event-detail">📍 ${escapeHtml(e.location || "TBD")}</span>
+                  <span class="event-detail">🗓 ${escapeHtml(e.date || "TBD")}</span>
+                </div>
+
+                <div class="modal-actions" style="justify-content:flex-start;">
+                  <a class="btn" href="${escapeAttr(e.rsvpUrl || "#")}" target="_blank" rel="noopener">RSVP</a>
+                  <a class="btn primary" href="#contact" data-prefill="${escapeAttr(e.title || "RoboTechi Event")}"><span class="dot"></span> Sponsor / Host</a>
+                </div>
+
+                <p class="mono" style="margin:0; font-size:11px; color:rgba(10,14,20,.60);">
+                  Want RoboTechi at your school/community? Hit “Sponsor / Host”.
+                </p>
+              </div>
+            </div>
+          </div>
+        `).join("");
+
+        eventsDots.innerHTML = EVENTS_DATA.map((_, i) => `
+          <button class="dot-btn" type="button" aria-label="Go to event ${i+1}" aria-current="${i===0 ? "true":"false"}" data-dot="${i}"></button>
+        `).join("");
+
+        // flyer click → lightbox
+        eventsTrack.querySelectorAll(".flyer").forEach(el => {
+          const src = el.dataset.flyer;
+          const cap = el.dataset.caption || "";
+          el.addEventListener("click", () => openLightbox(src, cap, cap));
+          el.addEventListener("keydown", (ev) => {
+            if(ev.key === "Enter" || ev.key === " "){
+              ev.preventDefault();
+              openLightbox(src, cap, cap);
+            }
+          });
+        });
+
+        // Sponsor/Host button prefill
+        eventsTrack.querySelectorAll('a[data-prefill]').forEach(a => {
+          a.addEventListener("click", () => {
+            const title = a.dataset.prefill || "Event";
+            if(msgBox){
+              msgBox.value = `I want to sponsor/host: ${title}\n\nDetails:\n- Organization:\n- Preferred date/time:\n- Location:\n- Expected attendees:\n- Notes:\n`;
+            }
+          });
+        });
+
+        // dots
+        eventsDots.querySelectorAll(".dot-btn").forEach(btn => {
+          btn.addEventListener("click", () => goToEvent(parseInt(btn.dataset.dot, 10)));
+        });
+
+        goToEvent(0, true);
+      }
+
+      function goToEvent(i, skipAnim=false){
+        if(!eventsTrack || !eventsDots) return;
+        evIndex = (i + EVENTS_DATA.length) % EVENTS_DATA.length;
+
+        if(skipAnim){
+          eventsTrack.style.transition = "none";
+          requestAnimationFrame(() => {
+            eventsTrack.style.transform = `translateX(${-evIndex * 100}%)`;
+            requestAnimationFrame(() => eventsTrack.style.transition = "transform .35s ease");
+          });
+        } else {
+          eventsTrack.style.transform = `translateX(${-evIndex * 100}%)`;
+        }
+
+        eventsDots.querySelectorAll(".dot-btn").forEach((d, idx) => {
+          d.setAttribute("aria-current", idx === evIndex ? "true" : "false");
+        });
+      }
+
+      evPrev?.addEventListener("click", () => goToEvent(evIndex - 1));
+      evNext?.addEventListener("click", () => goToEvent(evIndex + 1));
+
+      // swipe support
+      let swStartX = 0, swDeltaX = 0, swActive = false;
+
+      eventsWindow?.addEventListener("pointerdown", (e) => {
+        swActive = true;
+        swStartX = e.clientX;
+        swDeltaX = 0;
+      });
+
+      eventsWindow?.addEventListener("pointermove", (e) => {
+        if(!swActive) return;
+        swDeltaX = e.clientX - swStartX;
+      });
+
+      eventsWindow?.addEventListener("pointerup", () => {
+        if(!swActive) return;
+        swActive = false;
+
+        const threshold = 50;
+        if(swDeltaX > threshold) goToEvent(evIndex - 1);
+        else if(swDeltaX < -threshold) goToEvent(evIndex + 1);
+      });
+
+      function escapeHtml(str=""){
+        return String(str).replace(/[&<>"']/g, s => ({
+          "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+        }[s]));
+      }
+      function escapeAttr(str=""){ return escapeHtml(str).replace(/"/g, "&quot;"); }
+
+      renderEvents();
+
+      // ============================
       // RoboTechi Facts Modal (random facts)
       // ============================
       const factsModal = document.getElementById("factsModal");
@@ -2331,7 +2789,6 @@
 
       let factsShown = 0;
       let currentFactIndex = -1;
-      let factsLastFocus = null;
 
       function pickRandomFact(){
         if(FACTS.length === 0) return {tag:"FACT", text:"No facts loaded."};
@@ -2350,6 +2807,8 @@
         factsShown += 1;
         factsCounter.textContent = `${factsShown} / ∞`;
       }
+
+      let factsLastFocus = null;
 
       function openFactsModal(){
         if(modal.getAttribute("aria-hidden") === "false") return;
