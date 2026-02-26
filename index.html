@@ -84,7 +84,7 @@
     }
 
     /* =========================
-       SPLASH SCREEN
+       SPLASH SCREEN (+ GLITCH)
        ========================= */
     .splash{
       position:fixed;
@@ -137,6 +137,75 @@
         radial-gradient(320px 190px at 25% 20%, rgba(231,195,77,.35), transparent 60%),
         radial-gradient(320px 190px at 80% 60%, rgba(44,124,255,.18), transparent 60%);
       pointer-events:none;
+    }
+
+    /* Glitch overlay burst */
+    .splash-card::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      opacity:0;
+      background:
+        repeating-linear-gradient(0deg, rgba(10,14,20,.12) 0 1px, transparent 1px 3px),
+        radial-gradient(600px 260px at 50% 0%, rgba(44,124,255,.20), transparent 60%),
+        radial-gradient(600px 260px at 50% 100%, rgba(231,195,77,.20), transparent 60%);
+      mix-blend-mode:multiply;
+      transform: translateZ(0);
+    }
+    .splash.glitch-burst .splash-card::before{
+      opacity:.75;
+      animation: glitchOverlay .55s steps(2,end) infinite;
+    }
+    @keyframes glitchOverlay{
+      0%{ transform: translate(0,0) skewX(0deg); clip-path: inset(0 0 0 0); }
+      15%{ transform: translate(-2px,1px) skewX(-6deg); clip-path: inset(10% 0 60% 0); }
+      35%{ transform: translate(3px,-1px) skewX(6deg); clip-path: inset(55% 0 10% 0); }
+      55%{ transform: translate(-3px,0px) skewX(-3deg); clip-path: inset(25% 0 35% 0); }
+      75%{ transform: translate(2px,2px) skewX(4deg); clip-path: inset(0 0 70% 0); }
+      100%{ transform: translate(0,0) skewX(0deg); clip-path: inset(0 0 0 0); }
+    }
+
+    /* Glitch title */
+    .glitch-title{
+      position:relative;
+      display:inline-block;
+      font-weight:900;
+      letter-spacing:.6px;
+      margin: 10px 0 0;
+      font-size: 18px;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .glitch-title::before,
+    .glitch-title::after{
+      content: attr(data-text);
+      position:absolute;
+      left:0; top:0;
+      width:100%;
+      opacity:0;
+      pointer-events:none;
+    }
+    .glitch-title::before{
+      transform: translate(-2px,0);
+      color: rgba(44,124,255,.95);
+      mix-blend-mode:multiply;
+    }
+    .glitch-title::after{
+      transform: translate(2px,0);
+      color: rgba(231,195,77,.95);
+      mix-blend-mode:multiply;
+    }
+    .splash.glitch-burst .glitch-title::before,
+    .splash.glitch-burst .glitch-title::after{
+      opacity:.9;
+      animation: glitchText .55s steps(2,end) infinite;
+    }
+    @keyframes glitchText{
+      0%{ clip-path: inset(0 0 0 0); transform: translate(-2px,0); }
+      20%{ clip-path: inset(10% 0 65% 0); transform: translate(2px,-1px); }
+      45%{ clip-path: inset(60% 0 10% 0); transform: translate(-3px,1px); }
+      70%{ clip-path: inset(25% 0 35% 0); transform: translate(3px,0); }
+      100%{ clip-path: inset(0 0 0 0); transform: translate(-2px,0); }
     }
 
     .mark-img{
@@ -193,6 +262,9 @@
 
     @media (prefers-reduced-motion: reduce){
       .splash::after, .loading::after{ animation:none !important; }
+      .splash.glitch-burst .splash-card::before,
+      .splash.glitch-burst .glitch-title::before,
+      .splash.glitch-burst .glitch-title::after{ animation:none !important; }
     }
 
     /* =========================
@@ -384,7 +456,7 @@
     }
 
     /* =========================
-       TICKER
+       TICKER (horizontal)
        ========================= */
     .ticker{
       margin-top: 12px;
@@ -449,6 +521,172 @@
     }
     @media (prefers-reduced-motion: reduce){
       .ticker-track{animation:none}
+    }
+
+    /* =========================
+       NEW: VERTICAL TECH NEWS TICKER
+       ========================= */
+    .mast-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top: 12px;
+      align-items: start;
+    }
+    @media (min-width: 960px){
+      .mast-grid{ grid-template-columns: 1.35fr .65fr; }
+      .video-wrap{ margin-top: 0; }
+    }
+
+    .vticker{
+      border-radius: var(--radius);
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+      min-height: 360px;
+    }
+    .vticker::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(700px 240px at 20% 10%, rgba(231,195,77,.16), transparent 60%),
+        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.10), transparent 60%),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
+      opacity:.70;
+      pointer-events:none;
+      mix-blend-mode:multiply;
+    }
+
+    .vt-head{
+      position:sticky;
+      top:0;
+      z-index:2;
+      padding: 12px 12px 10px;
+      border-bottom: 1px solid rgba(10,14,20,.10);
+      background: rgba(255,255,255,.90);
+      backdrop-filter: blur(8px);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .vt-head h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.3px;
+      color: var(--ink);
+    }
+    .vt-head p{
+      margin:2px 0 0;
+      font-size: 11px;
+      color: rgba(10,14,20,.62);
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+    }
+    .vt-badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+      margin-top:2px;
+    }
+    .vt-badge{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 10.5px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(10,14,20,.14);
+      background: rgba(10,14,20,.04);
+      color: rgba(10,14,20,.72);
+      white-space:nowrap;
+    }
+
+    .vt-window{
+      position:relative;
+      height: 320px;
+      overflow:hidden;
+      padding: 10px 10px 12px;
+    }
+
+    .vt-track{
+      position:absolute;
+      left:0; right:0;
+      top:0;
+      display:grid;
+      gap: 10px;
+      will-change: transform;
+      animation: vscroll 20s linear infinite;
+      z-index:1;
+    }
+    .vticker:hover .vt-track{ animation-play-state: paused; }
+
+    @keyframes vscroll{
+      0%{ transform: translateY(0); }
+      100%{ transform: translateY(-50%); }
+    }
+
+    .vt-item{
+      border-radius: 16px;
+      border:1px solid rgba(10,14,20,.12);
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow2);
+      padding: 10px 10px;
+      display:grid;
+      gap:6px;
+    }
+    .vt-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .vt-chip{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 10.5px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(10,14,20,.14);
+      background: rgba(231,195,77,.18);
+      color: rgba(10,14,20,.74);
+      white-space:nowrap;
+    }
+    .vt-date{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 10.5px;
+      color: rgba(10,14,20,.58);
+      white-space:nowrap;
+    }
+    .vt-title{
+      margin:0;
+      font-size: 13px;
+      color: rgba(10,14,20,.86);
+      line-height:1.35;
+      font-weight:800;
+      letter-spacing:.15px;
+    }
+    .vt-link{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(44,124,255,.92);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      width: fit-content;
+    }
+    .vt-footer{
+      padding: 10px 12px 12px;
+      border-top: 1px solid rgba(10,14,20,.10);
+      background: rgba(255,255,255,.86);
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(10,14,20,.62);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
     /* =========================
@@ -936,7 +1174,7 @@
     .facts-modal{
       position:fixed;
       inset:0;
-      z-index:9500; /* above site, below product modal (10000) */
+      z-index:9500;
       display:none;
       align-items:center;
       justify-content:center;
@@ -1071,6 +1309,7 @@
     <div class="splash-card">
       <div class="glow" aria-hidden="true"></div>
       <img src="rtlogo.png" class="mark-img" alt="RoboTechi logo"/>
+      <div class="glitch-title" data-text="RoboTechi Boot">RoboTechi Boot</div>
       <p class="splash-sub">Booting workshop… calibrating tools…</p>
       <div class="loading" aria-label="Loading">
         <span id="loadFill"></span>
@@ -1117,7 +1356,7 @@
     </div>
   </header>
 
-  <!-- LOGO + VIDEO -->
+  <!-- LOGO + VIDEO + VERTICAL NEWS TICKER -->
   <section class="masthead" id="top">
     <div class="container">
       <div class="center-logo">
@@ -1128,23 +1367,48 @@
         </div>
       </div>
 
-      <div class="video-wrap" aria-label="RoboTechi YouTube">
-        <div class="video-head">
-          <div>
-            <h3>What We Create</h3>
-            <p>Prototypes • Builds • Tutorials</p>
+      <div class="mast-grid">
+        <div class="video-wrap" aria-label="RoboTechi YouTube">
+          <div class="video-head">
+            <div>
+              <h3>What We Create</h3>
+              <p>Prototypes • Builds • Tutorials</p>
+            </div>
+            <p class="mono">DREAM | PLAN | CREATE</p>
           </div>
-          <p class="mono">DREAM | PLAN | CREATE</p>
+
+          <div class="embed">
+            <iframe
+              src="https://www.youtube.com/embed/VIDEO_ID"
+              title="RoboTechi Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
 
-        <div class="embed">
-          <iframe
-            src="https://www.youtube.com/embed/VIDEO_ID"
-            title="RoboTechi Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
+        <!-- NEW: Vertical US Tech News Ticker -->
+        <aside class="vticker" aria-label="US Technology news highlights">
+          <div class="vt-head">
+            <div>
+              <h3>US Tech Highlights</h3>
+              <p class="mono">AI • Chips • Cyber • Startups • Policy</p>
+            </div>
+            <div class="vt-badges">
+              <span class="vt-badge" id="vtStatus">Loading…</span>
+              <span class="vt-badge">Hover = pause</span>
+            </div>
+          </div>
+
+          <div class="vt-window" aria-label="Vertical news ticker window">
+            <div class="vt-track" id="vtTrack"></div>
+          </div>
+
+          <div class="vt-footer">
+            <span>Auto-refresh: <span id="vtRefresh">~10m</span></span>
+            <a class="vt-link" href="#contact" style="text-decoration:none;">Need a build? →</a>
+          </div>
+        </aside>
       </div>
 
       <div class="ticker" aria-label="DREAM PLAN CREATE ticker">
@@ -1521,12 +1785,26 @@
   <script>
     try {
       // ============================
-      // Splash
+      // Splash + Glitch bursts
       // ============================
       const SPLASH_DURATION = 2600;
 
       const splash = document.getElementById("splash");
       const fill = document.getElementById("loadFill");
+
+      // Random "glitch burst" during splash
+      let glitchTimer = null;
+      function startGlitchBursts(){
+        if(!splash) return;
+        const burst = () => {
+          splash.classList.add("glitch-burst");
+          setTimeout(() => splash.classList.remove("glitch-burst"), 420);
+          // next burst random
+          glitchTimer = setTimeout(burst, 320 + Math.random() * 620);
+        };
+        glitchTimer = setTimeout(burst, 220 + Math.random() * 420);
+      }
+      startGlitchBursts();
 
       const start = performance.now();
       function tick(now){
@@ -1538,12 +1816,112 @@
       requestAnimationFrame(tick);
 
       setTimeout(() => {
+        if(glitchTimer) clearTimeout(glitchTimer);
+        splash.classList.remove("glitch-burst");
+
         splash.classList.add("splash-hide");
         setTimeout(() => splash.remove(), 650);
 
         // ✅ after splash: show facts modal (once per session)
         setTimeout(() => maybeShowFactsModal(), 420);
       }, SPLASH_DURATION);
+
+      // ============================
+      // NEW: Vertical US Tech News Ticker
+      // ============================
+      const vtTrack = document.getElementById("vtTrack");
+      const vtStatus = document.getElementById("vtStatus");
+
+      // Fallback headlines (used if fetch fails)
+      const TECH_NEWS_FALLBACK = [
+        { topic:"Cyber", date:"Feb 2026", title:"US hospitality company reports employee-data theft after cyber incident", url:"#"},
+        { topic:"AI + Work", date:"Feb 2026", title:"More firms restructure as spending shifts toward AI projects and automation", url:"#"},
+        { topic:"Chips", date:"Jan 2026", title:"US updates approach to semiconductor imports and data-center supply chain oversight", url:"#"},
+        { topic:"AI Ops", date:"Feb 2026", title:"Bay Area AI software company cuts roles as it pushes for operating efficiency", url:"#"},
+        { topic:"Security", date:"Feb 2026", title:"Government services vendor breach fallout grows as investigations and lawsuits expand", url:"#"},
+        { topic:"Trend", date:"2026", title:"Cyber incident reporting and compliance rules accelerate across industries", url:"#"},
+      ];
+
+      function normalizeItem(item){
+        return {
+          topic: item.topic || "Tech",
+          date: item.date || "",
+          title: item.title || "Headline",
+          url: item.url || "#"
+        };
+      }
+
+      function renderVerticalTicker(items){
+        if(!vtTrack) return;
+        const safe = (items || []).map(normalizeItem).slice(0, 14);
+        const doubled = safe.concat(safe); // seamless loop
+
+        vtTrack.innerHTML = doubled.map(i => `
+          <div class="vt-item">
+            <div class="vt-top">
+              <span class="vt-chip">${i.topic}</span>
+              <span class="vt-date">${i.date}</span>
+            </div>
+            <p class="vt-title">${i.title}</p>
+            <a class="vt-link" href="${i.url}" target="_blank" rel="noopener">Read</a>
+          </div>
+        `).join("");
+
+        // Tune speed by count (more items => longer loop)
+        const base = 18; // seconds
+        const extra = Math.max(0, safe.length - 6) * 1.2;
+        vtTrack.style.animationDuration = (base + extra).toFixed(1) + "s";
+      }
+
+      // Try to fetch from GDELT (public). If it fails, fallback.
+      async function loadTechNews(){
+        if(vtStatus) vtStatus.textContent = "Fetching…";
+
+        // GDELT 2 DOC API: broad tech query + US focus (good for highlights)
+        // NOTE: GDELT sometimes returns many sources; we’ll just pick top titles.
+        const url =
+          "https://api.gdeltproject.org/api/v2/doc/doc" +
+          "?query=" + encodeURIComponent('(technology OR "artificial intelligence" OR cybersecurity OR semiconductor OR "data center") sourceCountry:US') +
+          "&mode=ArtList" +
+          "&format=json" +
+          "&maxrecords=12" +
+          "&sort=HybridRel";
+
+        try{
+          const res = await fetch(url, { cache: "no-store" });
+          if(!res.ok) throw new Error("Bad response");
+          const data = await res.json();
+
+          const arts = (data && data.articles) ? data.articles : [];
+          const items = arts.map(a => ({
+            topic: guessTopic(a.title),
+            date: (a.seendate ? a.seendate.slice(0,10) : "Recent"),
+            title: (a.title || "").trim(),
+            url: a.url || "#"
+          })).filter(x => x.title);
+
+          if(items.length < 4) throw new Error("Not enough items");
+          renderVerticalTicker(items);
+          if(vtStatus) vtStatus.textContent = "Live";
+        } catch (e){
+          renderVerticalTicker(TECH_NEWS_FALLBACK);
+          if(vtStatus) vtStatus.textContent = "Fallback";
+        }
+      }
+
+      function guessTopic(title=""){
+        const t = title.toLowerCase();
+        if(t.includes("cyber") || t.includes("ransom") || t.includes("breach") || t.includes("hack")) return "Cyber";
+        if(t.includes("semiconductor") || t.includes("chip") || t.includes("foundry")) return "Chips";
+        if(t.includes("ai") || t.includes("artificial intelligence") || t.includes("model")) return "AI";
+        if(t.includes("regulat") || t.includes("policy") || t.includes("tariff")) return "Policy";
+        if(t.includes("layoff") || t.includes("jobs") || t.includes("workforce")) return "Work";
+        return "Tech";
+      }
+
+      loadTechNews();
+      // refresh every ~10 minutes
+      setInterval(loadTechNews, 10 * 60 * 1000);
 
       // ============================
       // Mobile menu
@@ -1635,13 +2013,12 @@
           ],
         },
 
-        // ✅ Munchie Hacim: plays in the left panel
         hacim: {
           title: "Munchie Hacim (Retro Game)",
           sub: "Platformer • Boss Powers • Golden Floppy Quest",
           icon: "hacim-icon.png",
           docsUrl: "https://open.substack.com/pub/odotofrva/p/munchie-hacim-retro-video-game?r=5cwq3m&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
-          playUrl: "game/munchie-hacim/", // ✅ IMPORTANT for GitHub Pages: no leading slash
+          playUrl: "game/munchie-hacim/",
           ctaText: "Collaborate on the game",
           steps: [
             "Define the retro rules: 32px sprite grid, limited palette, and snappy arcade movement.",
@@ -1686,22 +2063,17 @@
         modalDocBtn.href = data.docsUrl || "#";
         modalCtaBtn.textContent = data.ctaText || "Request this build";
 
-        // ============================
-        // Left Panel: Build Steps OR Playable Game
-        // ============================
         const hasGame = !!data.playUrl;
 
         if (hasGame) {
           leftPanelTitle.textContent = "Play Beta";
           modalSteps.style.display = "none";
           modalGameWrap.style.display = "block";
-
-          // Load the game
           modalGameFrame.src = data.playUrl;
         } else {
           leftPanelTitle.textContent = "Build Process";
           modalGameWrap.style.display = "none";
-          modalGameFrame.src = ""; // ensure nothing keeps running
+          modalGameFrame.src = "";
           modalSteps.style.display = "grid";
 
           modalSteps.innerHTML = "";
@@ -1716,7 +2088,6 @@
           });
         }
 
-        // Gallery -> lightbox
         modalGallery.innerHTML = "";
         data.gallery.forEach((g, i) => {
           const wrap = document.createElement("div");
@@ -1755,8 +2126,6 @@
 
       function closeModal(){
         modal.setAttribute("aria-hidden", "true");
-
-        // ✅ Stop game when modal closes (prevents audio/CPU continuing)
         modalGameFrame.src = "";
 
         if (lightbox.getAttribute("aria-hidden") === "true" && factsModal.getAttribute("aria-hidden") === "true") {
@@ -1833,7 +2202,6 @@
         if(e.target?.dataset?.lightboxClose === "true") closeLightbox();
       });
 
-      // Pointer Events pinch/drag
       const pointers = new Map();
       let isPanning = false;
       let panStart = {x:0, y:0};
@@ -1915,7 +2283,6 @@
       lightboxViewer.addEventListener("pointerup", endPointer);
       lightboxViewer.addEventListener("pointercancel", endPointer);
 
-      // double-tap to reset
       let lastTapTime = 0;
       lightboxViewer.addEventListener("pointerup", () => {
         if(pointers.size !== 0) return;
@@ -1985,7 +2352,6 @@
       }
 
       function openFactsModal(){
-        // do not interrupt if product modal or lightbox already open
         if(modal.getAttribute("aria-hidden") === "false") return;
         if(lightbox.getAttribute("aria-hidden") === "false") return;
 
@@ -2009,7 +2375,6 @@
       }
 
       function maybeShowFactsModal(){
-        // once per session/tab
         if (sessionStorage.getItem(FACTS_SESSION_KEY) === "1") return;
         sessionStorage.setItem(FACTS_SESSION_KEY, "1");
         openFactsModal();
@@ -2025,7 +2390,6 @@
 
       // ============================
       // Global ESC handling
-      // Priority: lightbox > product modal > facts modal
       // ============================
       document.addEventListener("keydown", (e) => {
         if(e.key !== "Escape") return;
@@ -2035,13 +2399,13 @@
         if(factsModal.getAttribute("aria-hidden") === "false"){ closeFactsModal(); return; }
       });
 
-      // Minimal focus trap for product modal + facts modal
+      // Focus trap for product modal + facts modal
       document.addEventListener("keydown", (e) => {
         const modalOpen = modal.getAttribute("aria-hidden") === "false";
         const factsOpen = factsModal.getAttribute("aria-hidden") === "false";
         const lightboxOpen = lightbox.getAttribute("aria-hidden") === "false";
         if(!modalOpen && !factsOpen) return;
-        if(lightboxOpen) return; // lightbox sits above
+        if(lightboxOpen) return;
 
         if(e.key !== "Tab") return;
 
@@ -2064,11 +2428,9 @@
 
     } catch (err) {
       console.error("RoboTechi site script error:", err);
-      // Fail-open: remove splash so the user can still see the site
       const splash = document.getElementById("splash");
       if (splash) splash.remove();
     }
   </script>
 </body>
 </html>
-
