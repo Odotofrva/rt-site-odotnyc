@@ -524,6 +524,130 @@
     }
 
     /* =========================
+       NEW: WORLD CLOCK DASH TICKER
+       (placed directly under the existing ticker)
+       ========================= */
+    .clock-ticker{
+      margin-top: 10px;
+      border-radius: var(--radius);
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .clock-ticker::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(700px 160px at 15% 50%, rgba(44,124,255,.12), transparent 60%),
+        radial-gradient(700px 160px at 85% 45%, rgba(50,214,160,.10), transparent 60%),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
+      opacity:.70;
+      pointer-events:none;
+      mix-blend-mode:multiply;
+    }
+    .clock-head{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      border-bottom:1px solid rgba(10,14,20,.10);
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(8px);
+      flex-wrap:wrap;
+    }
+    .clock-head h4{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.25px;
+      color: var(--ink);
+    }
+    .clock-head .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+      margin:0;
+    }
+    .clock-badge{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 10.5px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(10,14,20,.14);
+      background: rgba(10,14,20,.04);
+      color: rgba(10,14,20,.72);
+      white-space:nowrap;
+    }
+
+    .clock-track{
+      position:relative;
+      z-index:1;
+      display:flex;
+      gap: 14px;
+      white-space: nowrap;
+      align-items:center;
+      padding: 12px 0;
+      will-change: transform;
+      animation: clockMarquee 18s linear infinite;
+    }
+    @keyframes clockMarquee{
+      0%{transform: translateX(0)}
+      100%{transform: translateX(-50%)}
+    }
+    .clock-card{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(10,14,20,.12);
+      background: rgba(255,255,255,.80);
+      box-shadow: var(--shadow2);
+      margin-left: 12px;
+    }
+    .clock-dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: rgba(50,214,160,.95);
+      box-shadow: 0 0 0 6px rgba(50,214,160,.18);
+      flex: 0 0 auto;
+    }
+    .clock-city{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      color: rgba(10,14,20,.78);
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+    .clock-time{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 1.2px;
+      color: rgba(10,14,20,.92);
+    }
+    .clock-tz{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(10,14,20,.58);
+      margin-left: 6px;
+    }
+    .clock-card:hover{
+      transform: translateY(-1px);
+      transition: transform .15s ease;
+    }
+    .clock-ticker:hover .clock-track{ animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce){
+      .clock-track{animation:none}
+    }
+
+    /* =========================
        NEW: VERTICAL TECH NEWS TICKER
        ========================= */
     .mast-grid{
@@ -687,6 +811,138 @@
       justify-content:space-between;
       gap:10px;
       flex-wrap:wrap;
+    }
+
+    /* =========================
+       NEW: HARDWARE OF THE DAY (card near Tech Insider)
+       ========================= */
+    .side-stack{
+      display:grid;
+      gap:12px;
+    }
+
+    .hwcard{
+      border-radius: var(--radius);
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .hwcard::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(700px 240px at 20% 10%, rgba(50,214,160,.12), transparent 60%),
+        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.10), transparent 60%),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
+      opacity:.70;
+      pointer-events:none;
+      mix-blend-mode:multiply;
+    }
+    .hw-head{
+      position:relative;
+      z-index:1;
+      padding: 12px 12px 10px;
+      border-bottom:1px solid rgba(10,14,20,.10);
+      background: rgba(255,255,255,.90);
+      backdrop-filter: blur(8px);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .hw-head h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.3px;
+      color: var(--ink);
+    }
+    .hw-head p{
+      margin:2px 0 0;
+      font-size: 11px;
+      color: rgba(10,14,20,.62);
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+    }
+    .hw-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+      margin-top:2px;
+    }
+    .hw-body{
+      position:relative;
+      z-index:1;
+      padding: 12px;
+      display:grid;
+      gap:10px;
+    }
+    .hw-hero{
+      border-radius: 16px;
+      border:1px dashed rgba(10,14,20,.22);
+      background:
+        radial-gradient(240px 160px at 25% 40%, rgba(231,195,77,.18), transparent 60%),
+        radial-gradient(240px 160px at 75% 60%, rgba(44,124,255,.10), transparent 60%),
+        rgba(10,14,20,.03);
+      overflow:hidden;
+      aspect-ratio: 16/10;
+      position:relative;
+      display:grid;
+      place-items:center;
+    }
+    .hw-hero img{width:100%; height:100%; object-fit:cover; display:block;}
+    .hw-hero .ph{
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size:12px;
+      color: rgba(10,14,20,.65);
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(10,14,20,.14);
+      background: rgba(255,255,255,.70);
+      position:absolute;
+      bottom:10px;
+      left:10px;
+    }
+    .hw-title{
+      margin:0;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing:.2px;
+      color: var(--ink);
+      line-height:1.25;
+    }
+    .hw-sub{
+      margin:0;
+      font-size: 12px;
+      color: rgba(10,14,20,.62);
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+    }
+    .hw-specs{
+      margin:0;
+      padding-left: 18px;
+      display:grid;
+      gap:6px;
+      color: rgba(10,14,20,.74);
+      font-size: 12.5px;
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      line-height:1.4;
+    }
+    .hw-foot{
+      position:relative;
+      z-index:1;
+      padding: 10px 12px 12px;
+      border-top: 1px solid rgba(10,14,20,.10);
+      background: rgba(255,255,255,.86);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(10,14,20,.62);
     }
 
     /* =========================
@@ -862,7 +1118,7 @@
     .product-card.clickable:hover::after{opacity:1; transform: translateY(0);}
 
     /* =========================
-       EVENTS CAROUSEL (NEW)
+       EVENTS CAROUSEL
        ========================= */
     .events-wrap{
       border-radius: var(--radius);
@@ -1615,30 +1871,67 @@
           </div>
         </div>
 
-        <!-- Vertical US Tech News Ticker -->
-        <aside class="vticker" aria-label="US Technology news highlights">
-          <div class="vt-head">
-            <div>
-              <h3>RT Tech Insider</h3>
-              <p class="mono">AI • Chips • Cyber • Startups • Policy</p>
+        <!-- RIGHT COLUMN: Tech Insider + Hardware of the Day -->
+        <div class="side-stack">
+          <!-- Vertical US Tech News Ticker -->
+          <aside class="vticker" aria-label="US Technology news highlights">
+            <div class="vt-head">
+              <div>
+                <h3>RT Tech Insider</h3>
+                <p class="mono">AI • Chips • Cyber • Startups • Policy</p>
+              </div>
+              <div class="vt-badges">
+                <span class="vt-badge" id="vtStatus">Loading…</span>
+                <span class="vt-badge">Hover = pause</span>
+              </div>
             </div>
-            <div class="vt-badges">
-              <span class="vt-badge" id="vtStatus">Loading…</span>
-              <span class="vt-badge">Hover = pause</span>
+
+            <div class="vt-window" aria-label="Vertical news ticker window">
+              <div class="vt-track" id="vtTrack"></div>
             </div>
-          </div>
 
-          <div class="vt-window" aria-label="Vertical news ticker window">
-            <div class="vt-track" id="vtTrack"></div>
-          </div>
+            <div class="vt-footer">
+              <span>Auto-refresh: <span id="vtRefresh">~10m</span></span>
+              <a class="vt-link" href="#contact" style="text-decoration:none;">Need a build? →</a>
+            </div>
+          </aside>
 
-          <div class="vt-footer">
-            <span>Auto-refresh: <span id="vtRefresh">~10m</span></span>
-            <a class="vt-link" href="#contact" style="text-decoration:none;">Need a build? →</a>
-          </div>
-        </aside>
+          <!-- Hardware of the Day -->
+          <aside class="hwcard" aria-label="Hardware of the Day">
+            <div class="hw-head">
+              <div>
+                <h3>Hardware of the Day</h3>
+                <p class="mono">Random pick • photo + quick specs</p>
+              </div>
+              <div class="hw-actions">
+                <button class="btn" id="hwShuffleBtn" type="button">Randomize</button>
+              </div>
+            </div>
+
+            <div class="hw-body">
+              <div class="hw-hero" role="img" aria-label="Hardware photo">
+                <img id="hwImg" src="feather2040.jpg" alt="Hardware of the Day"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+                <span class="ph" id="hwPh" style="display:none;">Image placeholder</span>
+              </div>
+
+              <div>
+                <h4 class="hw-title" id="hwTitle">Loading…</h4>
+                <p class="hw-sub" id="hwSub">Fetching specs…</p>
+              </div>
+
+              <ul class="hw-specs" id="hwSpecs"></ul>
+            </div>
+
+            <div class="hw-foot">
+              <span id="hwNote">Tip: Add your own boards in the HW_DATA list.</span>
+              <a class="vt-link" id="hwLink" href="#" target="_blank" rel="noopener">Open product →</a>
+            </div>
+          </aside>
+        </div>
       </div>
 
+      <!-- Existing ticker -->
       <div class="ticker" aria-label="DREAM PLAN CREATE ticker">
         <div class="ticker-track">
           <div class="ticker-item">
@@ -1657,6 +1950,21 @@
             <span class="sep"></span><span class="word">CODE</span>
           </div>
         </div>
+      </div>
+
+      <!-- NEW: World Clock dashboard ticker (directly under existing ticker) -->
+      <div class="clock-ticker" aria-label="World Clock dashboard ticker">
+        <div class="clock-head">
+          <div>
+            <h4>RT World Clock</h4>
+          </div>
+          <div class="meta">
+            <span class="clock-badge" id="clockStatus">Live</span>
+            <span class="clock-badge">Hover = pause</span>
+          </div>
+        </div>
+
+        <div class="clock-track" id="clockTrack" aria-label="Scrolling timezones"></div>
       </div>
 
     </div>
@@ -1813,7 +2121,7 @@
     </div>
   </section>
 
-  <!-- EVENTS (NEW) -->
+  <!-- EVENTS -->
   <section id="events">
     <div class="container">
       <div class="section-title">
@@ -1841,7 +2149,6 @@
         <div class="events-dots" id="eventsDots" aria-label="Event slide dots"></div>
 
         <div class="events-foot">
-         
           <a class="vt-link" href="#contact" style="text-decoration:none;">Host RoboTechi →</a>
         </div>
       </div>
@@ -2122,11 +2429,11 @@
         vtTrack.innerHTML = doubled.map(i => `
           <div class="vt-item">
             <div class="vt-top">
-              <span class="vt-chip">${i.topic}</span>
-              <span class="vt-date">${i.date}</span>
+              <span class="vt-chip">${escapeHtml(i.topic)}</span>
+              <span class="vt-date">${escapeHtml(i.date)}</span>
             </div>
-            <p class="vt-title">${i.title}</p>
-            <a class="vt-link" href="${i.url}" target="_blank" rel="noopener">Read</a>
+            <p class="vt-title">${escapeHtml(i.title)}</p>
+            <a class="vt-link" href="${escapeAttr(i.url)}" target="_blank" rel="noopener">Read</a>
           </div>
         `).join("");
 
@@ -2182,6 +2489,177 @@
       setInterval(loadTechNews, 10 * 60 * 1000);
 
       // ============================
+      // NEW: Hardware of the Day (random)
+      // ============================
+      const HW_DATA = [
+        {
+          name: "Feather ESP32-S3",
+          maker: "Adafruit-style board",
+          img: "featherESP32-S3.jpg",
+          url: "https://www.adafruit.com/product/5885?gad_source=1&gad_campaignid=21079227318&gbraid=0AAAAADx9JvREqDS7bLrgb7eW8hhCf1W_t&gclid=Cj0KCQiAwYrNBhDcARIsAGo3u31cDI8uKEwhRwbOCOFi_ifxQRR9nn5Am8YCGrN5e6NrUw9C_RDsSIkaAovZEALw_wcB",
+          specs: [
+            "MCU: ESP32-S3 (Wi-Fi + BLE)",
+            "USB-C (native USB)",
+            "Feather form factor (stackable ecosystem)",
+            "Great for IoT + small dashboards"
+          ]
+        },
+        {
+          name: "Feather RP2040",
+          maker: "Adafruit-style board",
+          img: "feather2040.jpg",
+          url: "https://www.adafruit.com/product/4884?gad_source=1&gad_campaignid=21079227318&gbraid=0AAAAADx9JvREqDS7bLrgb7eW8hhCf1W_t&gclid=Cj0KCQiAwYrNBhDcARIsAGo3u31q93oWgec-Ez0EOljCA6Zt0hBVTX8wH0nQF8PpRpoU6mFhOzF0jukaAlBcEALw_wcB",
+          specs: [
+            "MCU: RP2040 (dual-core)",
+            "Programmable I/O (PIO)",
+            "USB device support",
+            "Perfect for HID/macropads"
+          ]
+        },
+        {
+          name: "Feather nRF52840",
+          maker: "Adafruit-style board",
+          img: "feathernRF52840.jpg",
+          url: "https://www.adafruit.com/product/4062?gad_source=1&gad_campaignid=21079227318&gbraid=0AAAAADx9JvREqDS7bLrgb7eW8hhCf1W_t&gclid=Cj0KCQiAwYrNBhDcARIsAGo3u33lqOliLtaDCEO_4UonwL_tp9oInJHerQf_E1WeC7ehdBIv09Wx3rsaAkIWEALw_wcB",
+          specs: [
+            "MCU: nRF52840 (BLE)",
+            "Low power wireless builds",
+            "USB + BLE combo options",
+            "Great for wearables + sensors"
+          ]
+        },
+        {
+          name: "Feather M4 Express",
+          maker: "Adafruit-style board",
+          img: "featherm4express.jpg",
+          url: "https://www.adafruit.com/product/3857?gad_source=1&gad_campaignid=21079227318&gbraid=0AAAAADx9JvREqDS7bLrgb7eW8hhCf1W_t&gclid=Cj0KCQiAwYrNBhDcARIsAGo3u32g8Myzb-lilP3chgTMdf8K2TlwgnqUjT5jT2UC5cUyNTwksF8MN24aAmdtEALw_wcB",
+          specs: [
+            "MCU: ATSAMD51 (Cortex-M4)",
+            "Fast for audio + graphics tasks",
+            "USB + lots of IO",
+            "Good for advanced prototypes"
+          ]
+        }
+      ];
+
+      const hwTitle = document.getElementById("hwTitle");
+      const hwSub = document.getElementById("hwSub");
+      const hwImg = document.getElementById("hwImg");
+      const hwPh = document.getElementById("hwPh");
+      const hwSpecs = document.getElementById("hwSpecs");
+      const hwLink = document.getElementById("hwLink");
+      const hwShuffleBtn = document.getElementById("hwShuffleBtn");
+
+      let hwLast = -1;
+      function pickHW(){
+        if(!HW_DATA.length) return null;
+        let idx = Math.floor(Math.random() * HW_DATA.length);
+        if(HW_DATA.length > 1 && idx === hwLast) idx = (idx + 1) % HW_DATA.length;
+        hwLast = idx;
+        return HW_DATA[idx];
+      }
+
+      function renderHW(){
+        const item = pickHW();
+        if(!item) return;
+
+        hwTitle.textContent = item.name || "Hardware";
+        hwSub.textContent = item.maker || "Board";
+        hwLink.href = item.url || "#";
+
+        // reset placeholder visibility
+        hwImg.style.display = "block";
+        hwPh.style.display = "none";
+
+        hwImg.src = item.img || "hardware-feather.jpg";
+        hwImg.alt = item.name || "Hardware of the Day";
+
+        hwSpecs.innerHTML = (item.specs || []).map(s => `<li>${escapeHtml(s)}</li>`).join("");
+      }
+
+      hwShuffleBtn?.addEventListener("click", renderHW);
+      renderHW();
+
+      // ============================
+      // NEW: World Clock dashboard ticker
+      // ============================
+      const clockTrack = document.getElementById("clockTrack");
+      const clockStatus = document.getElementById("clockStatus");
+
+      const CLOCK_ZONES = [
+        { city:"New York", tz:"America/New_York", short:"ET" },
+        { city:"Los Angeles", tz:"America/Los_Angeles", short:"PT" },
+        { city:"London", tz:"Europe/London", short:"UK" },
+        { city:"Paris", tz:"Europe/Paris", short:"CET" },
+        { city:"Dubai", tz:"Asia/Dubai", short:"GST" },
+        { city:"Tokyo", tz:"Asia/Tokyo", short:"JST" },
+        { city:"Seoul", tz:"Asia/Seoul", short:"KST" },
+        { city:"Sydney", tz:"Australia/Sydney", short:"AET" },
+      ];
+
+      function formatTime(tz){
+        try{
+          // 24h with seconds for that digital dashboard feel
+          return new Intl.DateTimeFormat("en-US", {
+            timeZone: tz,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+          }).format(new Date());
+        } catch(e){
+          return "--:--:--";
+        }
+      }
+
+      function renderClockCards(){
+        if(!clockTrack) return;
+
+        const cards = CLOCK_ZONES.map(z => {
+          const time = formatTime(z.tz);
+          return `
+            <div class="clock-card" data-tz="${escapeAttr(z.tz)}">
+              <span class="clock-dot" aria-hidden="true"></span>
+              <div>
+                <div class="clock-city">${escapeHtml(z.city)} <span class="clock-tz">${escapeHtml(z.short)}</span></div>
+                <div class="clock-time" data-time="true">${escapeHtml(time)}</div>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        // duplicate for marquee loop
+        clockTrack.innerHTML = cards + cards;
+
+        // duration based on number of zones (keeps it smooth if you add more)
+        const base = 16;
+        const extra = Math.max(0, CLOCK_ZONES.length - 6) * 2.0;
+        clockTrack.style.animationDuration = (base + extra).toFixed(1) + "s";
+      }
+
+      function tickClockTimes(){
+        if(!clockTrack) return;
+        const nodes = clockTrack.querySelectorAll(".clock-card");
+        nodes.forEach(card => {
+          const tz = card.getAttribute("data-tz");
+          const timeEl = card.querySelector('[data-time="true"]');
+          if(timeEl) timeEl.textContent = formatTime(tz);
+        });
+      }
+
+      function startWorldClock(){
+        try{
+          renderClockCards();
+          tickClockTimes();
+          setInterval(tickClockTimes, 1000);
+          if(clockStatus) clockStatus.textContent = "Live";
+        } catch(e){
+          if(clockStatus) clockStatus.textContent = "Error";
+        }
+      }
+      startWorldClock();
+
+      // ============================
       // Mobile menu
       // ============================
       const menuBtn = document.getElementById("menuBtn");
@@ -2223,7 +2701,7 @@
       document.getElementById("year").textContent = new Date().getFullYear();
 
       // ============================
-      // NEW: Services → auto-fill contact + scroll
+      // Services → auto-fill contact + scroll
       // ============================
       const serviceSelect = document.getElementById("service");
       const msgBox = document.getElementById("message");
@@ -2368,7 +2846,7 @@
             li.className = "step";
             li.innerHTML = `
               <div class="node">${i+1}</div>
-              <div class="txt">${s}</div>
+              <div class="txt">${escapeHtml(s)}</div>
             `;
             modalSteps.appendChild(li);
           });
@@ -2383,9 +2861,9 @@
           wrap.setAttribute("aria-label", `Expand image ${i+1}: ${g.label || "Gallery image"}`);
 
           wrap.innerHTML = `
-            <img src="${g.src}" alt="${data.title} image ${i+1}"
+            <img src="${escapeAttr(g.src)}" alt="${escapeAttr(data.title)} image ${i+1}"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span style="display:none;">${g.label || "Image Placeholder"}</span>
+            <span style="display:none;">${escapeHtml(g.label || "Image Placeholder")}</span>
           `;
 
           wrap.addEventListener("click", () => openLightbox(g.src, g.label || "", `${data.title} image ${i+1}`));
@@ -2401,7 +2879,7 @@
 
         modalParts.innerHTML = `
           <ul style="margin:0; padding-left:18px;">
-            ${(data.parts || []).map(p => `<li>${p}</li>`).join("")}
+            ${(data.parts || []).map(p => `<li>${escapeHtml(p)}</li>`).join("")}
           </ul>
         `;
 
@@ -2580,7 +3058,7 @@
       });
 
       // ============================
-      // NEW: Events Carousel
+      // Events Carousel
       // ============================
       const EVENTS_DATA = [
         {
@@ -2633,7 +3111,6 @@
                 <img src="${escapeAttr(e.flyer)}" alt="${escapeAttr(e.title)} flyer"
                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="flyer-cap" style="display:none;">Flyer placeholder</div>
-                
               </div>
 
               <div class="event-meta">
@@ -2893,3 +3370,4 @@
   </script>
 </body>
 </html>
+
