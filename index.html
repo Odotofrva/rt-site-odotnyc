@@ -1212,23 +1212,29 @@
     }
     @media (min-width: 860px){
       .event-slide{min-width: 100%;}
-      .event-grid{grid-template-columns: 1.05fr .95fr;}
+      .event-grid{grid-template-columns: .8fr 1.2fr;}
     }
 
     .flyer{
-      border-radius: 18px;
-      border:1px dashed rgba(10,14,20,.22);
-      background:
-        radial-gradient(320px 190px at 20% 40%, rgba(231,195,77,.18), transparent 60%),
-        radial-gradient(320px 190px at 80% 60%, rgba(44,124,255,.12), transparent 60%),
-        rgba(10,14,20,.03);
-      overflow:hidden;
-      position:relative;
-      aspect-ratio: 4/5;
-      display:grid;
-      place-items:center;
-      cursor: zoom-in;
-    }
+        border-radius: 18px;
+        border:1px dashed rgba(10,14,20,.22);
+        background:
+          radial-gradient(320px 190px at 20% 40%, rgba(231,195,77,.18), transparent 60%),
+          radial-gradient(320px 190px at 80% 60%, rgba(44,124,255,.12), transparent 60%),
+          rgba(10,14,20,.03);
+        overflow:hidden;
+        position:relative;
+
+        /* NEW sizing */
+        aspect-ratio: 3/4;
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+
+        display:grid;
+        place-items:center;
+        cursor: zoom-in;
+      }
     .flyer img{width:100%; height:100%; object-fit:cover; display:block;}
     .flyer .flyer-cap{
       position:absolute;
@@ -2100,20 +2106,20 @@
         </article>
 
         <article class="card product-card clickable" tabindex="0" role="button"
-          aria-label="Open build process for Munchie Hacim (Retro Game)" data-product="hacim">
+          aria-label="Thumbtroller takes the NES silhouette and replaces the D-pad with a smooth thumb pad. " data-product="hacim">
           <div class="product-thumb">
-            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="Munchie Hacim"></span>
-            <span class="pill">Game</span>
+            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="rtlogo.png" alt="Thumbtroller"></span>
+            <span class="pill">Hardware</span>
           </div>
           <div>
-            <h4 style="margin:0 0 6px;">Munchie Hacim (Retro Game)</h4>
+            <h4 style="margin:0 0 6px;">Thumbtroller v1</h4>
             <p style="margin:0; color:rgba(10,14,20,.70); font-size:14px;">
-              Retro platformer insights: 32px sprites, boss powers, and the Golden Floppy end-goal—built for a classic handheld vibe.
+              Thumbtroller takes the NES silhouette and replaces the D-pad with a smooth thumb pad. Under the hood, an Adafruit Feather powers fast input scanning and modern connectivity. Designed for USB play and Wi-Fi features like profiles and updates.
             </p>
             <div class="meta">
-              <span class="tag2">Win | MacOS | Linux | Steam</span>
-              <span class="tag2">32px sprites</span>
-              <span class="tag2">Boss powers</span>
+              <span class="tag2">Thumb Pad </span>
+              <span class="tag2">Adafruit Feather</span>
+              <span class="tag2">Wifi + USB Connectivity</span>
             </div>
           </div>
         </article>
@@ -2778,10 +2784,10 @@
         },
 
         hacim: {
-          title: "Munchie Hacim (Retro Game)",
-          sub: "Platformer • Boss Powers • Golden Floppy Quest",
-          icon: "hacim-icon.png",
-          docsUrl: "https://open.substack.com/pub/odotofrva/p/munchie-hacim-retro-video-game?r=5cwq3m&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true",
+          title: "Thumbtroller v1 - RoboTechi Co.",
+          sub: "Thumb Pad • Adafruit Brain • For The Culture",
+          icon: "front.png",
+          docsUrl: "https://odotofrva.github.io/thumbRT/",
           playUrl: "game/munchie-hacim/",
           ctaText: "Collaborate on the game",
           steps: [
@@ -2796,8 +2802,8 @@
             "Polish pass: particles, camera bounds, difficulty ramp, and performance sanity checks for handheld targets."
           ],
           gallery: [
-            { src: "hacim-sprite.png", label: "Hacim Sprite (32px)" },
-            { src: "hacim-tileset.png", label: "Tileset / Palette" },
+            { src: "front.png", label: "Hacim Sprite (32px)" },
+            { src: "side.png", label: "Tileset / Palette" },
             { src: "hacim-level-mock.png", label: "Level Mockup" },
             { src: "hacim-boss.png", label: "Boss Concept" },
           ],
@@ -3062,33 +3068,33 @@
       // ============================
       const EVENTS_DATA = [
         {
-          type: "Workshop",
-          date: "TBD • 2026",
-          time: "6:00 PM",
+          type: "Meetup",
+          date: "TBA • 2026",
+          time: "TBA",
           location: "NYC",
           title: "Realm Of Makers",
-          description: "Realm Of Makers is a creative meetup designed for builders, innovators, and tech enthusiasts who love working with the Arduino Uno and embedded electronics.",
-          flyer: "event-electronics-workshop.jpg",
+          description: "Realm Of Makers is a creative meetup designed for builders, innovators, and tech enthusiasts who love working with the AdaFruit, Arduino and Raspberry Pi devices.",
+          flyer: "RealmOfMakers.png",
+          rsvpUrl: "#"
+        },
+        {
+          type: "Meetup",
+          date: "TBD • 2026",
+          time: "TBA",
+          location: "Brooklyn, New York",
+          title: "Intro To Circuits",
+          description: "Intro to Circuits is a hands-on beginner workshop where you’ll learn the fundamentals of electronics and circuit design. Build real projects, experiment with components, and start your journey into the world of hardware creation with RoboTechi.",
+          flyer: "IntroToCircuits.png",
           rsvpUrl: "#"
         },
         {
           type: "Community",
           date: "TBD • 2026",
-          time: "12:00 PM",
-          location: "Community Space (TBD)",
-          title: "RoboTechi Open Lab",
-          description: "Bring your broken device, unfinished project, or idea. We’ll troubleshoot together, share tools, and help you move it forward.",
-          flyer: "ROM1.png",
-          rsvpUrl: "#"
-        },
-        {
-          type: "Build Session",
-          date: "TBD • 2026",
-          time: "7:00 PM",
+          time: "TBA",
           location: "Online / Hybrid",
-          title: "IoT Sprint Night: Device → Dashboard",
-          description: "We’ll wire a sensor, send data over Wi-Fi, and visualize it on a simple dashboard. Great for makers and beginners.",
-          flyer: "event-iot-sprint.jpg",
+          title: "Innovate Concrete",
+          description: "Innovate Concrete is a collaborative ideation event where creators, builders, and visionaries come together to design tech solutions that strengthen and uplift our community. Bring your ideas to the table and help turn real challenges into real-world impact..",
+          flyer: "InnovateConcrete.png",
           rsvpUrl: "#"
         }
       ];
@@ -3370,4 +3376,3 @@
   </script>
 </body>
 </html>
-
