@@ -3,1858 +3,358 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RoboTechi Co.— OdotNYC</title>
-  <meta name="description" content="RoboTechi provides electronics design, embedded systems prototyping, web design, and maker education services." />
-
-  <!-- Favicon -->
+  <title>RoboTechi Co. — OdotNYC</title>
+  <meta name="description" content="RoboTechi provides computer repair, hardware and software development, web design, and maker-focused product documentation." />
   <link rel="icon" type="image/png" href="rtlogo.png">
-
-  <!-- Fonts (digital vibe) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #FBF7EA;
-      --bg2:#FFFFFF;
-      --panel: rgba(10,14,20,.05);
-      --panel2: rgba(10,14,20,.07);
-      --line: rgba(10,14,20,.12);
-
-      --text: rgba(10,14,20,.92);
-      --muted: rgba(10,14,20,.70);
-      --muted2: rgba(10,14,20,.55);
-
-      --gold: #E7C34D;
-      --gold2:#F3DE8A;
-      --ink: #0A0E14;
-      --blue:#2C7CFF;
-      --mint:#32D6A0;
-
-      --radius: 18px;
-      --shadow: 0 18px 55px rgba(10,14,20,.10);
-      --shadow2: 0 10px 28px rgba(10,14,20,.12);
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --surface-2:#fff7ef;
+      --surface-3:#fff1df;
+      --text:#1e2430;
+      --muted:#6d7684;
+      --line:rgba(30,36,48,.12);
+      --brand:#f59d0a;
+      --brand-strong:#ff8c00;
+      --brand-deep:#c86f00;
+      --brand-soft:rgba(245,157,10,.12);
+      --gunmetal:#1f2733;
+      --shadow:0 18px 48px rgba(31,39,51,.08);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1260px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
+      font-family:"Space Grotesk",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
-      font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.4;
-      overflow-x:hidden;
-
       background:
-        radial-gradient(900px 600px at 15% 5%, rgba(231,195,77,.22), transparent 60%),
-        radial-gradient(900px 600px at 85% 15%, rgba(44,124,255,.10), transparent 55%),
-        radial-gradient(900px 900px at 50% 110%, rgba(50,214,160,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg2), var(--bg));
+        radial-gradient(circle at top left, rgba(245,157,10,.14), transparent 24%),
+        radial-gradient(circle at right top, rgba(31,39,51,.05), transparent 18%),
+        linear-gradient(180deg,#ffffff 0%, #fffaf3 100%);
+      line-height:1.5;
     }
-
-    a{color:inherit; text-decoration:none}
-    .container{width:min(1120px, 92vw); margin:0 auto}
-
-    .mono{
-      font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      letter-spacing:.2px;
-    }
-
-    /* =========================
-       SCI-FI OVERLAY
-       ========================= */
-    .site-overlay{
+    body::before{
+      content:"";
       position:fixed;
       inset:0;
+      background-image:
+        linear-gradient(rgba(31,39,51,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31,39,51,.025) 1px, transparent 1px);
+      background-size:42px 42px;
       pointer-events:none;
-      z-index:0;
-      opacity:.55;
-      mix-blend-mode:multiply;
-      background:
-        linear-gradient(rgba(10,14,20,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(10,14,20,.06) 1px, transparent 1px),
-        repeating-linear-gradient(
-          180deg,
-          rgba(255,255,255,0) 0px,
-          rgba(255,255,255,0) 7px,
-          rgba(10,14,20,.06) 8px
-        );
-      background-size: 34px 34px, 34px 34px, auto;
+      opacity:.6;
+    }
+    img{max-width:100%;display:block}
+    .image-placeholder{
+      width:100%;aspect-ratio:16/10;border-radius:16px;border:1px dashed rgba(245,157,10,.42);
+      background:linear-gradient(135deg, rgba(245,157,10,.14), rgba(255,255,255,.95));
+      display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+      text-align:center;padding:18px;color:var(--gunmetal);font-weight:600;
+    }
+    .image-placeholder small{color:var(--muted);font-weight:500}
+    .event-placeholder{aspect-ratio:3/4;border-radius:0;border-bottom:1px solid var(--line)}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(var(--max),92vw);margin:0 auto;position:relative;z-index:1}
+    .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+    .topbar{
+      background:#ffffff;
+      color:var(--gunmetal);
+      border-bottom:1px solid var(--line);
+      font-size:13px;
+    }
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      padding:10px 0;
+      flex-wrap:wrap;
     }
 
-    /* =========================
-       SPLASH SCREEN (+ GLITCH)
-       ========================= */
-    .splash{
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      background:
-        radial-gradient(900px 600px at 20% 15%, rgba(231,195,77,.25), transparent 60%),
-        radial-gradient(900px 600px at 85% 25%, rgba(44,124,255,.15), transparent 60%),
-        linear-gradient(180deg, #FFFFFF, #FBF7EA);
-    }
-
-    .splash::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(10,14,20,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(10,14,20,.06) 1px, transparent 1px),
-        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.07) 7px);
-      background-size: 34px 34px, 34px 34px, auto;
-      opacity:.55;
-      mix-blend-mode:multiply;
-      pointer-events:none;
-      animation: scanMove 2.6s linear infinite;
-    }
-    @keyframes scanMove{
-      0%{transform:translateY(0)}
-      100%{transform:translateY(14px)}
-    }
-
-    .splash-card{
-      position:relative;
-      width:min(560px, 92vw);
-      border-radius: 22px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.70);
-      box-shadow: 0 30px 90px rgba(10,14,20,.18);
-      padding: 22px 18px 18px;
-      text-align:center;
-      backdrop-filter: blur(8px);
-      overflow:hidden;
-      z-index:1;
-    }
-
-    .splash-card .glow{
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(320px 190px at 25% 20%, rgba(231,195,77,.35), transparent 60%),
-        radial-gradient(320px 190px at 80% 60%, rgba(44,124,255,.18), transparent 60%);
-      pointer-events:none;
-    }
-
-    /* Glitch overlay burst */
-    .splash-card::before{
-      content:"";
-      position:absolute; inset:0;
-      pointer-events:none;
-      opacity:0;
-      background:
-        repeating-linear-gradient(0deg, rgba(10,14,20,.12) 0 1px, transparent 1px 3px),
-        radial-gradient(600px 260px at 50% 0%, rgba(44,124,255,.20), transparent 60%),
-        radial-gradient(600px 260px at 50% 100%, rgba(231,195,77,.20), transparent 60%);
-      mix-blend-mode:multiply;
-      transform: translateZ(0);
-    }
-    .splash.glitch-burst .splash-card::before{
-      opacity:.75;
-      animation: glitchOverlay .55s steps(2,end) infinite;
-    }
-    @keyframes glitchOverlay{
-      0%{ transform: translate(0,0) skewX(0deg); clip-path: inset(0 0 0 0); }
-      15%{ transform: translate(-2px,1px) skewX(-6deg); clip-path: inset(10% 0 60% 0); }
-      35%{ transform: translate(3px,-1px) skewX(6deg); clip-path: inset(55% 0 10% 0); }
-      55%{ transform: translate(-3px,0px) skewX(-3deg); clip-path: inset(25% 0 35% 0); }
-      75%{ transform: translate(2px,2px) skewX(4deg); clip-path: inset(0 0 70% 0); }
-      100%{ transform: translate(0,0) skewX(0deg); clip-path: inset(0 0 0 0); }
-    }
-
-    /* Glitch title */
-    .glitch-title{
-      position:relative;
-      display:inline-block;
-      font-weight:900;
-      letter-spacing:.6px;
-      margin: 10px 0 0;
-      font-size: 18px;
-      color: var(--ink);
-      text-transform: uppercase;
-    }
-    .glitch-title::before,
-    .glitch-title::after{
-      content: attr(data-text);
-      position:absolute;
-      left:0; top:0;
-      width:100%;
-      opacity:0;
-      pointer-events:none;
-    }
-    .glitch-title::before{
-      transform: translate(-2px,0);
-      color: rgba(44,124,255,.95);
-      mix-blend-mode:multiply;
-    }
-    .glitch-title::after{
-      transform: translate(2px,0);
-      color: rgba(231,195,77,.95);
-      mix-blend-mode:multiply;
-    }
-    .splash.glitch-burst .glitch-title::before,
-    .splash.glitch-burst .glitch-title::after{
-      opacity:.9;
-      animation: glitchText .55s steps(2,end) infinite;
-    }
-    @keyframes glitchText{
-      0%{ clip-path: inset(0 0 0 0); transform: translate(-2px,0); }
-      20%{ clip-path: inset(10% 0 65% 0); transform: translate(2px,-1px); }
-      45%{ clip-path: inset(60% 0 10% 0); transform: translate(-3px,1px); }
-      70%{ clip-path: inset(25% 0 35% 0); transform: translate(3px,0); }
-      100%{ clip-path: inset(0 0 0 0); transform: translate(-2px,0); }
-    }
-
-    .mark-img{
-      width: 96px;
-      height: 96px;
-      object-fit: contain;
-      filter: drop-shadow(0 18px 28px rgba(10,14,20,.18));
-      user-select:none;
-    }
-
-    .splash-sub{
-      margin: 8px 0 0;
-      color: rgba(10,14,20,.62);
-      font-size: 12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-
-    .loading{
-      margin-top: 14px;
-      width:min(380px, 86%);
-      margin-inline:auto;
-      border-radius: 999px;
-      border:1px solid rgba(10,14,20,.16);
-      background: rgba(10,14,20,.06);
-      overflow:hidden;
-      height: 12px;
-      position:relative;
-    }
-    .loading > span{
-      display:block;
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, rgba(231,195,77,.95), rgba(44,124,255,.85));
-      transition: width .25s ease;
-    }
-    .loading::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(115deg, transparent, rgba(255,255,255,.65), transparent);
-      transform: translateX(-40%) skewX(-18deg);
-      animation: loadSweep 1.0s linear infinite;
-      opacity:.45;
-      pointer-events:none;
-    }
-    @keyframes loadSweep{
-      0%{transform: translateX(-60%) skewX(-18deg)}
-      100%{transform: translateX(60%) skewX(-18deg)}
-    }
-
-    .splash-hide{ animation: splashOut .55s ease forwards; }
-    @keyframes splashOut{
-      to { opacity:0; visibility:hidden; transform: translateY(-6px); }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .splash::after, .loading::after{ animation:none !important; }
-      .splash.glitch-burst .splash-card::before,
-      .splash.glitch-burst .glitch-title::before,
-      .splash.glitch-burst .glitch-title::after{ animation:none !important; }
-    }
-
-    /* =========================
-       NAV
-       ========================= */
-    header.nav{
+    .nav{
       position:sticky;
       top:0;
-      z-index:50;
-      background: rgba(255,255,255,.72);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(10,14,20,.12);
+      z-index:40;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
     }
     .nav-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:14px 0;
-      gap:12px;
-      position:relative;
-      z-index:1;
+      gap:18px;
+      padding:16px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:12px;
       min-width:0;
     }
-    .logo-img{
-      width:40px;
-      height:40px;
-      object-fit:contain;
-      filter: drop-shadow(0 10px 18px rgba(10,14,20,.12));
-    }
-    .brand h1{
-      font-size:16px;
-      margin:0;
-      letter-spacing:.3px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      color: var(--ink);
-    }
-    .brand .tag{
-      display:block;
-      font-size:12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      color: rgba(10,14,20,.60);
-      margin-top:1px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .links{display:none}
-    .links a{
-      font-size:13px;
-      color: rgba(10,14,20,.70);
-      padding:10px 10px;
-      border-radius:12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      transition: background .15s ease, color .15s ease;
-    }
-    .links a:hover{
-      background: rgba(10,14,20,.06);
-      color: rgba(10,14,20,.92);
-    }
-
-    .nav-actions{display:flex; gap:10px; align-items:center}
-    .btn{
-      display:inline-flex;
+    .brand img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 16px rgba(201,162,74,.18))}
+    .brand-name{font-size:18px;font-weight:700;margin:0}
+    .brand-sub{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .nav-links{
+      display:none;
       align-items:center;
-      justify-content:center;
       gap:8px;
-      padding:11px 14px;
-      border-radius:14px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.55);
-      color: rgba(10,14,20,.92);
-      font-weight:700;
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      user-select:none;
-      box-shadow: var(--shadow2);
+      flex-wrap:wrap;
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.78)}
+    .nav-links a{
+      padding:10px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:500;
+      transition:.2s ease;
+    }
+    .nav-links a:hover{background:var(--surface-2);color:var(--brand-strong)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .menu-btn,.btn{
+      border:1px solid var(--line);
+      background:var(--surface-2);
+      color:var(--gunmetal);
+      border-radius:999px;
+      padding:11px 16px;
+      cursor:pointer;
+      font-weight:600;
+      transition:.2s ease;
+    }
+    .btn:hover,.menu-btn:hover{transform:translateY(-1px);border-color:rgba(201,162,74,.5)}
     .btn.primary{
-      border-color: rgba(231,195,77,.55);
-      background: linear-gradient(135deg, rgba(231,195,77,.55), rgba(44,124,255,.18));
+      background:var(--brand);
+      border-color:var(--brand);
+      color:#ffffff;
+      box-shadow:0 12px 26px rgba(201,162,74,.24);
     }
-    .btn.primary:hover{border-color: rgba(231,195,77,.85)}
-    .btn .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: var(--gold);
-      box-shadow: 0 0 0 6px rgba(231,195,77,.20);
+    .btn.primary:hover{background:var(--brand-strong)}
+    .btn.secondary{
+      background:var(--brand-soft);
+      border-color:rgba(201,162,74,.28);
+      color:var(--brand-strong);
     }
-    .menu-btn{display:inline-flex}
-
-    .drawer{
+    .mobile-drawer{
       display:none;
-      border-top:1px solid rgba(10,14,20,.12);
-      padding:10px 0 14px;
-      background: rgba(255,255,255,.78);
+      padding:0 0 16px;
     }
-    .drawer a{
+    .mobile-drawer a{
       display:block;
-      padding:12px 8px;
-      color: rgba(10,14,20,.70);
-      border-radius:12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .drawer a:hover{background: rgba(10,14,20,.06); color: rgba(10,14,20,.92)}
-
-    /* =========================
-       MASTHEAD
-       ========================= */
-    .masthead{
-      padding: 18px 0 10px;
-      position:relative;
-      z-index:1;
-    }
-    .center-logo{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding: 10px 0;
-      text-align:center;
-    }
-    .center-logo .word{
-      margin-top: 10px;
-      font-weight: 800;
-      letter-spacing: .4px;
-      font-size: 18px;
-      color: var(--ink);
-    }
-    .center-logo .sub{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      color: rgba(10,14,20,.60);
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    /* =========================
-       VIDEO
-       ========================= */
-    .video-wrap{
-      margin-top: 12px;
-      border-radius: var(--radius);
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.70);
-      overflow:hidden;
-      box-shadow: var(--shadow);
-    }
-    .video-head{
-      padding: 14px 14px 10px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 12px;
-      border-bottom: 1px solid rgba(10,14,20,.10);
-      background: linear-gradient(90deg, rgba(231,195,77,.15), rgba(44,124,255,.08));
-    }
-    .video-head h3{
-      margin:0;
-      font-size: 16px;
-      letter-spacing:.2px;
-      color: var(--ink);
-    }
-    .video-head p{
-      margin:0;
-      color: rgba(10,14,20,.62);
-      font-size: 12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      text-align:right;
-    }
-    .embed{
-      position:relative;
-      width:100%;
-      aspect-ratio: 16/9;
-      background: rgba(10,14,20,.06);
-    }
-    .embed iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-    /* =========================
-       TICKER (horizontal)
-       ========================= */
-    .ticker{
-      margin-top: 12px;
-      border-radius: var(--radius);
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-    }
-    .ticker::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(600px 120px at 20% 50%, rgba(231,195,77,.18), transparent 60%),
-        radial-gradient(600px 120px at 80% 50%, rgba(44,124,255,.10), transparent 60%),
-        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
-      opacity:.70;
-      pointer-events:none;
-      mix-blend-mode:multiply;
-    }
-    .ticker-track{
-      display:flex;
-      gap: 34px;
-      white-space: nowrap;
-      align-items:center;
-      padding: 14px 0;
-      will-change: transform;
-      animation: marquee 14s linear infinite;
-      position:relative;
-      z-index:1;
-    }
-    @keyframes marquee{
-      0%{transform: translateX(0)}
-      100%{transform: translateX(-50%)}
-    }
-    .ticker-item{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-weight:700;
-      letter-spacing: 2.2px;
-      font-size: clamp(18px, 3.8vw, 32px);
-      text-transform: uppercase;
-      color: rgba(10,14,20,.90);
-      display:flex;
-      align-items:center;
-      gap: 14px;
-    }
-    .ticker-item .sep{
-      width:10px; height:10px;
-      border-radius:999px;
-      background: rgba(231,195,77,.95);
-      box-shadow: 0 0 0 6px rgba(231,195,77,.18);
-    }
-    .ticker-item .word{position:relative;}
-    .ticker-item .word::after{
-      content:"";
-      position:absolute;
-      left:0; right:0; bottom:-6px;
-      height:2px;
-      background: linear-gradient(90deg, rgba(231,195,77,.85), rgba(44,124,255,.55));
-      opacity:.75;
-    }
-    @media (prefers-reduced-motion: reduce){
-      .ticker-track{animation:none}
-    }
-
-    /* =========================
-       NEW: WORLD CLOCK DASH TICKER
-       (placed directly under the existing ticker)
-       ========================= */
-    .clock-ticker{
-      margin-top: 10px;
-      border-radius: var(--radius);
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-    }
-    .clock-ticker::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(700px 160px at 15% 50%, rgba(44,124,255,.12), transparent 60%),
-        radial-gradient(700px 160px at 85% 45%, rgba(50,214,160,.10), transparent 60%),
-        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
-      opacity:.70;
-      pointer-events:none;
-      mix-blend-mode:multiply;
-    }
-    .clock-head{
-      position:relative;
-      z-index:1;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding: 10px 12px;
-      border-bottom:1px solid rgba(10,14,20,.10);
-      background: rgba(255,255,255,.82);
-      backdrop-filter: blur(8px);
-      flex-wrap:wrap;
-    }
-    .clock-head h4{
-      margin:0;
-      font-size: 14px;
-      letter-spacing:.25px;
-      color: var(--ink);
-    }
-    .clock-head .meta{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-      margin:0;
-    }
-    .clock-badge{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 10.5px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(10,14,20,.14);
-      background: rgba(10,14,20,.04);
-      color: rgba(10,14,20,.72);
-      white-space:nowrap;
-    }
-
-    .clock-track{
-      position:relative;
-      z-index:1;
-      display:flex;
-      gap: 14px;
-      white-space: nowrap;
-      align-items:center;
-      padding: 12px 0;
-      will-change: transform;
-      animation: clockMarquee 18s linear infinite;
-    }
-    @keyframes clockMarquee{
-      0%{transform: translateX(0)}
-      100%{transform: translateX(-50%)}
-    }
-    .clock-card{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding: 10px 12px;
-      border-radius: 16px;
-      border:1px solid rgba(10,14,20,.12);
-      background: rgba(255,255,255,.80);
-      box-shadow: var(--shadow2);
-      margin-left: 12px;
-    }
-    .clock-dot{
-      width:10px; height:10px;
-      border-radius:999px;
-      background: rgba(50,214,160,.95);
-      box-shadow: 0 0 0 6px rgba(50,214,160,.18);
-      flex: 0 0 auto;
-    }
-    .clock-city{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 12px;
-      color: rgba(10,14,20,.78);
-      letter-spacing: .6px;
-      text-transform: uppercase;
-    }
-    .clock-time{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-weight: 900;
-      font-size: 18px;
-      letter-spacing: 1.2px;
-      color: rgba(10,14,20,.92);
-    }
-    .clock-tz{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      color: rgba(10,14,20,.58);
-      margin-left: 6px;
-    }
-    .clock-card:hover{
-      transform: translateY(-1px);
-      transition: transform .15s ease;
-    }
-    .clock-ticker:hover .clock-track{ animation-play-state: paused; }
-    @media (prefers-reduced-motion: reduce){
-      .clock-track{animation:none}
-    }
-
-    /* =========================
-       NEW: VERTICAL TECH NEWS TICKER
-       ========================= */
-    .mast-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top: 12px;
-      align-items: start;
-    }
-    @media (min-width: 960px){
-      .mast-grid{ grid-template-columns: minmax(0,1.45fr) minmax(300px,.55fr); }
-      .video-wrap{ margin-top: 0; }
-    }
-
-    .vticker{
-      border-radius: var(--radius);
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-      min-height: 360px;
-    }
-    .vticker::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(700px 240px at 20% 10%, rgba(231,195,77,.16), transparent 60%),
-        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.10), transparent 60%),
-        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
-      opacity:.70;
-      pointer-events:none;
-      mix-blend-mode:multiply;
-    }
-
-    .vt-head{
-      position:sticky;
-      top:0;
-      z-index:2;
-      padding: 12px 12px 10px;
-      border-bottom: 1px solid rgba(10,14,20,.10);
-      background: rgba(255,255,255,.90);
-      backdrop-filter: blur(8px);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .vt-head h3{
-      margin:0;
-      font-size: 14px;
-      letter-spacing:.3px;
-      color: var(--ink);
-    }
-    .vt-head p{
-      margin:2px 0 0;
-      font-size: 11px;
-      color: rgba(10,14,20,.62);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .vt-badges{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-      margin-top:2px;
-    }
-    .vt-badge{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 10.5px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(10,14,20,.14);
-      background: rgba(10,14,20,.04);
-      color: rgba(10,14,20,.72);
-      white-space:nowrap;
-    }
-
-    .vt-window{
-      position:relative;
-      height: 320px;
-      overflow:hidden;
-      padding: 10px 10px 12px;
-    }
-
-    .vt-track{
-      position:absolute;
-      left:0; right:0;
-      top:0;
-      display:grid;
-      gap: 10px;
-      will-change: transform;
-      animation: vscroll 20s linear infinite;
-      z-index:1;
-    }
-    .vticker:hover .vt-track{ animation-play-state: paused; }
-
-    @keyframes vscroll{
-      0%{ transform: translateY(0); }
-      100%{ transform: translateY(-50%); }
-    }
-
-    .vt-item{
-      border-radius: 16px;
-      border:1px solid rgba(10,14,20,.12);
-      background: rgba(255,255,255,.78);
-      box-shadow: var(--shadow2);
-      padding: 10px 10px;
-      display:grid;
-      gap:6px;
-    }
-    .vt-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .vt-chip{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 10.5px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(10,14,20,.14);
-      background: rgba(231,195,77,.18);
-      color: rgba(10,14,20,.74);
-      white-space:nowrap;
-    }
-    .vt-date{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 10.5px;
-      color: rgba(10,14,20,.58);
-      white-space:nowrap;
-    }
-    .vt-title{
-      margin:0;
-      font-size: 13px;
-      color: rgba(10,14,20,.86);
-      line-height:1.35;
-      font-weight:800;
-      letter-spacing:.15px;
-    }
-    .vt-link{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      color: rgba(44,124,255,.92);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      width: fit-content;
-    }
-    .vt-footer{
-      padding: 10px 12px 12px;
-      border-top: 1px solid rgba(10,14,20,.10);
-      background: rgba(255,255,255,.86);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      color: rgba(10,14,20,.62);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    /* =========================
-       NEW: HARDWARE OF THE DAY (card near Tech Insider)
-       ========================= */
-    .side-stack{
-      display:grid;
-      gap:12px;
-      align-content:start;
-    }
-
-    .hwcard{
-      border-radius: var(--radius);
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-    }
-    .hwcard::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(700px 240px at 20% 10%, rgba(50,214,160,.12), transparent 60%),
-        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.10), transparent 60%),
-        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
-      opacity:.70;
-      pointer-events:none;
-      mix-blend-mode:multiply;
-    }
-    .hw-head{
-      position:relative;
-      z-index:1;
-      padding: 12px 12px 10px;
-      border-bottom:1px solid rgba(10,14,20,.10);
-      background: rgba(255,255,255,.90);
-      backdrop-filter: blur(8px);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .hw-head h3{
-      margin:0;
-      font-size: 14px;
-      letter-spacing:.3px;
-      color: var(--ink);
-    }
-    .hw-head p{
-      margin:2px 0 0;
-      font-size: 11px;
-      color: rgba(10,14,20,.62);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .hw-actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-      margin-top:2px;
-    }
-    .hw-body{
-      position:relative;
-      z-index:1;
-      padding: 12px;
-      display:grid;
-      gap:10px;
-    }
-    .hwcard.compact .hw-hero{
-      aspect-ratio: 16/8.5;
-    }
-    .hwcard.compact .hw-specs{
-      gap:5px;
-      font-size:12px;
-    }
-    .hw-hero{
-      border-radius: 16px;
-      border:1px dashed rgba(10,14,20,.22);
-      background:
-        radial-gradient(240px 160px at 25% 40%, rgba(231,195,77,.18), transparent 60%),
-        radial-gradient(240px 160px at 75% 60%, rgba(44,124,255,.10), transparent 60%),
-        rgba(10,14,20,.03);
-      overflow:hidden;
-      aspect-ratio: 16/10;
-      position:relative;
-      display:grid;
-      place-items:center;
-    }
-    .hw-hero img{width:100%; height:100%; object-fit:cover; display:block;}
-    .hw-hero .ph{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size:12px;
-      color: rgba(10,14,20,.65);
-      padding:8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.70);
-      position:absolute;
-      bottom:10px;
-      left:10px;
-    }
-    .hw-title{
-      margin:0;
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing:.2px;
-      color: var(--ink);
-      line-height:1.25;
-    }
-    .hw-sub{
-      margin:0;
-      font-size: 12px;
-      color: rgba(10,14,20,.62);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .hw-specs{
-      margin:0;
-      padding-left: 18px;
-      display:grid;
-      gap:6px;
-      color: rgba(10,14,20,.74);
-      font-size: 12.5px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      line-height:1.4;
-    }
-    .hw-foot{
-      position:relative;
-      z-index:1;
-      padding: 10px 12px 12px;
-      border-top: 1px solid rgba(10,14,20,.10);
-      background: rgba(255,255,255,.86);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      color: rgba(10,14,20,.62);
-    }
-
-    /* =========================
-       SECTIONS / CARDS
-       ========================= */
-    section{padding: 28px 0; position:relative; z-index:1}
-    .section-title{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom: 12px;
-    }
-    .section-title h3{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.2px;
-      color: var(--ink);
-    }
-    .section-title p{
-      margin:0;
-      color: rgba(10,14,20,.60);
-      font-size:12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      text-align:right;
-    }
-
-    .grid{display:grid; grid-template-columns: 1fr; gap:12px;}
-    .card{
-      padding:16px;
-      border-radius: var(--radius);
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow2);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.84);
-      border-color: rgba(10,14,20,.20);
-    }
-
-    .service-media{
-      width:100%;
-      aspect-ratio: 16/10;
-      border-radius: 16px;
-      border: 1px dashed rgba(10,14,20,.22);
-      overflow:hidden;
-      background:
-        radial-gradient(240px 160px at 25% 40%, rgba(231,195,77,.18), transparent 60%),
-        radial-gradient(240px 160px at 75% 60%, rgba(44,124,255,.10), transparent 60%),
-        rgba(10,14,20,.03);
-      display:grid;
-      place-items:center;
-      margin-bottom: 12px;
-      position:relative;
-    }
-    .service-media img{width:100%; height:100%; object-fit: cover; display:block;}
-    .service-media .ph{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size:12px;
-      color: rgba(10,14,20,.65);
-      padding:8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.70);
-      position:absolute;
-      bottom:10px;
-      left:10px;
-    }
-
-    .icon{
-      width:42px; height:42px;
+      padding:12px 14px;
       border-radius:14px;
-      border:1px solid rgba(10,14,20,.14);
-      background: linear-gradient(135deg, rgba(231,195,77,.22), rgba(44,124,255,.10));
-      display:grid;
-      place-items:center;
-      margin-bottom:10px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      color: rgba(10,14,20,.86);
+      color:var(--muted);
     }
+    .mobile-drawer a:hover{background:var(--surface-2);color:var(--brand-strong)}
 
-    .card h4{margin:0 0 6px; font-size:16px; color: var(--ink);}
-    .card p{margin:0; color: rgba(10,14,20,.70); font-size:14px;}
-
-    .bullets{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:8px}
-    .bullets li{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      color: rgba(10,14,20,.74);
-      font-size:13px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
+    .hero{padding:42px 0 24px}
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:20px;align-items:stretch}
+    .hero-copy,.hero-media,.intro-strip,.section-card,.contact-card,.event-card,.service-card,.product-card,.about-card,.doc-card,.docs-sidebar,.docs-callout{
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,247,239,.98));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(4px);
     }
-    .check{
-      width:18px; height:18px;
-      border-radius:6px;
-      background: rgba(231,195,77,.25);
-      border:1px solid rgba(231,195,77,.45);
-      display:grid;
-      place-items:center;
-      flex: 0 0 auto;
-      margin-top:1px;
-      color: rgba(10,14,20,.9);
-      font-weight:900;
-    }
-
-    .product-row{display:grid; grid-template-columns: 1fr; gap:12px; max-width:760px}
-    .product-card{display:grid; gap:12px}
-    .product-thumb{
-      width:100%;
-      aspect-ratio: 16/8.5;
-      border-radius: 16px;
-      background:
-        radial-gradient(240px 160px at 25% 40%, rgba(231,195,77,.22), transparent 60%),
-        radial-gradient(240px 160px at 75% 60%, rgba(44,124,255,.12), transparent 60%),
-        rgba(10,14,20,.04);
-      border:1px dashed rgba(10,14,20,.22);
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      padding:12px;
-      overflow:hidden;
-    }
-    .product-thumb img{max-height:38px; max-width:160px; object-fit:contain;}
-
-    .pill{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.68);
-      border:1px solid rgba(10,14,20,.14);
-      color: rgba(10,14,20,.72);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .tag2{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      background: rgba(10,14,20,.04);
-      border:1px solid rgba(10,14,20,.14);
-      color: rgba(10,14,20,.70);
-    }
-
-    .product-card.clickable{
-      cursor:pointer;
-      position:relative;
-      outline:none;
-    }
-    .product-card.clickable:focus-visible{
-      box-shadow: 0 0 0 4px rgba(44,124,255,.18), var(--shadow2);
-      border-color: rgba(44,124,255,.35);
-    }
-    .product-card.clickable::after{
-      content:"Click to view build process";
-      position:absolute;
-      top:12px; right:12px;
-      font-size:11px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.75);
-      color: rgba(10,14,20,.68);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      opacity:0;
-      transform: translateY(-2px);
-      transition: opacity .15s ease, transform .15s ease;
-      pointer-events:none;
-    }
-    .product-card.clickable:hover::after{opacity:1; transform: translateY(0);}
-
-    /* =========================
-       EVENTS CAROUSEL
-       ========================= */
-    .events-wrap{
-      border-radius: var(--radius);
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-    }
-    .events-wrap::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(700px 240px at 20% 10%, rgba(231,195,77,.14), transparent 60%),
-        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.10), transparent 60%),
-        repeating-linear-gradient(180deg, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 6px, rgba(10,14,20,.06) 7px);
-      opacity:.70;
-      pointer-events:none;
-      mix-blend-mode:multiply;
-    }
-    .events-head{
-      position:relative;
-      z-index:1;
-      padding: 14px 14px 12px;
-      border-bottom:1px solid rgba(10,14,20,.10);
-      background: rgba(255,255,255,.86);
-      backdrop-filter: blur(8px);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .events-head h4{
-      margin:0;
-      font-size: 16px;
-      color: var(--ink);
-      letter-spacing:.2px;
-    }
-    .events-head p{
-      margin:2px 0 0;
-      font-size: 12px;
-      color: rgba(10,14,20,.62);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .events-controls{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-    }
-    .icon-btn{
+    .hero-copy{padding:38px}
+    .eyebrow{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      width:42px; height:42px;
-      border-radius:14px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.65);
-      cursor:pointer;
-      box-shadow: var(--shadow2);
-      font-weight:900;
-      user-select:none;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .icon-btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.82)}
-    .events-window{
-      position:relative;
-      z-index:1;
-      overflow:hidden;
-      padding: 14px;
-      touch-action: pan-y;
-    }
-    .events-track{
-      display:flex;
-      gap:12px;
-      transition: transform .35s ease;
-      will-change: transform;
-    }
-    .event-slide{
-      min-width: 100%;
-      display:grid;
-      gap:12px;
-    }
-    .event-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      align-items:start;
-    }
-    @media (min-width: 860px){
-      .event-slide{min-width: 100%;}
-      .event-grid{grid-template-columns: .8fr 1.2fr;}
-    }
-
-    .flyer{
-        border-radius: 18px;
-        border:1px dashed rgba(10,14,20,.22);
-        background:
-          radial-gradient(320px 190px at 20% 40%, rgba(231,195,77,.18), transparent 60%),
-          radial-gradient(320px 190px at 80% 60%, rgba(44,124,255,.12), transparent 60%),
-          rgba(10,14,20,.03);
-        overflow:hidden;
-        position:relative;
-
-        /* NEW sizing */
-        aspect-ratio: 3/4;
-        max-width: 320px;
-        width: 100%;
-        margin: 0 auto;
-
-        display:grid;
-        place-items:center;
-        cursor: zoom-in;
-      }
-    .flyer img{width:100%; height:100%; object-fit:cover; display:block;}
-    .flyer .flyer-cap{
-      position:absolute;
-      bottom:10px; left:10px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size:11px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.80);
-      color: rgba(10,14,20,.72);
-    }
-
-    .event-meta{
-      border-radius: 18px;
-      border:1px solid rgba(10,14,20,.12);
-      background: rgba(255,255,255,.78);
-      box-shadow: var(--shadow2);
-      padding: 14px;
-      display:grid;
-      gap:10px;
-    }
-    .event-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .event-chip{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(10,14,20,.14);
-      background: rgba(231,195,77,.18);
-      color: rgba(10,14,20,.74);
-      white-space:nowrap;
-    }
-    .event-when{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      color: rgba(10,14,20,.62);
-      white-space:nowrap;
-    }
-    .event-title{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.2px;
-      color: var(--ink);
-      line-height:1.25;
-      font-weight:900;
-    }
-    .event-desc{
-      margin:0;
-      color: rgba(10,14,20,.74);
-      font-size: 14px;
-      line-height:1.55;
-    }
-    .event-details{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:2px;
-    }
-    .event-detail{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11.5px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(10,14,20,.04);
-      color: rgba(10,14,20,.72);
-    }
-    .events-dots{
-      position:relative;
-      z-index:1;
-      padding: 0 14px 14px;
-      display:flex;
       gap:8px;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .dot-btn{
-      width:10px; height:10px;
-      border-radius: 999px;
-      border:1px solid rgba(10,14,20,.24);
-      background: rgba(10,14,20,.12);
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .dot-btn[aria-current="true"]{
-      background: rgba(231,195,77,.90);
-      border-color: rgba(231,195,77,.55);
-      box-shadow: 0 0 0 6px rgba(231,195,77,.18);
-      transform: scale(1.05);
-    }
-    .events-foot{
-      position:relative;
-      z-index:1;
-      padding: 10px 14px 14px;
-      border-top:1px solid rgba(10,14,20,.10);
-      background: rgba(255,255,255,.86);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      color: rgba(10,14,20,.62);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    form{display:grid; gap:10px}
-    label{
-      font-size:12px;
-      color: rgba(10,14,20,.62);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    input, textarea, select{
-      width:100%;
-      border-radius: 14px;
-      border:1px solid rgba(10,14,20,.16);
-      background: rgba(255,255,255,.82);
-      padding:12px 12px;
-      color: rgba(10,14,20,.92);
-      outline:none;
-      font-family: inherit;
-    }
-    textarea{min-height: 120px; resize: vertical}
-    .row{display:grid; grid-template-columns: 1fr; gap:10px}
-
-    .featured img {
-      width: 100%;
-      max-height: 420px;
-      object-fit: contain;
-      background: #0d0d0d;
-      border-radius: 12px;
-    }
-
-    footer{
-      padding: 22px 0 34px;
-      border-top:1px solid rgba(10,14,20,.12);
-      color: rgba(10,14,20,.55);
-      font-size:12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      position:relative;
-      z-index:1;
-      background: rgba(255,255,255,.45);
-      backdrop-filter: blur(6px);
-    }
-    .footer-inner{display:flex; flex-direction:column; gap:10px;}
-
-    /* =========================
-       PRODUCT MODAL
-       ========================= */
-    .modal{
-      position:fixed;
-      inset:0;
-      z-index:10000;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding: 18px;
-    }
-    .modal[aria-hidden="false"]{display:flex;}
-    .modal-backdrop{
-      position:absolute;
-      inset:0;
-      background: rgba(10,14,20,.52);
-      backdrop-filter: blur(6px);
-    }
-    .modal-panel{
-      position:relative;
-      width:min(1020px, 96vw);
-      max-height: 88vh;
-      overflow:auto;
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.16);
-      background:
-        radial-gradient(700px 240px at 20% 10%, rgba(231,195,77,.18), transparent 60%),
-        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.14), transparent 60%),
-        rgba(255,255,255,.92);
-      box-shadow: 0 40px 120px rgba(10,14,20,.35);
-    }
-    .modal-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 16px 16px 12px;
-      border-bottom: 1px solid rgba(10,14,20,.12);
-      position:sticky;
-      top:0;
-      background: rgba(255,255,255,.90);
-      backdrop-filter: blur(8px);
-      z-index:2;
-    }
-    .modal-title{
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      min-width:0;
-    }
-    .modal-title img{
-      width:42px; height:42px;
-      object-fit:contain;
-      filter: drop-shadow(0 10px 18px rgba(10,14,20,.12));
-    }
-    .modal-title h3{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.2px;
-      color: var(--ink);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .modal-title p{
-      margin:2px 0 0;
-      color: rgba(10,14,20,.62);
-      font-size:12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .modal-close{
-      border-radius: 14px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.70);
-      padding:10px 12px;
-      cursor:pointer;
-      font-weight:800;
-      box-shadow: var(--shadow2);
-    }
-    .modal-close:hover{transform: translateY(-1px);}
-
-    .modal-body{
-      padding: 14px 16px 18px;
-      display:grid;
-      gap: 14px;
-    }
-    .modal-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .panel{
-      border-radius: 18px;
-      border:1px solid rgba(10,14,20,.12);
-      background: rgba(255,255,255,.75);
-      box-shadow: var(--shadow2);
-      padding: 14px;
-    }
-    .panel h4{
-      margin:0 0 8px;
-      font-size: 14px;
-      letter-spacing:.2px;
-      color: var(--ink);
-    }
-
-    .timeline{margin:0; padding:0; list-style:none; display:grid; gap:10px;}
-    .step{
-      display:grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      align-items:flex-start;
-    }
-    .node{
-      width:22px; height:22px;
-      border-radius: 8px;
-      border:1px solid rgba(10,14,20,.14);
-      background: linear-gradient(135deg, rgba(231,195,77,.55), rgba(44,124,255,.20));
-      display:grid;
-      place-items:center;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-weight:800;
-      font-size:12px;
-      color: rgba(10,14,20,.9);
-    }
-    .step .txt{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      color: rgba(10,14,20,.72);
-      font-size: 12.5px;
-      line-height:1.45;
-    }
-
-    .img-strip{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .img-ph{
-      aspect-ratio: 16/9;
-      border-radius: 18px;
-      border:1px dashed rgba(10,14,20,.22);
-      background:
-        radial-gradient(320px 190px at 20% 40%, rgba(231,195,77,.18), transparent 60%),
-        radial-gradient(320px 190px at 80% 60%, rgba(44,124,255,.12), transparent 60%),
-        rgba(10,14,20,.03);
-      overflow:hidden;
-      position:relative;
-      display:grid;
-      place-items:center;
-      cursor: zoom-in;
-    }
-    .img-ph img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      user-select:none;
-      -webkit-user-drag:none;
-    }
-    .img-ph span{
-      position:absolute;
-      bottom:10px; left:10px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size:11px;
-      padding:6px 10px;
+      padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.75);
-      color: rgba(10,14,20,.70);
-    }
-
-    .modal-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:flex-end;
-      padding-top: 2px;
-    }
-
-    body.modal-open{overflow:hidden;}
-
-    @media (min-width: 760px){
-      .links{display:flex; gap:4px; align-items:center}
-      .menu-btn{display:none}
-      .grid{grid-template-columns: 1fr 1fr}
-      .row{grid-template-columns: 1fr 1fr}
-      .footer-inner{flex-direction:row; justify-content:space-between; align-items:center}
-      .product-row{grid-template-columns: 1fr}
-      .modal-grid{grid-template-columns: 1.35fr .65fr;}
-      .img-strip{grid-template-columns: 1fr 1fr; gap: 14px;}
-    }
-    @media (min-width: 1050px){
-      .grid{grid-template-columns: 1fr 1fr 1fr}
-    }
-
-    /* =========================
-       LIGHTBOX (expanded image + pinch zoom)
-       ========================= */
-    .lightbox{
-      position:fixed;
-      inset:0;
-      z-index:11000;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding: 18px;
-    }
-    .lightbox[aria-hidden="false"]{display:flex;}
-    .lightbox-backdrop{
-      position:absolute;
-      inset:0;
-      background: rgba(10,14,20,.72);
-      backdrop-filter: blur(6px);
-    }
-    .lightbox-panel{
-      position:relative;
-      width:min(1100px, 96vw);
-      max-height: 90vh;
-      border-radius: 18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.92);
-      box-shadow: 0 50px 140px rgba(10,14,20,.45);
-    }
-    .lightbox-viewer{
-      position:relative;
-      width:100%;
-      height:min(78vh, 760px);
-      background: rgba(10,14,20,.06);
-      overflow:hidden;
-      touch-action: none; /* pinch zoom */
-    }
-    .lightbox-img{
-      width:100%;
-      height:100%;
-      object-fit: contain;
-      display:block;
-      user-select:none;
-      -webkit-user-drag:none;
-      transform-origin: 50% 50%;
-      will-change: transform;
-    }
-    .lightbox-caption{
-      padding: 10px 12px;
-      border-top: 1px solid rgba(10,14,20,.10);
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
+      background:var(--brand-soft);
+      color:var(--brand-strong);
       font-size:12px;
-      color: rgba(10,14,20,.70);
-      background: rgba(255,255,255,.90);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      border:1px solid rgba(201,162,74,.24);
+    }
+    .hero h1{
+      margin:18px 0 14px;
+      font-size:clamp(34px,5vw,60px);
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+    .hero p.lead{margin:0;color:var(--muted);font-size:18px;max-width:60ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+    .stat{padding:14px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line)}
+    .stat strong{display:block;font-size:22px;color:var(--brand-strong)}
+    .stat span{font-size:13px;color:var(--muted)}
+
+    .hero-media{overflow:hidden}
+    .hero-media-top{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap:10px;
+      gap:16px;
+      align-items:center;
       flex-wrap:wrap;
     }
-    .lightbox-close{
-      position:absolute;
-      top:10px;
-      right:10px;
-      border-radius: 14px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.85);
-      padding:10px 12px;
-      cursor:pointer;
-      font-weight:800;
-      box-shadow: var(--shadow2);
-      z-index:2;
-    }
-    .lightbox-hint{
-      font-size:11px;
-      color: rgba(10,14,20,.60);
-    }
+    .hero-media-top h2{margin:0;font-size:18px}
+    .hero-media-top p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .video-shell{aspect-ratio:16/9;background:#fff3e1}
+    .video-shell iframe{width:100%;height:100%;border:0}
 
-    /* =========================
-       RoboTechi Facts Modal
-       ========================= */
-    .facts-modal{
-      position:fixed;
-      inset:0;
-      z-index:9500;
+    .intro-strip{margin-top:18px;padding:18px 20px;display:grid;grid-template-columns:1fr;gap:16px}
+    .intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    .mini-panel{padding:20px;border-radius:18px;border:1px solid var(--line);background:var(--surface-2)}
+    .mini-panel h3,.mini-panel h4{margin:0 0 8px}
+    .mini-panel p{margin:0;color:var(--muted)}
+    .thumb-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#fff3e1}
+    .thumb-card .fallback{
+      aspect-ratio:16/10;
+      border-radius:14px;
       display:none;
       align-items:center;
       justify-content:center;
+      border:1px dashed rgba(201,162,74,.35);
+      background:#ffffff;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
       padding:18px;
     }
-    .facts-modal[aria-hidden="false"]{display:flex;}
-    .facts-backdrop{
-      position:absolute;
-      inset:0;
-      background: rgba(10,14,20,.48);
-      backdrop-filter: blur(6px);
+
+    section{padding:26px 0}
+    .section-header{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+    .section-header h2{margin:0;font-size:30px;letter-spacing:-.02em;color:var(--brand-strong)}
+    .section-header p{margin:0;color:var(--muted)}
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .service-card{padding:20px;display:grid;gap:14px;transition:transform .18s ease, box-shadow .18s ease;cursor:pointer}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(201,162,74,.2), 0 24px 42px rgba(0,0,0,.35)}
+    .service-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#fff3e1}
+    .service-icon{
+      width:42px;height:42px;border-radius:14px;background:var(--brand-soft);color:var(--brand-strong);
+      display:grid;place-items:center;font-weight:700;font-size:12px;border:1px solid rgba(201,162,74,.24);
     }
-    .facts-panel{
-      position:relative;
-      width:min(720px, 96vw);
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.18);
-      background:
-        radial-gradient(700px 240px at 20% 10%, rgba(231,195,77,.16), transparent 60%),
-        radial-gradient(700px 240px at 85% 30%, rgba(44,124,255,.12), transparent 60%),
-        rgba(255,255,255,.92);
-      box-shadow: 0 40px 120px rgba(10,14,20,.28);
-      overflow:hidden;
+    .service-card h3{margin:0;font-size:19px}
+    .service-card p{margin:0;color:var(--muted)}
+    .bullet-list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+    .bullet-list li{display:flex;gap:10px;color:#334155;font-size:14px}
+    .bullet-list li::before{
+      content:"✓";width:20px;height:20px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);
+      display:inline-grid;place-items:center;flex:0 0 20px;font-size:12px;font-weight:700;margin-top:1px;
     }
-    .facts-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:16px 16px 12px;
-      border-bottom:1px solid rgba(10,14,20,.12);
-      background: rgba(255,255,255,.90);
-      backdrop-filter: blur(8px);
+
+    .product-layout{display:grid;grid-template-columns:1.12fr .88fr;gap:18px}
+    .product-card,.section-card,.about-card,.contact-card,.doc-card,.docs-sidebar,.docs-callout{padding:24px}
+    .product-hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;align-items:start}
+    .product-hero img{width:100%;aspect-ratio:1/1;object-fit:contain;padding:18px;background:var(--surface-2);border:1px solid var(--line);border-radius:18px}
+    .product-hero .fallback{width:100%;aspect-ratio:1/1;display:none;align-items:center;justify-content:center;text-align:center;background:var(--surface-2);border:1px dashed rgba(201,162,74,.35);border-radius:18px;color:var(--muted);padding:20px}
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    .badge{padding:8px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:13px;color:#3d4857}
+    .product-card h3,.doc-card h3,.docs-sidebar h3{margin:0 0 10px;font-size:30px}
+    .product-card p,.doc-card p,.docs-sidebar p,.docs-callout p{margin:0;color:var(--muted)}
+
+    .product-subgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+    .mini-spec{padding:16px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line)}
+    .mini-spec strong{display:block;color:var(--brand-strong);margin-bottom:4px}
+    .mini-spec span{color:var(--muted);font-size:14px}
+
+    .docs-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:18px}
+    .docs-sidebar{display:grid;gap:14px;align-content:start}
+    .doc-nav{display:grid;gap:10px}
+    .doc-link{display:flex;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line);color:var(--text);transition:.2s ease}
+    .doc-link:hover{border-color:rgba(201,162,74,.35);transform:translateY(-1px)}
+    .doc-link span:last-child{color:var(--brand-strong)}
+    .docs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .doc-card h4{margin:0 0 10px;font-size:20px}
+    .doc-card .doc-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:12px;color:var(--muted);font-size:12px}
+    .docs-callout{margin-top:16px;background:linear-gradient(180deg, rgba(245,157,10,.12), rgba(255,255,255,.95));border:1px solid rgba(245,157,10,.2)}
+    .docs-callout h4{margin:0 0 8px;font-size:22px;color:var(--brand-strong)}
+
+    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .event-card{overflow:hidden}
+    .event-card img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#fff3e1;border-bottom:1px solid var(--line)}
+    .event-body{padding:18px}
+    .event-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:10px}
+    .event-type{padding:6px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);font-weight:700}
+    .event-card h3{margin:0 0 8px;font-size:20px}
+    .event-card p{margin:0 0 14px;color:var(--muted)}
+
+    .about-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+    .about-card h3,.contact-card h3{margin:0 0 12px;font-size:24px}
+    .about-card p{margin:0 0 14px;color:var(--muted)}
+
+    form{display:grid;gap:14px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{display:grid;gap:8px;font-size:14px;font-weight:600}
+    input,select,textarea{width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#ffffff;color:var(--text)}
+    textarea{min-height:140px;resize:vertical}
+    input::placeholder, textarea::placeholder{color:#94a3b8}
+
+    footer{margin-top:24px;padding:28px 0 40px;border-top:1px solid var(--line);background:rgba(255,255,255,.7)}
+    .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:14px}
+    .footer-links{display:flex;gap:14px;flex-wrap:wrap}
+
+    @media (max-width: 1080px){
+      .hero-grid,.product-layout,.about-layout,.intro-grid,.product-hero,.docs-layout{grid-template-columns:1fr}
+      .services-grid,.events-grid,.docs-grid{grid-template-columns:repeat(2,1fr)}
     }
-    .facts-title{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      min-width:0;
+    @media (max-width: 760px){
+      .nav-links{display:none!important}
+      .menu-btn{display:inline-flex}
+      .hero-copy,.product-card,.section-card,.about-card,.contact-card,.doc-card,.docs-sidebar,.docs-callout{padding:20px}
+      .hero-stats,.field-grid,.services-grid,.events-grid,.docs-grid,.product-subgrid{grid-template-columns:1fr}
+      .topbar .container,.section-header,.footer-inner{align-items:flex-start}
     }
-    .facts-badge{
-      width:44px; height:44px;
-      border-radius:16px;
-      border:1px solid rgba(10,14,20,.14);
-      background: linear-gradient(135deg, rgba(231,195,77,.35), rgba(44,124,255,.14));
-      display:grid;
-      place-items:center;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-weight:900;
-      color: rgba(10,14,20,.9);
-    }
-    .facts-title h3{
-      margin:0;
-      font-size:18px;
-      color: var(--ink);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .facts-title p{
-      margin:2px 0 0;
-      color: rgba(10,14,20,.62);
-      font-size:12px;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-    }
-    .facts-close{
-      border-radius: 14px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(255,255,255,.75);
-      padding:10px 12px;
-      cursor:pointer;
-      font-weight:800;
-      box-shadow: var(--shadow2);
-    }
-    .facts-body{
-      padding:14px 16px 16px;
-      display:grid;
-      gap:12px;
-    }
-    .fact-card{
-      border-radius: 18px;
-      border:1px solid rgba(10,14,20,.12);
-      background: rgba(255,255,255,.75);
-      box-shadow: var(--shadow2);
-      padding:14px;
-    }
-    .fact-topline{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:8px;
-    }
-    .fact-chip{
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size:11px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(10,14,20,.14);
-      background: rgba(10,14,20,.04);
-      color: rgba(10,14,20,.72);
-    }
-    .fact-text{
-      margin:0;
-      font-size:14px;
-      color: rgba(10,14,20,.80);
-      line-height:1.55;
-    }
-    .facts-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-      padding-top:2px;
-    }
-    .facts-note{
-      margin:0;
-      font-family:"IBM Plex Mono", ui-monospace, monospace;
-      font-size:11px;
-      color: rgba(10,14,20,.55);
+    @media (min-width: 761px){
+      .menu-btn,.mobile-drawer{display:none!important}
+      .nav-links{display:flex}
     }
   </style>
 </head>
-
 <body>
-  <div class="site-overlay" aria-hidden="true"></div>
-
-  <!-- SPLASH -->
-  <div class="splash" id="splash" aria-label="Loading RoboTechi">
-    <div class="splash-card">
-      <div class="glow" aria-hidden="true"></div>
-      <img src="rtlogo.png" class="mark-img" alt="RoboTechi logo"/>
-      <div class="glitch-title" data-text="RoboTechi Boot">RoboTechi Boot</div>
-      <p class="splash-sub">Booting workshop… calibrating tools…</p>
-      <div class="loading" aria-label="Loading">
-        <span id="loadFill"></span>
-      </div>
-      <p class="splash-sub" style="margin-top:10px;">
-        <span style="color:rgba(231,195,77,.95)">SYS</span> •
-        <span style="color:rgba(44,124,255,.95)">UI</span> •
-        <span style="color:rgba(50,214,160,.95)">PCB</span>
-      </p>
+  <div class="topbar">
+    <div class="container">
+      <div class="mono">Computer Repair • Hardware/Software Development • Web Design</div>
+      <div class="mono">RoboTechi maker workflows, product pages, and docs inspired by Arduino-style clarity</div>
     </div>
   </div>
 
-  <!-- NAV -->
   <header class="nav">
     <div class="container">
       <div class="nav-inner">
         <a class="brand" href="#top" aria-label="RoboTechi Home">
-          <img src="rtlogo.png" class="logo-img" alt="RoboTechi logo">
-          <div style="min-width:0">
-            <h1>RoboTechi</h1>
-            <span class="tag">Electronics • Web • Prototyping</span>
+          <img src="rtlogo.png" alt="RoboTechi logo">
+          <div>
+            <p class="brand-name">RoboTechi</p>
+            <p class="brand-sub mono">White • Gunmetal • Orange</p>
           </div>
         </a>
 
-        <nav class="links" aria-label="Primary">
+        <nav class="nav-links" aria-label="Primary">
           <a href="#services">Services</a>
           <a href="#products">Products</a>
+          <a href="#docs">Docs</a>
           <a href="#events">Events</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div class="nav-actions">
-          <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">Menu</button>
-          <a class="btn primary" href="#contact"><span class="dot"></span> Get a Quote</a>
+          <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileDrawer">Menu</button>
+          <a class="btn primary" href="#contact">Get a Quote</a>
         </div>
       </div>
 
-      <div class="drawer" id="drawer" aria-label="Mobile Menu">
+      <div class="mobile-drawer" id="mobileDrawer">
         <a href="#services">Services</a>
         <a href="#products">Products</a>
+        <a href="#docs">Docs</a>
         <a href="#events">Events</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -1862,1039 +362,461 @@
     </div>
   </header>
 
-  <!-- LOGO + VIDEO + VERTICAL NEWS TICKER -->
-  <section class="masthead" id="top">
-    <div class="container">
-      <div class="center-logo">
-        <div>
-          <img src="rtlogo.png" class="mark-img" alt="RoboTechi logo">
-          <div class="word">RoboTechi</div>
-          <div class="sub">Electronics • Web • Prototyping • Education</div>
-        </div>
-      </div>
-
-      <div class="mast-grid">
-        <div class="video-wrap" aria-label="RoboTechi YouTube">
-          <div class="video-head">
-            <div>
-              <h3>What We Create</h3>
-              <p>Prototypes • Builds • Tutorials</p>
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">RoboTechi Co.</span>
+            <h1>Build smarter hardware and digital products with a cleaner maker-first experience.</h1>
+            <p class="lead">This refresh keeps your same core sections while shifting the layout toward an Arduino-style flow: stronger product focus, a dedicated docs area, simpler service choices, and clearer navigation for builders and clients.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#products">Explore Thumbtroller</a>
+              <a class="btn secondary" href="#docs">Open Docs</a>
             </div>
-            <p class="mono">DREAM | PLAN | CREATE</p>
+            <div class="hero-stats">
+              <div class="stat"><strong>3</strong><span>Focused service lanes</span></div>
+              <div class="stat"><strong>1</strong><span>Featured product page</span></div>
+              <div class="stat"><strong>4</strong><span>Starter documentation panels</span></div>
+            </div>
           </div>
 
-          <div class="embed">
-            <iframe
-              src="https://www.youtube.com/embed/VIDEO_ID"
-              title="RoboTechi Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN: Tech Insider + Hardware of the Day -->
-        <div class="side-stack">
-          <!-- Vertical US Tech News Ticker -->
-          <aside class="vticker" aria-label="US Technology news highlights">
-            <div class="vt-head">
+          <div class="hero-media">
+            <div class="hero-media-top">
               <div>
-                <h3>RT Tech Insider</h3>
-                <p class="mono">AI • Chips • Cyber • Startups • Policy</p>
+                <h2>What We Create</h2>
+                <p class="mono">Repairs • Prototype Builds • Product Docs</p>
               </div>
-              <div class="vt-badges">
-                <span class="vt-badge" id="vtStatus">Loading…</span>
-                <span class="vt-badge">Hover = pause</span>
-              </div>
+              <div class="mono" style="color:var(--muted)">DREAM • PLAN • CREATE</div>
             </div>
-
-            <div class="vt-window" aria-label="Vertical news ticker window">
-              <div class="vt-track" id="vtTrack"></div>
+            <div class="video-shell">
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID"
+                title="RoboTechi Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
             </div>
-
-            <div class="vt-footer">
-              <span>Auto-refresh: <span id="vtRefresh">~10m</span></span>
-              <a class="vt-link" href="#contact" style="text-decoration:none;">Need a build? →</a>
-            </div>
-          </aside>
-
-          <!-- Product in Development -->
-          <aside class="hwcard compact" aria-label="Product in Development">
-            <div class="hw-head">
-              <div>
-                <h3>Product in Development</h3>
-                <p class="mono">Focused build spotlight • Thumbtroller</p>
-              </div>
-            </div>
-
-            <div class="hw-body">
-              <div class="hw-hero" role="img" aria-label="Thumbtroller product image">
-                <img id="hwImg" src="front.png" alt="Thumbtroller"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-                <span class="ph" id="hwPh" style="display:none;">Thumbtroller image placeholder</span>
-              </div>
-
-              <div>
-                <h4 class="hw-title" id="hwTitle">Thumbtroller</h4>
-                <p class="hw-sub" id="hwSub">NES-inspired controller prototype</p>Fetching specs…</p>
-              </div>
-
-              <ul class="hw-specs" id="hwSpecs"></ul>
-            </div>
-          </aside>
+          </div>
         </div>
-      </div>
 
-      <!-- Existing ticker -->
-      <div class="ticker" aria-label="DREAM PLAN CREATE ticker">
-        <div class="ticker-track">
-          <div class="ticker-item">
-            <span class="sep"></span><span class="word">ELECTRONICS</span>
-            <span class="sep"></span><span class="word"></span>
-            <span class="sep"></span><span class="word">CODE</span>
-          </div>
-          <div class="ticker-item" aria-hidden="true">
-            <span class="sep"></span><span class="word">DREAM</span>
-            <span class="sep"></span><span class="word">PLAN</span>
-            <span class="sep"></span><span class="word">CREATE</span>
-          </div>
-          <div class="ticker-item">
-            <span class="sep"></span><span class="word">ELECTRONICS</span>
-            <span class="sep"></span><span class="word"></span>
-            <span class="sep"></span><span class="word">CODE</span>
+        <div class="intro-strip">
+          <div class="intro-grid">
+            <div class="mini-panel">
+              <h3>What changed in this pass</h3>
+              <p>The site now uses RoboTechi logo-inspired white and orange palette, trims the service list to the three you requested, adds a standalone docs section, switches the interface to a white and orange RoboTechi palette, and introduces image placeholders for services and events so the layout still feels complete while you swap in final visuals.</p>
+            </div>
+            <div class="mini-panel thumb-card">
+              <h4>Featured Product</h4>
+              <img src="thumbtroller.png" alt="Thumbtroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="fallback">Thumbtroller image placeholder</div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- NEW: World Clock dashboard ticker (directly under existing ticker) -->
-      <div class="clock-ticker" aria-label="World Clock dashboard ticker">
-        <div class="clock-head">
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
           <div>
-            <h4>RT World Clock</h4>
-          </div>
-          <div class="meta">
-            <span class="clock-badge" id="clockStatus">Live</span>
-            <span class="clock-badge">Hover = pause</span>
+            <h2>Services</h2>
+            <p>Tap a service to prefill the quote form below.</p>
           </div>
         </div>
 
-        <div class="clock-track" id="clockTrack" aria-label="Scrolling timezones"></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SERVICES (updated list + click-to-learn/book via existing contact section) -->
-  <section id="services">
-    <div class="container">
-      <div class="section-title">
-        <h3>Services</h3>
-        <p>Tap a service to learn more + book a consult</p>
-      </div>
-
-      <div class="grid">
-        <article class="card service-card clickable" tabindex="0" role="button" data-service="Computer Repair">
-          <div class="service-media">
-            <img src="pcrepair.png" alt="Computer Repair" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
-          </div>
-          <div class="icon">PC</div>
-          <h4>Computer Repair</h4>
-          <p>Diagnostics, upgrades, virus cleanup, performance tuning, and small-business support.</p>
-          <ul class="bullets">
-            <li><span class="check">✓</span> Hardware upgrades + installs</li>
-            <li><span class="check">✓</span> OS repair + data recovery basics</li>
-            <li><span class="check">✓</span> Maintenance plans (small teams)</li>
-          </ul>
-        </article>
-
-        <article class="card service-card clickable" tabindex="0" role="button" data-service="Hardware Development">
-          <div class="service-media">
-            <img src="macropad.png" alt="Hardware Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
-          </div>
-          <div class="icon">HW</div>
-          <h4>Hardware Development</h4>
-          <p>From concept to prototype — electronics design, testing, and manufacturing-ready deliverables.</p>
-          <ul class="bullets">
-            <li><span class="check">✓</span> Schematics + PCB layout</li>
-            <li><span class="check">✓</span> BOM + DFM checks</li>
-            <li><span class="check">✓</span> Prototype bring-up support</li>
-          </ul>
-        </article>
-
-        <article class="card service-card clickable" tabindex="0" role="button" data-service="Software Design / Development">
-          <div class="service-media">
-            <img src="softwaredev.png" alt="Software Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
-          </div>
-          <div class="icon">DEV</div>
-          <h4>Software Design / Development</h4>
-          <p>Apps and internal tools — clean UX, reliable backends, and practical delivery.</p>
-          <ul class="bullets">
-            <li><span class="check">✓</span> Prototypes → MVP builds</li>
-            <li><span class="check">✓</span> Dashboards + admin panels</li>
-            <li><span class="check">✓</span> API integrations</li>
-          </ul>
-        </article>
-
-        <article class="card service-card clickable" tabindex="0" role="button" data-service="IoT Systems">
-          <div class="service-media">
-            <img src="iotrt.png" alt="IoT Systems" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
-          </div>
-          <div class="icon">IoT</div>
-          <h4>IoT Systems</h4>
-          <p>Connected devices that stream data, trigger actions, and integrate with dashboards.</p>
-          <ul class="bullets">
-            <li><span class="check">✓</span> Wi-Fi/BLE + sensor integration</li>
-            <li><span class="check">✓</span> Device ↔ cloud workflows</li>
-            <li><span class="check">✓</span> Security-minded deployments</li>
-          </ul>
-        </article>
-
-        <article class="card service-card clickable" tabindex="0" role="button" data-service="Web Development">
-          <div class="service-media">
-            <img src="webdev.png" alt="Web Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
-          </div>
-          <div class="icon">WEB</div>
-          <h4>Web Development</h4>
-          <p>Mobile-first sites with clean UI, strong branding, and fast performance.</p>
-          <ul class="bullets">
-            <li><span class="check">✓</span> Landing pages + portfolios</li>
-            <li><span class="check">✓</span> Booking + forms + analytics</li>
-            <li><span class="check">✓</span> SEO basics</li>
-          </ul>
-        </article>
-
-        <article class="card service-card clickable" tabindex="0" role="button" data-service="Social Media Marketing">
-          <div class="service-media">
-            <img src="rtlogo.png" alt="Social Media Marketing" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
-            <span class="ph" style="display:none;">Flyer/Photo Placeholder</span>
-          </div>
-          <div class="icon">SMM</div>
-          <h4>Social Media Marketing</h4>
-          <p>Content strategy + creative execution to grow awareness and convert attention into leads.</p>
-          <ul class="bullets">
-            <li><span class="check">✓</span> Content calendar + posting plan</li>
-            <li><span class="check">✓</span> Brand visuals + templates</li>
-            <li><span class="check">✓</span> Campaign support</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="products">
-    <div class="container">
-      <div class="section-title">
-        <h3>Products in Development</h3>
-        <p>Current hardware focus</p>
-      </div>
-
-      <div class="product-row">
-        <article class="card product-card" aria-label="Thumbtroller product in development">
-          <div class="product-thumb">
-            <span class="mono" style="font-size:12px; color:rgba(10,14,20,.70)"><img src="front.png" alt="Thumbtroller"></span>
-            <span class="pill">In Development</span>
-          </div>
-          <div>
-            <h4 style="margin:0 0 6px;">Thumbtroller</h4>
-            <p style="margin:0; color:rgba(10,14,20,.70); font-size:14px;">
-              Thumbtroller is a RoboTechi controller concept inspired by the classic NES shape, reworked with a thumb stick in place of the traditional D-pad for smoother modern play.
-            </p>
-            <div class="meta">
-              <span class="tag2">Thumb Stick Input</span>
-              <span class="tag2">NES-Inspired Shell</span>
-              <span class="tag2">Prototype Build</span>
-            </div>
-            <ul class="bullets">
-              <li><span class="check">✓</span> Compact controller layout for early prototyping</li>
-              <li><span class="check">✓</span> Focused on responsive directional control + action buttons</li>
-              <li><span class="check">✓</span> Designed as a showcase RoboTechi hardware build</li>
+        <div class="services-grid">
+          <article class="service-card" tabindex="0" role="button" data-service="Computer Repair">
+            <img src="pcrepair.png" alt="Computer Repair" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder" style="display:none"><span>Computer Repair</span><small>Image placeholder</small></div>
+            <div class="service-icon">PC</div>
+            <h3>Computer Repair</h3>
+            <p>Diagnostics, upgrades, cleanup, optimization, and support for personal systems or small teams.</p>
+            <ul class="bullet-list">
+              <li>Hardware upgrades + installs</li>
+              <li>OS repair + basic recovery support</li>
+              <li>Maintenance plans for creators and small businesses</li>
             </ul>
-            <div class="meta" style="margin-top:14px;">
-              <a class="btn primary" href="#contact"><span class="dot"></span> Ask about this build</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+          </article>
 
-  <!-- EVENTS -->
-  <section id="events">
-    <div class="container">
-      <div class="section-title">
-        <h3>RoboTechi Events</h3>
-        <p>Workshops • Pop-ups • Community builds</p>
-      </div>
+          <article class="service-card" tabindex="0" role="button" data-service="Hardware/Software Development">
+            <img src="softwaredev.png" alt="Hardware and Software Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder" style="display:none"><span>Hardware / Software Development</span><small>Image placeholder</small></div>
+            <div class="service-icon">DEV</div>
+            <h3>Hardware/Software Development</h3>
+            <p>Concept-to-prototype builds covering embedded hardware, PCB workflows, firmware, tools, and supporting software systems.</p>
+            <ul class="bullet-list">
+              <li>Schematics, PCB layout, and prototype bring-up</li>
+              <li>Firmware, interfaces, and MVP utility builds</li>
+              <li>Build notes, BOM thinking, and handoff-ready direction</li>
+            </ul>
+          </article>
 
-      <div class="events-wrap" aria-label="RoboTechi events carousel">
-        <div class="events-head">
+          <article class="service-card" tabindex="0" role="button" data-service="Web Design">
+            <img src="webdev.png" alt="Web Design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder" style="display:none"><span>Web Design</span><small>Image placeholder</small></div>
+            <div class="service-icon">WEB</div>
+            <h3>Web Design</h3>
+            <p>Modern websites that feel clean, premium, and easy to navigate across desktop and mobile.</p>
+            <ul class="bullet-list">
+              <li>Landing pages + branded portfolio sites</li>
+              <li>Layout refreshes and UX cleanup</li>
+              <li>Product storytelling and contact funnels</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-header">
           <div>
-            <h4>Upcoming + Recent</h4>
-            <p class="mono">Swipe on mobile • Click flyer to expand</p>
-          </div>
-
-          <div class="events-controls">
-            <button class="icon-btn" id="evPrev" type="button" aria-label="Previous event">‹</button>
-            <button class="icon-btn" id="evNext" type="button" aria-label="Next event">›</button>
+            <h2>Products in Development</h2>
+            <p>A more complete Arduino-style product section for your current featured build, paired with practical device support messaging.</p>
           </div>
         </div>
 
-        <div class="events-window" id="eventsWindow">
-          <div class="events-track" id="eventsTrack" aria-live="polite"></div>
-        </div>
-
-        <div class="events-dots" id="eventsDots" aria-label="Event slide dots"></div>
-
-        <div class="events-foot">
-          <a class="vt-link" href="#contact" style="text-decoration:none;">Host RoboTechi →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT + CONTACT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-title">
-        <h3>About RoboTechi</h3>
-        <p>Maker-first. Results always.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <h4>Tech that empowers people.</h4>
-          <p>
-            RoboTechi is built for builders — students, creators, small businesses, and community programs.
-            The mission is to make electronics and modern web tech accessible, practical, and professional.
-          </p>
-          <p style="margin-top:10px; color:rgba(10,14,20,.70)">
-            Whether you need a repair, a prototype brought to life, or a clean website that sells your idea,
-            RoboTechi delivers with documentation and a strong handoff.
-          </p>
-        </article>
-
-        <article class="card" id="contact">
-          <h4 style="margin:0 0 10px;">Request a Quote</h4>
-
-          <form id="contactForm">
-            <div class="row">
+        <div class="product-layout">
+          <article class="product-card">
+            <div class="product-hero">
               <div>
-                <label for="name">Name</label>
-                <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
+                <img src="thumbtroller.png" alt="Thumbtroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="fallback">Thumbtroller image placeholder</div>
               </div>
               <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
+                <span class="eyebrow">In Development</span>
+                <h3>Thumbtroller</h3>
+                <p>Thumbtroller is a RoboTechi controller concept inspired by the classic NES profile, rebuilt with thumb-stick control for smoother movement and a more modern feel. This section now reads more like a real product page with highlights, use cases, and quick specs.</p>
+                <div class="badge-row">
+                  <span class="badge">Thumb Stick Input</span>
+                  <span class="badge">NES-Inspired Shell</span>
+                  <span class="badge">Prototype Build</span>
+                  <span class="badge">Maker Showcase</span>
+                </div>
+                <ul class="bullet-list">
+                  <li>Compact controller layout for early prototyping</li>
+                  <li>Built to showcase RoboTechi hardware design direction</li>
+                  <li>Easy to expand with board photos, CAD views, or BOM notes later</li>
+                </ul>
+                <div class="hero-actions" style="margin-top:18px">
+                  <a class="btn primary" href="#docs">View product docs</a>
+                  <a class="btn secondary" href="#contact">Ask about this build</a>
+                </div>
               </div>
             </div>
 
-            <div>
-              <label for="service">Service</label>
-              <select id="service" name="service">
-                <option>Computer Repair</option>
-                <option>Hardware Development</option>
-                <option>Software Design / Development</option>
-                <option>IoT Systems</option>
-                <option>Web Development</option>
-                <option>Social Media Marketing</option>
-              </select>
+            <div class="product-subgrid">
+              <div class="mini-spec">
+                <strong>Intended feel</strong>
+                <span>Retro-inspired handheld control with modern thumb navigation.</span>
+              </div>
+              <div class="mini-spec">
+                <strong>Use case</strong>
+                <span>Prototype controller concepts, showcases, and maker demos.</span>
+              </div>
+              <div class="mini-spec">
+                <strong>Next build step</strong>
+                <span>Board revision, enclosure testing, and button placement refinement.</span>
+              </div>
+              <div class="mini-spec">
+                <strong>Future add-ons</strong>
+                <span>Assembly guide, firmware notes, gallery, and rev history.</span>
+              </div>
             </div>
+          </article>
 
-            <div>
-              <label for="message">Project details</label>
-              <textarea id="message" name="message" placeholder="What do you need? Timeline? Budget range?"></textarea>
-            </div>
-
-            <button class="btn primary" type="submit">
-              <span class="dot"></span> Send Request
-            </button>
-          </form>
-        </article>
+          <aside class="section-card">
+            <h3 style="margin-top:0;font-size:24px">Basic maintenance support</h3>
+            <ul class="bullet-list">
+              <li>Computer tune-ups, cleanup, and upgrade guidance</li>
+              <li>Tablet troubleshooting for charging, performance, and setup issues</li>
+              <li>Smartphone maintenance support for storage, software, and everyday optimization</li>
+            </ul>
+            <p style="margin:14px 0 0;color:var(--muted)">This panel now highlights practical electronics maintenance instead of product quick access, making the page more useful for visitors looking for device support right away.</p>
+          </aside>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section id="docs">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Documentation</h2>
+            <p>An Arduino-inspired docs zone for product learning, setup, and build visibility on a brighter, cleaner layout.</p>
+          </div>
+        </div>
+
+        <div class="docs-layout">
+          <aside class="docs-sidebar">
+            <h3 style="font-size:24px">Docs Navigator</h3>
+            <p>These cards act like starter documentation links. Later you can connect each one to its own HTML page, PDF, GitHub README, or Notion/Docs destination.</p>
+            <div class="doc-nav">
+              <a class="doc-link" href="#doc-overview"><span>Overview</span><span>01</span></a>
+              <a class="doc-link" href="#doc-setup"><span>Getting Started</span><span>02</span></a>
+              <a class="doc-link" href="#doc-hardware"><span>Hardware Notes</span><span>03</span></a>
+              <a class="doc-link" href="#doc-roadmap"><span>Roadmap</span><span>04</span></a>
+            </div>
+            <div class="docs-callout">
+              <h4>Why this section matters</h4>
+              <p>Arduino-style sites feel useful because products are paired with learning. This docs area makes RoboTechi feel more real, transparent, and build-focused while staying easy to expand.</p>
+            </div>
+          </aside>
+
+          <div>
+            <div class="docs-grid">
+              <article class="doc-card" id="doc-overview">
+                <div class="doc-meta">
+                  <span class="eyebrow">Overview</span>
+                  <span class="mono">Thumbtroller / v0</span>
+                </div>
+                <h4>Project Overview</h4>
+                <p>Explain what Thumbtroller is, who it is for, and why RoboTechi is building it. This is the ideal place for a product summary, feature snapshot, and a few render or prototype images.</p>
+                <div class="badge-row">
+                  <span class="badge">Summary</span>
+                  <span class="badge">Vision</span>
+                </div>
+              </article>
+
+              <article class="doc-card" id="doc-setup">
+                <div class="doc-meta">
+                  <span class="eyebrow">Getting Started</span>
+                  <span class="mono">New users</span>
+                </div>
+                <h4>Quick Start</h4>
+                <p>Use this page later for setup instructions, supported parts, tools needed, or how users can interact with prototypes, demos, and firmware test builds.</p>
+                <div class="badge-row">
+                  <span class="badge">Setup</span>
+                  <span class="badge">Tools</span>
+                </div>
+              </article>
+
+              <article class="doc-card" id="doc-hardware">
+                <div class="doc-meta">
+                  <span class="eyebrow">Hardware</span>
+                  <span class="mono">Build notes</span>
+                </div>
+                <h4>Hardware Notes</h4>
+                <p>Reserve this panel for schematics preview images, PCB revision notes, input mapping ideas, enclosure changes, or photos from your prototype iterations.</p>
+                <div class="badge-row">
+                  <span class="badge">PCB</span>
+                  <span class="badge">Inputs</span>
+                </div>
+              </article>
+
+              <article class="doc-card" id="doc-roadmap">
+                <div class="doc-meta">
+                  <span class="eyebrow">Roadmap</span>
+                  <span class="mono">Forward path</span>
+                </div>
+                <h4>Roadmap & Revisions</h4>
+                <p>Track build milestones, future revisions, release phases, or educational spinoffs here. This gives your audience a reason to return and follow the product journey.</p>
+                <div class="badge-row">
+                  <span class="badge">Milestones</span>
+                  <span class="badge">Revisions</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="events">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>RoboTechi Events</h2>
+            <p>Workshops, pop-ups, and community builds.</p>
+          </div>
+        </div>
+
+        <div class="events-grid">
+          <article class="event-card">
+            <img src="RealmOfMakers.png" alt="Realm Of Makers flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder event-placeholder" style="display:none"><span>Realm Of Makers</span><small>Event flyer placeholder</small></div>
+            <div class="event-body">
+              <div class="event-meta">
+                <span class="event-type">Meetup</span>
+                <span class="mono">TBA • 2026</span>
+              </div>
+              <h3>Realm Of Makers</h3>
+              <p>Realm Of Makers is a creative meetup designed for builders, innovators, and tech enthusiasts who love working with AdaFruit, Arduino, and Raspberry Pi devices.</p>
+              <div class="badge-row">
+                <span class="badge">NYC</span>
+                <span class="badge">Time TBA</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <img src="IntroToCircuits.png" alt="Intro To Circuits flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder event-placeholder" style="display:none"><span>Intro To Circuits</span><small>Event flyer placeholder</small></div>
+            <div class="event-body">
+              <div class="event-meta">
+                <span class="event-type">Meetup</span>
+                <span class="mono">TBD • 2026</span>
+              </div>
+              <h3>Intro To Circuits</h3>
+              <p>A hands-on beginner workshop focused on electronics fundamentals, practical experimentation, and project-based learning with RoboTechi.</p>
+              <div class="badge-row">
+                <span class="badge">Brooklyn, New York</span>
+                <span class="badge">Time TBA</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <img src="InnovateConcrete.png" alt="Innovate Concrete flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder event-placeholder" style="display:none"><span>Innovate Concrete</span><small>Event flyer placeholder</small></div>
+            <div class="event-body">
+              <div class="event-meta">
+                <span class="event-type">Community</span>
+                <span class="mono">TBD • 2026</span>
+              </div>
+              <h3>Innovate Concrete</h3>
+              <p>A collaborative ideation event where creators and builders work on tech solutions that strengthen and uplift the community.</p>
+              <div class="badge-row">
+                <span class="badge">Online / Hybrid</span>
+                <span class="badge">Time TBA</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>About RoboTechi</h2>
+            <p>Maker-first. Results always.</p>
+          </div>
+        </div>
+
+        <div class="about-layout">
+          <article class="about-card">
+            <h3>Tech that empowers people.</h3>
+            <p>RoboTechi is built for builders, students, creators, small businesses, and community programs. The mission is to make electronics and modern web tech accessible, practical, and professional.</p>
+            <p>Whether you need a repair, a prototype brought to life, or a clean website that helps sell your idea, RoboTechi delivers with documentation and a strong handoff.</p>
+            <div class="badge-row">
+              <span class="badge">Electronics</span>
+              <span class="badge">Prototyping</span>
+              <span class="badge">Web Design</span>
+              <span class="badge">Documentation</span>
+            </div>
+          </article>
+
+          <article class="contact-card" id="contact">
+            <h3>Request a Quote</h3>
+            <form id="contactForm">
+              <div class="field-grid">
+                <label>
+                  Name
+                  <input id="name" name="name" autocomplete="name" placeholder="Your name" required>
+                </label>
+                <label>
+                  Email
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>
+                </label>
+              </div>
+
+              <label>
+                Service
+                <select id="service" name="service">
+                  <option>Computer Repair</option>
+                  <option>Hardware/Software Development</option>
+                  <option>Web Design</option>
+                </select>
+              </label>
+
+              <label>
+                Project details
+                <textarea id="message" name="message" placeholder="What do you need? Timeline? Budget range?"></textarea>
+              </label>
+
+              <div class="hero-actions" style="margin-top:0">
+                <button class="btn primary" type="submit">Send Request</button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="container">
       <div class="footer-inner">
         <div>© <span id="year"></span> RoboTechi. All rights reserved.</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div class="footer-links">
           <a href="#services">Services</a>
-          <span style="opacity:.45;">•</span>
           <a href="#products">Products</a>
-          <span style="opacity:.45;">•</span>
+          <a href="#docs">Docs</a>
           <a href="#events">Events</a>
-          <span style="opacity:.45;">•</span>
+          <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- LIGHTBOX (Expanded image + pinch zoom) -->
-  <div class="lightbox" id="lightbox" aria-hidden="true" aria-label="Expanded image viewer">
-    <div class="lightbox-backdrop" data-lightbox-close="true" aria-hidden="true"></div>
-
-    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
-      <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close expanded image">Close ✕</button>
-
-      <div class="lightbox-viewer" id="lightboxViewer" aria-label="Pinch to zoom viewer">
-        <img id="lightboxImg" class="lightbox-img" alt="">
-      </div>
-
-      <div class="lightbox-caption" id="lightboxCaptionWrap">
-        <div id="lightboxCaption"></div>
-        <div class="lightbox-hint">Pinch to zoom • Drag to pan • Double-tap to reset</div>
-      </div>
-    </div>
-  </div>
-
   <script>
-    try {
-      // ============================
-      // Splash + Glitch bursts
-      // ============================
-      const SPLASH_DURATION = 2600;
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
 
-      const splash = document.getElementById("splash");
-      const fill = document.getElementById("loadFill");
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileDrawer.style.display === 'block';
+      mobileDrawer.style.display = open ? 'none' : 'block';
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
 
-      // Random "glitch burst" during splash
-      let glitchTimer = null;
-      function startGlitchBursts(){
-        if(!splash) return;
-        const burst = () => {
-          splash.classList.add("glitch-burst");
-          setTimeout(() => splash.classList.remove("glitch-burst"), 420);
-          glitchTimer = setTimeout(burst, 320 + Math.random() * 620);
-        };
-        glitchTimer = setTimeout(burst, 220 + Math.random() * 420);
-      }
-      startGlitchBursts();
-
-      const start = performance.now();
-      function tick(now){
-        const t = Math.min(1, (now - start) / SPLASH_DURATION);
-        const eased = 1 - Math.pow(1 - t, 3);
-        fill.style.width = (eased * 100).toFixed(1) + "%";
-        if (t < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-
-      setTimeout(() => {
-        if(glitchTimer) clearTimeout(glitchTimer);
-        splash.classList.remove("glitch-burst");
-
-        splash.classList.add("splash-hide");
-        setTimeout(() => splash.remove(), 650);
-
-        
-      }, SPLASH_DURATION);
-
-      // ============================
-      // Vertical US Tech News Ticker
-      // ============================
-      const vtTrack = document.getElementById("vtTrack");
-      const vtStatus = document.getElementById("vtStatus");
-
-      const TECH_NEWS_FALLBACK = [
-        { topic:"Cyber", date:"Feb 2026", title:"US hospitality company reports employee-data theft after cyber incident", url:"#"},
-        { topic:"AI + Work", date:"Feb 2026", title:"More firms restructure as spending shifts toward AI projects and automation", url:"#"},
-        { topic:"Chips", date:"Jan 2026", title:"US updates approach to semiconductor imports and data-center supply chain oversight", url:"#"},
-        { topic:"AI Ops", date:"Feb 2026", title:"Bay Area AI software company cuts roles as it pushes for operating efficiency", url:"#"},
-        { topic:"Security", date:"Feb 2026", title:"Government services vendor breach fallout grows as investigations and lawsuits expand", url:"#"},
-        { topic:"Trend", date:"2026", title:"Cyber incident reporting and compliance rules accelerate across industries", url:"#"},
-      ];
-
-      function normalizeItem(item){
-        return {
-          topic: item.topic || "Tech",
-          date: item.date || "",
-          title: item.title || "Headline",
-          url: item.url || "#"
-        };
-      }
-
-      function renderVerticalTicker(items){
-        if(!vtTrack) return;
-        const safe = (items || []).map(normalizeItem).slice(0, 14);
-        const doubled = safe.concat(safe);
-
-        vtTrack.innerHTML = doubled.map(i => `
-          <div class="vt-item">
-            <div class="vt-top">
-              <span class="vt-chip">${escapeHtml(i.topic)}</span>
-              <span class="vt-date">${escapeHtml(i.date)}</span>
-            </div>
-            <p class="vt-title">${escapeHtml(i.title)}</p>
-            <a class="vt-link" href="${escapeAttr(i.url)}" target="_blank" rel="noopener">Read</a>
-          </div>
-        `).join("");
-
-        const base = 18;
-        const extra = Math.max(0, safe.length - 6) * 1.2;
-        vtTrack.style.animationDuration = (base + extra).toFixed(1) + "s";
-      }
-
-      async function loadTechNews(){
-        if(vtStatus) vtStatus.textContent = "Fetching…";
-
-        const url =
-          "https://api.gdeltproject.org/api/v2/doc/doc" +
-          "?query=" + encodeURIComponent('(technology OR "artificial intelligence" OR cybersecurity OR semiconductor OR "data center") sourceCountry:US') +
-          "&mode=ArtList" +
-          "&format=json" +
-          "&maxrecords=12" +
-          "&sort=HybridRel";
-
-        try{
-          const res = await fetch(url, { cache: "no-store" });
-          if(!res.ok) throw new Error("Bad response");
-          const data = await res.json();
-
-          const arts = (data && data.articles) ? data.articles : [];
-          const items = arts.map(a => ({
-            topic: guessTopic(a.title),
-            date: (a.seendate ? a.seendate.slice(0,10) : "Recent"),
-            title: (a.title || "").trim(),
-            url: a.url || "#"
-          })).filter(x => x.title);
-
-          if(items.length < 4) throw new Error("Not enough items");
-          renderVerticalTicker(items);
-          if(vtStatus) vtStatus.textContent = "Live";
-        } catch (e){
-          renderVerticalTicker(TECH_NEWS_FALLBACK);
-          if(vtStatus) vtStatus.textContent = "Fallback";
-        }
-      }
-
-      function guessTopic(title=""){
-        const t = title.toLowerCase();
-        if(t.includes("cyber") || t.includes("ransom") || t.includes("breach") || t.includes("hack")) return "Cyber";
-        if(t.includes("semiconductor") || t.includes("chip") || t.includes("foundry")) return "Chips";
-        if(t.includes("ai") || t.includes("artificial intelligence") || t.includes("model")) return "AI";
-        if(t.includes("regulat") || t.includes("policy") || t.includes("tariff")) return "Policy";
-        if(t.includes("layoff") || t.includes("jobs") || t.includes("workforce")) return "Work";
-        return "Tech";
-      }
-
-      loadTechNews();
-      setInterval(loadTechNews, 10 * 60 * 1000);
-      // ============================
-      // Product in Development spotlight
-      // ============================
-      const hwTitle = document.getElementById("hwTitle");
-      const hwSub = document.getElementById("hwSub");
-      const hwImg = document.getElementById("hwImg");
-      const hwPh = document.getElementById("hwPh");
-      const hwSpecs = document.getElementById("hwSpecs");
-      const hwLink = document.getElementById("hwLink");
-
-      const HW_ITEM = {
-        name: "Thumbtroller",
-        maker: "NES-inspired controller prototype",
-        img: "thumbtroller.png",
-        url: "#products",
-        specs: [
-          "Form factor: classic rectangular controller silhouette",
-          "Primary control: analog thumb stick replacing the D-pad",
-          "Use case: prototype input testing for retro-inspired games",
-          "Status: active RoboTechi product in development"
-        ]
-      };
-
-      function renderHW(){
-        const item = HW_ITEM;
-        if(!item) return;
-
-        hwTitle.textContent = item.name || "Product";
-        hwSub.textContent = item.maker || "Prototype";
-        if(hwLink) hwLink.href = item.url || "#products";
-
-        hwImg.style.display = "block";
-        hwPh.style.display = "none";
-
-        hwImg.src = item.img || "thumbtroller.png";
-        hwImg.alt = item.name || "Product in Development";
-
-        hwSpecs.innerHTML = (item.specs || []).map(s => `<li>${escapeHtml(s)}</li>`).join("");
-      }
-
-      renderHW();
-
-      // ============================
-      // NEW: World Clock dashboard ticker
-      // ============================
-      const clockTrack = document.getElementById("clockTrack");
-      const clockStatus = document.getElementById("clockStatus");
-
-      const CLOCK_ZONES = [
-        { city:"New York", tz:"America/New_York", short:"ET" },
-        { city:"Los Angeles", tz:"America/Los_Angeles", short:"PT" },
-        { city:"London", tz:"Europe/London", short:"UK" },
-        { city:"Paris", tz:"Europe/Paris", short:"CET" },
-        { city:"Dubai", tz:"Asia/Dubai", short:"GST" },
-        { city:"Tokyo", tz:"Asia/Tokyo", short:"JST" },
-        { city:"Seoul", tz:"Asia/Seoul", short:"KST" },
-        { city:"Sydney", tz:"Australia/Sydney", short:"AET" },
-      ];
-
-      function formatTime(tz){
-        try{
-          // 24h with seconds for that digital dashboard feel
-          return new Intl.DateTimeFormat("en-US", {
-            timeZone: tz,
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false
-          }).format(new Date());
-        } catch(e){
-          return "--:--:--";
-        }
-      }
-
-      function renderClockCards(){
-        if(!clockTrack) return;
-
-        const cards = CLOCK_ZONES.map(z => {
-          const time = formatTime(z.tz);
-          return `
-            <div class="clock-card" data-tz="${escapeAttr(z.tz)}">
-              <span class="clock-dot" aria-hidden="true"></span>
-              <div>
-                <div class="clock-city">${escapeHtml(z.city)} <span class="clock-tz">${escapeHtml(z.short)}</span></div>
-                <div class="clock-time" data-time="true">${escapeHtml(time)}</div>
-              </div>
-            </div>
-          `;
-        }).join("");
-
-        // duplicate for marquee loop
-        clockTrack.innerHTML = cards + cards;
-
-        // duration based on number of zones (keeps it smooth if you add more)
-        const base = 16;
-        const extra = Math.max(0, CLOCK_ZONES.length - 6) * 2.0;
-        clockTrack.style.animationDuration = (base + extra).toFixed(1) + "s";
-      }
-
-      function tickClockTimes(){
-        if(!clockTrack) return;
-        const nodes = clockTrack.querySelectorAll(".clock-card");
-        nodes.forEach(card => {
-          const tz = card.getAttribute("data-tz");
-          const timeEl = card.querySelector('[data-time="true"]');
-          if(timeEl) timeEl.textContent = formatTime(tz);
-        });
-      }
-
-      function startWorldClock(){
-        try{
-          renderClockCards();
-          tickClockTimes();
-          setInterval(tickClockTimes, 1000);
-          if(clockStatus) clockStatus.textContent = "Live";
-        } catch(e){
-          if(clockStatus) clockStatus.textContent = "Error";
-        }
-      }
-      startWorldClock();
-
-      // ============================
-      // Mobile menu
-      // ============================
-      const menuBtn = document.getElementById("menuBtn");
-      const drawer = document.getElementById("drawer");
-
-      menuBtn?.addEventListener("click", () => {
-        const open = drawer.style.display === "block";
-        drawer.style.display = open ? "none" : "block";
-        menuBtn.setAttribute("aria-expanded", String(!open));
+    mobileDrawer?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.style.display = 'none';
+        menuBtn.setAttribute('aria-expanded', 'false');
       });
+    });
 
-      drawer?.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => {
-          drawer.style.display = "none";
-          menuBtn.setAttribute("aria-expanded", "false");
-        });
-      });
+    const serviceSelect = document.getElementById('service');
+    const messageBox = document.getElementById('message');
 
-      // ============================
-      // Contact: mailto fallback
-      // ============================
-      const form = document.getElementById("contactForm");
-      form?.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const service = document.getElementById("service").value;
-        const message = document.getElementById("message").value.trim();
-
-        const subject = encodeURIComponent(`RoboTechi Quote Request — ${service}`);
-        const body = encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject Details:\n${message}\n`
-        );
-
-        const to = "YOUR_EMAIL@DOMAIN.COM"; // <-- change this
-        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      });
-
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      // ============================
-      // Services → auto-fill contact + scroll
-      // ============================
-      const serviceSelect = document.getElementById("service");
-      const msgBox = document.getElementById("message");
-
-      function focusBooking(serviceName){
-        if(serviceSelect){
-          const opts = Array.from(serviceSelect.options).map(o => o.value);
-          if(opts.includes(serviceName)) serviceSelect.value = serviceName;
-        }
-        if(msgBox && msgBox.value.trim() === ""){
-          msgBox.value = `I'm interested in: ${serviceName}\n\nDetails:\n- What I need help with:\n- Timeline:\n- Budget range:\n`;
-        }
-        document.getElementById("contact")?.scrollIntoView({ behavior:"smooth", block:"start" });
-        setTimeout(() => document.getElementById("name")?.focus(), 450);
+    function focusBooking(serviceName){
+      if(serviceSelect){
+        const options = [...serviceSelect.options].map(opt => opt.value);
+        if(options.includes(serviceName)) serviceSelect.value = serviceName;
       }
-
-      document.querySelectorAll(".service-card.clickable").forEach(card => {
-        const svc = card.dataset.service;
-        card.addEventListener("click", () => focusBooking(svc));
-        card.addEventListener("keydown", (e) => {
-          if(e.key === "Enter" || e.key === " "){
-            e.preventDefault();
-            focusBooking(svc);
-          }
-        });
-      });
-
-      // ============================
-      // Lightbox + Pinch Zoom
-      // ============================
-      const lightbox = document.getElementById("lightbox");
-      const lightboxViewer = document.getElementById("lightboxViewer");
-      const lightboxImg = document.getElementById("lightboxImg");
-      const lightboxCaption = document.getElementById("lightboxCaption");
-      const lightboxCloseBtn = document.getElementById("lightboxCloseBtn");
-
-      let lastFocusBeforeLightbox = null;
-
-      let scale = 1;
-      let tx = 0;
-      let ty = 0;
-
-      function applyTransform(){
-        lightboxImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+      if(messageBox && messageBox.value.trim() === ''){
+        messageBox.value = `I'm interested in: ${serviceName}\n\nDetails:\n- What I need help with:\n- Timeline:\n- Budget range:\n`;
       }
-      function resetTransform(){
-        scale = 1; tx = 0; ty = 0;
-        applyTransform();
-      }
-      function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
-
-      function openLightbox(src, caption, alt){
-        if(!src) return;
-        lastFocusBeforeLightbox = document.activeElement;
-        resetTransform();
-
-        lightboxImg.src = src;
-        lightboxImg.alt = alt || "Expanded image";
-        lightboxCaption.textContent = caption || "";
-
-        lightbox.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
-        lightboxCloseBtn.focus();
-      }
-
-      function closeLightbox(){
-        lightbox.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("modal-open");
-        if(lastFocusBeforeLightbox && typeof lastFocusBeforeLightbox.focus === "function"){
-          lastFocusBeforeLightbox.focus();
-        }
-      }
-
-      lightboxCloseBtn?.addEventListener("click", closeLightbox);
-      lightbox?.addEventListener("click", (e) => {
-        if(e.target?.dataset?.lightboxClose === "true") closeLightbox();
-      });
-
-      const pointers = new Map();
-      let isPanning = false;
-      let panStart = {x:0, y:0};
-      let startTx = 0, startTy = 0;
-
-      let pinchStartDist = 0;
-      let pinchStartScale = 1;
-      let pinchMid = {x:0, y:0};
-      let pinchStartTx = 0, pinchStartTy = 0;
-
-      function getDist(a,b){
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        return Math.hypot(dx, dy);
-      }
-      function getMid(a,b){
-        return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-      }
-
-      lightboxViewer.addEventListener("pointerdown", (e) => {
-        if(lightbox.getAttribute("aria-hidden") === "true") return;
-        lightboxViewer.setPointerCapture(e.pointerId);
-        pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
-
-        if(pointers.size === 2){
-          const pts = Array.from(pointers.values());
-          pinchStartDist = getDist(pts[0], pts[1]);
-          pinchStartScale = scale;
-          pinchMid = getMid(pts[0], pts[1]);
-          pinchStartTx = tx;
-          pinchStartTy = ty;
-        } else if(pointers.size === 1){
-          isPanning = true;
-          panStart = {x:e.clientX, y:e.clientY};
-          startTx = tx; startTy = ty;
-        }
-      });
-
-      lightboxViewer.addEventListener("pointermove", (e) => {
-        if(lightbox.getAttribute("aria-hidden") === "true") return;
-        if(!pointers.has(e.pointerId)) return;
-
-        pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
-
-        if(pointers.size === 2){
-          const pts = Array.from(pointers.values());
-          const d = getDist(pts[0], pts[1]);
-          const mid = getMid(pts[0], pts[1]);
-
-          const rawScale = pinchStartScale * (d / (pinchStartDist || 1));
-          const newScale = clamp(rawScale, 1, 4);
-
-          const midDx = mid.x - pinchMid.x;
-          const midDy = mid.y - pinchMid.y;
-
-          scale = newScale;
-          tx = pinchStartTx + midDx;
-          ty = pinchStartTy + midDy;
-          applyTransform();
-        } else if(pointers.size === 1 && isPanning){
-          const dx = e.clientX - panStart.x;
-          const dy = e.clientY - panStart.y;
-          const panFactor = Math.max(1, scale);
-          tx = startTx + dx / panFactor;
-          ty = startTy + dy / panFactor;
-          applyTransform();
-        }
-      });
-
-      function endPointer(e){
-        if(!pointers.has(e.pointerId)) return;
-        pointers.delete(e.pointerId);
-        if(pointers.size < 2) pinchStartDist = 0;
-        if(pointers.size === 0){
-          isPanning = false;
-          if(scale < 1.02) resetTransform();
-        }
-      }
-      lightboxViewer.addEventListener("pointerup", endPointer);
-      lightboxViewer.addEventListener("pointercancel", endPointer);
-
-      let lastTapTime = 0;
-      lightboxViewer.addEventListener("pointerup", () => {
-        if(pointers.size !== 0) return;
-        const now = Date.now();
-        if(now - lastTapTime < 300){
-          resetTransform();
-          lastTapTime = 0;
-        } else lastTapTime = now;
-      });
-
-      // ============================
-      // Events Carousel
-      // ============================
-      const EVENTS_DATA = [
-        {
-          type: "Meetup",
-          date: "TBA • 2026",
-          time: "TBA",
-          location: "NYC",
-          title: "Realm Of Makers",
-          description: "Realm Of Makers is a creative meetup designed for builders, innovators, and tech enthusiasts who love working with the AdaFruit, Arduino and Raspberry Pi devices.",
-          flyer: "RealmOfMakers.png",
-          rsvpUrl: "#"
-        },
-        {
-          type: "Meetup",
-          date: "TBD • 2026",
-          time: "TBA",
-          location: "Brooklyn, New York",
-          title: "Intro To Circuits",
-          description: "Intro to Circuits is a hands-on beginner workshop where you’ll learn the fundamentals of electronics and circuit design. Build real projects, experiment with components, and start your journey into the world of hardware creation with RoboTechi.",
-          flyer: "IntroToCircuits.png",
-          rsvpUrl: "#"
-        },
-        {
-          type: "Community",
-          date: "TBD • 2026",
-          time: "TBA",
-          location: "Online / Hybrid",
-          title: "Innovate Concrete",
-          description: "Innovate Concrete is a collaborative ideation event where creators, builders, and visionaries come together to design tech solutions that strengthen and uplift our community. Bring your ideas to the table and help turn real challenges into real-world impact..",
-          flyer: "InnovateConcrete.png",
-          rsvpUrl: "#"
-        }
-      ];
-
-      const eventsTrack = document.getElementById("eventsTrack");
-      const eventsDots = document.getElementById("eventsDots");
-      const eventsWindow = document.getElementById("eventsWindow");
-      const evPrev = document.getElementById("evPrev");
-      const evNext = document.getElementById("evNext");
-
-      let evIndex = 0;
-
-      function renderEvents(){
-        if(!eventsTrack || !eventsDots) return;
-
-        eventsTrack.innerHTML = EVENTS_DATA.map((e, i) => `
-          <div class="event-slide" data-idx="${i}">
-            <div class="event-grid">
-              <div class="flyer" role="button" tabindex="0" aria-label="Expand flyer for ${escapeHtml(e.title)}" data-flyer="${escapeAttr(e.flyer)}" data-caption="${escapeAttr(e.title)}">
-                <img src="${escapeAttr(e.flyer)}" alt="${escapeAttr(e.title)} flyer"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <div class="flyer-cap" style="display:none;">Flyer placeholder</div>
-              </div>
-
-              <div class="event-meta">
-                <div class="event-top">
-                  <span class="event-chip">${escapeHtml(e.type || "Event")}</span>
-                  <span class="event-when">${escapeHtml(e.date || "")} • ${escapeHtml(e.time || "")}</span>
-                </div>
-                <h3 class="event-title">${escapeHtml(e.title || "RoboTechi Event")}</h3>
-                <p class="event-desc">${escapeHtml(e.description || "")}</p>
-
-                <div class="event-details">
-                  <span class="event-detail">📍 ${escapeHtml(e.location || "TBD")}</span>
-                  <span class="event-detail">🗓 ${escapeHtml(e.date || "TBD")}</span>
-                </div>
-
-                <div class="modal-actions" style="justify-content:flex-start;">
-                  <a class="btn" href="${escapeAttr(e.rsvpUrl || "#")}" target="_blank" rel="noopener">RSVP</a>
-                  <a class="btn primary" href="#contact" data-prefill="${escapeAttr(e.title || "RoboTechi Event")}"><span class="dot"></span> Sponsor / Host</a>
-                </div>
-
-                <p class="mono" style="margin:0; font-size:11px; color:rgba(10,14,20,.60);">
-                  Want RoboTechi at your school/community? Hit “Sponsor / Host”.
-                </p>
-              </div>
-            </div>
-          </div>
-        `).join("");
-
-        eventsDots.innerHTML = EVENTS_DATA.map((_, i) => `
-          <button class="dot-btn" type="button" aria-label="Go to event ${i+1}" aria-current="${i===0 ? "true":"false"}" data-dot="${i}"></button>
-        `).join("");
-
-        // flyer click → lightbox
-        eventsTrack.querySelectorAll(".flyer").forEach(el => {
-          const src = el.dataset.flyer;
-          const cap = el.dataset.caption || "";
-          el.addEventListener("click", () => openLightbox(src, cap, cap));
-          el.addEventListener("keydown", (ev) => {
-            if(ev.key === "Enter" || ev.key === " "){
-              ev.preventDefault();
-              openLightbox(src, cap, cap);
-            }
-          });
-        });
-
-        // Sponsor/Host button prefill
-        eventsTrack.querySelectorAll('a[data-prefill]').forEach(a => {
-          a.addEventListener("click", () => {
-            const title = a.dataset.prefill || "Event";
-            if(msgBox){
-              msgBox.value = `I want to sponsor/host: ${title}\n\nDetails:\n- Organization:\n- Preferred date/time:\n- Location:\n- Expected attendees:\n- Notes:\n`;
-            }
-          });
-        });
-
-        // dots
-        eventsDots.querySelectorAll(".dot-btn").forEach(btn => {
-          btn.addEventListener("click", () => goToEvent(parseInt(btn.dataset.dot, 10)));
-        });
-
-        goToEvent(0, true);
-      }
-
-      function goToEvent(i, skipAnim=false){
-        if(!eventsTrack || !eventsDots) return;
-        evIndex = (i + EVENTS_DATA.length) % EVENTS_DATA.length;
-
-        if(skipAnim){
-          eventsTrack.style.transition = "none";
-          requestAnimationFrame(() => {
-            eventsTrack.style.transform = `translateX(${-evIndex * 100}%)`;
-            requestAnimationFrame(() => eventsTrack.style.transition = "transform .35s ease");
-          });
-        } else {
-          eventsTrack.style.transform = `translateX(${-evIndex * 100}%)`;
-        }
-
-        eventsDots.querySelectorAll(".dot-btn").forEach((d, idx) => {
-          d.setAttribute("aria-current", idx === evIndex ? "true" : "false");
-        });
-      }
-
-      evPrev?.addEventListener("click", () => goToEvent(evIndex - 1));
-      evNext?.addEventListener("click", () => goToEvent(evIndex + 1));
-
-      // swipe support
-      let swStartX = 0, swDeltaX = 0, swActive = false;
-
-      eventsWindow?.addEventListener("pointerdown", (e) => {
-        swActive = true;
-        swStartX = e.clientX;
-        swDeltaX = 0;
-      });
-
-      eventsWindow?.addEventListener("pointermove", (e) => {
-        if(!swActive) return;
-        swDeltaX = e.clientX - swStartX;
-      });
-
-      eventsWindow?.addEventListener("pointerup", () => {
-        if(!swActive) return;
-        swActive = false;
-
-        const threshold = 50;
-        if(swDeltaX > threshold) goToEvent(evIndex - 1);
-        else if(swDeltaX < -threshold) goToEvent(evIndex + 1);
-      });
-
-      function escapeHtml(str=""){
-        return String(str).replace(/[&<>"']/g, s => ({
-          "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-        }[s]));
-      }
-      function escapeAttr(str=""){ return escapeHtml(str).replace(/"/g, "&quot;"); }
-
-      renderEvents();
-    } catch (err) {
-      console.error("RoboTechi site script error:", err);
-      const splash = document.getElementById("splash");
-      if (splash) splash.remove();
+      document.getElementById('contact')?.scrollIntoView({behavior:'smooth', block:'start'});
+      setTimeout(() => document.getElementById('name')?.focus(), 250);
     }
+
+    document.querySelectorAll('.service-card').forEach(card => {
+      const serviceName = card.dataset.service;
+      card.addEventListener('click', () => focusBooking(serviceName));
+      card.addEventListener('keydown', event => {
+        if(event.key === 'Enter' || event.key === ' '){
+          event.preventDefault();
+          focusBooking(serviceName);
+        }
+      });
+    });
+
+    document.getElementById('contactForm')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
+
+      const subject = encodeURIComponent(`RoboTechi Quote Request — ${service}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject Details:\n${message}\n`
+      );
+
+      const to = 'YOUR_EMAIL@DOMAIN.COM';
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
