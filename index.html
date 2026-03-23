@@ -235,11 +235,38 @@
     .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .service-card{padding:20px;display:grid;gap:14px;transition:transform .18s ease, box-shadow .18s ease;cursor:pointer}
     .service-card:hover{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(201,162,74,.2), 0 24px 42px rgba(0,0,0,.35)}
-    .service-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#fff3e1}
+    .service-media,.event-media{position:relative;overflow:hidden;border-radius:16px}
+    .service-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#fff3e1;transition:transform .35s ease, filter .35s ease}
     .service-icon{
       width:42px;height:42px;border-radius:14px;background:var(--brand-soft);color:var(--brand-strong);
       display:grid;place-items:center;font-weight:700;font-size:12px;border:1px solid rgba(201,162,74,.24);
     }
+    
+    .brand-overlay{
+      position:absolute;inset:auto 12px 12px 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+      pointer-events:none;z-index:2;
+    }
+    .brand-overlay::before{
+      content:"";position:absolute;inset:-18px -18px -12px -18px;
+      background:linear-gradient(180deg, rgba(31,39,51,0) 0%, rgba(31,39,51,.18) 28%, rgba(31,39,51,.78) 100%);
+      z-index:-1;border-radius:22px;
+    }
+    .overlay-mark{
+      display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;
+      background:rgba(255,255,255,.88);border:1px solid rgba(245,157,10,.28);backdrop-filter:blur(10px);
+      box-shadow:0 10px 24px rgba(31,39,51,.12);max-width:78%;
+    }
+    .overlay-mark img{width:30px;height:30px;aspect-ratio:auto;object-fit:contain;border:none;background:transparent;border-radius:0;flex:0 0 30px;filter:none;transition:none}
+    .overlay-mark strong,.overlay-chip strong{display:block;font-size:12px;line-height:1;color:var(--gunmetal);text-transform:uppercase;letter-spacing:.08em}
+    .overlay-mark span,.overlay-chip span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+    .overlay-chip{
+      padding:10px 12px;border-radius:16px;background:linear-gradient(135deg, rgba(245,157,10,.95), rgba(255,140,0,.92));
+      color:white;border:1px solid rgba(255,255,255,.3);box-shadow:0 12px 24px rgba(245,157,10,.28);min-width:110px
+    }
+    .service-card:hover img,.event-card:hover img{transform:scale(1.04);filter:saturate(1.02)}
+    .service-card:hover .brand-overlay,.event-card:hover .brand-overlay{transform:translateY(-2px)}
+    .service-card .brand-overlay,.event-card .brand-overlay{transition:transform .25s ease}
+
     .service-card h3{margin:0;font-size:19px}
     .service-card p{margin:0;color:var(--muted)}
     .bullet-list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
@@ -278,7 +305,7 @@
 
     .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .event-card{overflow:hidden}
-    .event-card img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#fff3e1;border-bottom:1px solid var(--line)}
+    .event-card img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#fff3e1;border-bottom:1px solid var(--line);transition:transform .35s ease, filter .35s ease}
     .event-body{padding:18px}
     .event-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:10px}
     .event-type{padding:6px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);font-weight:700}
@@ -296,12 +323,36 @@
     textarea{min-height:140px;resize:vertical}
     input::placeholder, textarea::placeholder{color:#94a3b8}
 
+
+    .btn.ar-link{
+      background:linear-gradient(135deg, var(--brand), var(--brand-strong));
+      border-color:transparent;
+      color:#fff;
+      box-shadow:0 12px 26px rgba(245,157,10,.24);
+    }
+    .btn.ar-link:hover{background:linear-gradient(135deg, var(--brand-strong), var(--brand-deep));}
+
+    .blog-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .blog-card{padding:24px}
+    .blog-card h3{margin:0 0 10px;font-size:28px}
+    .blog-card p{margin:0;color:var(--muted)}
+    .blog-list{display:grid;gap:12px;margin-top:18px}
+    .blog-item{
+      display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+      padding:16px 18px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line);
+      transition:.2s ease;
+    }
+    .blog-item:hover{transform:translateY(-2px);border-color:rgba(245,157,10,.32)}
+    .blog-item strong{display:block;font-size:17px;margin-bottom:6px}
+    .blog-item span{display:block;color:var(--muted);font-size:14px;max-width:44ch}
+    .blog-tag{white-space:nowrap;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid rgba(245,157,10,.24);color:var(--brand-strong);font-size:12px;font-weight:700}
+    .blog-aside{display:grid;gap:16px}
     footer{margin-top:24px;padding:28px 0 40px;border-top:1px solid var(--line);background:rgba(255,255,255,.7)}
     .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:14px}
     .footer-links{display:flex;gap:14px;flex-wrap:wrap}
 
     @media (max-width: 1080px){
-      .hero-grid,.product-layout,.about-layout,.intro-grid,.product-hero,.docs-layout{grid-template-columns:1fr}
+      .hero-grid,.product-layout,.about-layout,.intro-grid,.product-hero,.docs-layout,.blog-grid{grid-template-columns:1fr}
       .services-grid,.events-grid,.docs-grid{grid-template-columns:repeat(2,1fr)}
     }
     @media (max-width: 760px){
@@ -319,6 +370,10 @@
 </head>
 <body>
   <div class="topbar">
+    <div class="container">
+      <div class="mono">Computer Repair • Hardware/Software Development • Web Design</div>
+      <div class="mono">RoboTechi maker workflows, product pages, and docs inspired by Arduino-style clarity</div>
+    </div>
   </div>
 
   <header class="nav">
@@ -328,7 +383,7 @@
           <img src="rtlogo.png" alt="RoboTechi logo">
           <div>
             <p class="brand-name">RoboTechi</p>
-            <p class="brand-sub mono">Web | Electronics | IOT </p>
+            <p class="brand-sub mono">White • Gunmetal • Orange</p>
           </div>
         </a>
 
@@ -336,6 +391,7 @@
           <a href="#services">Services</a>
           <a href="#products">Products</a>
           <a href="#docs">Docs</a>
+          <a href="#blog">Blog</a>
           <a href="#events">Events</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
@@ -343,7 +399,8 @@
 
         <div class="nav-actions">
           <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileDrawer">Menu</button>
-          <a class="btn primary" href="#contact">Quote</a>
+          <a class="btn ar-link" href="https://odotofrva.github.io/OdotNYC-AR/" target="_blank" rel="noopener">AR-OdotNYC</a>
+          <a class="btn primary" href="#contact">Get a Quote</a>
         </div>
       </div>
 
@@ -351,9 +408,11 @@
         <a href="#services">Services</a>
         <a href="#products">Products</a>
         <a href="#docs">Docs</a>
+        <a href="#blog">Blog</a>
         <a href="#events">Events</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <a href="https://odotofrva.github.io/OdotNYC-AR/" target="_blank" rel="noopener">AR-OdotNYC</a>
       </div>
     </div>
   </header>
@@ -365,10 +424,15 @@
           <div class="hero-copy">
             <span class="eyebrow">RoboTechi Co.</span>
             <h1>Build smarter hardware and digital products with a cleaner maker-first experience.</h1>
-            <p class="lead">RoboTechi is the technology division within the OdotNYC ecosystem — focused on electronics, modern embedded systems, hardware concepts, creative coding, and educational innovation for the next wave of builders.</p>
+            <p class="lead">This refresh keeps your same core sections while shifting the layout toward an Arduino-style flow: stronger product focus, a dedicated docs area, simpler service choices, and clearer navigation for builders and clients.</p>
             <div class="hero-actions">
               <a class="btn primary" href="#products">Explore Thumbtroller</a>
               <a class="btn secondary" href="#docs">Open Docs</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat"><strong>3</strong><span>Focused service lanes</span></div>
+              <div class="stat"><strong>1</strong><span>Featured product page</span></div>
+              <div class="stat"><strong>4</strong><span>Starter documentation panels</span></div>
             </div>
           </div>
 
@@ -390,6 +454,20 @@
             </div>
           </div>
         </div>
+
+        <div class="intro-strip">
+          <div class="intro-grid">
+            <div class="mini-panel">
+              <h3>What changed in this pass</h3>
+              <p>The site now uses RoboTechi logo-inspired white and orange palette, trims the service list to the three you requested, adds a standalone docs section, switches the interface to a white and orange RoboTechi palette, and introduces RoboTechi-branded image overlays for services and events so every card keeps a premium branded feel even before you swap in final visuals.</p>
+            </div>
+            <div class="mini-panel thumb-card">
+              <h4>Featured Product</h4>
+              <img src="thumbtroller.png" alt="Thumbtroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="fallback">Thumbtroller image placeholder</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -404,7 +482,17 @@
 
         <div class="services-grid">
           <article class="service-card" tabindex="0" role="button" data-service="Computer Repair">
-            <img src="pcrepair.png" alt="Computer Repair" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder" style="display:none"><span>Computer Repair</span><small>Image placeholder</small></div>
+            <div class="service-media">
+              <img src="pcrepair.png" alt="Computer Repair" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display:none"><span>Computer Repair</span><small>Image placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Repair Service</span></div>
+                </div>
+                <div class="overlay-chip"><strong>Fast Support</strong><span>PC / Laptop Care</span></div>
+              </div>
+            </div>
             <div class="service-icon">PC</div>
             <h3>Computer Repair</h3>
             <p>Diagnostics, upgrades, cleanup, optimization, and support for personal systems or small teams.</p>
@@ -416,7 +504,17 @@
           </article>
 
           <article class="service-card" tabindex="0" role="button" data-service="Hardware/Software Development">
-            <img src="softwaredev.png" alt="Hardware and Software Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder" style="display:none"><span>Hardware / Software Development</span><small>Image placeholder</small></div>
+            <div class="service-media">
+              <img src="softwaredev.png" alt="Hardware and Software Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display:none"><span>Hardware / Software Development</span><small>Image placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Build Systems</span></div>
+                </div>
+                <div class="overlay-chip"><strong>Prototype Ready</strong><span>Hardware + Code</span></div>
+              </div>
+            </div>
             <div class="service-icon">DEV</div>
             <h3>Hardware/Software Development</h3>
             <p>Concept-to-prototype builds covering embedded hardware, PCB workflows, firmware, tools, and supporting software systems.</p>
@@ -428,7 +526,17 @@
           </article>
 
           <article class="service-card" tabindex="0" role="button" data-service="Web Design">
-            <img src="webdev.png" alt="Web Design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder" style="display:none"><span>Web Design</span><small>Image placeholder</small></div>
+            <div class="service-media">
+              <img src="webdev.png" alt="Web Design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display:none"><span>Web Design</span><small>Image placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Digital Presence</span></div>
+                </div>
+                <div class="overlay-chip"><strong>Clean UX</strong><span>Web Launch</span></div>
+              </div>
+            </div>
             <div class="service-icon">WEB</div>
             <h3>Web Design</h3>
             <p>Modern websites that feel clean, premium, and easy to navigate across desktop and mobile.</p>
@@ -447,6 +555,7 @@
         <div class="section-header">
           <div>
             <h2>Products in Development</h2>
+            <p>A more complete Arduino-style product section for your current featured build, paired with practical device support messaging.</p>
           </div>
         </div>
 
@@ -454,13 +563,13 @@
           <article class="product-card">
             <div class="product-hero">
               <div>
-                <img src="front.png" alt="Thumbtroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <img src="thumbtroller.png" alt="Thumbtroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="fallback">Thumbtroller image placeholder</div>
               </div>
               <div>
                 <span class="eyebrow">In Development</span>
                 <h3>Thumbtroller</h3>
-                <p>Thumbtroller is a RoboTechi controller concept inspired by the classic NES profile, rebuilt with thumb-stick control for smoother movement and a more modern feel.</p>
+                <p>Thumbtroller is a RoboTechi controller concept inspired by the classic NES profile, rebuilt with thumb-stick control for smoother movement and a more modern feel. This section now reads more like a real product page with highlights, use cases, and quick specs.</p>
                 <div class="badge-row">
                   <span class="badge">Thumb Stick Input</span>
                   <span class="badge">NES-Inspired Shell</span>
@@ -506,12 +615,12 @@
               <li>Tablet troubleshooting for charging, performance, and setup issues</li>
               <li>Smartphone maintenance support for storage, software, and everyday optimization</li>
             </ul>
+            <p style="margin:14px 0 0;color:var(--muted)">This panel now highlights practical electronics maintenance instead of product quick access, making the page more useful for visitors looking for device support right away.</p>
           </aside>
         </div>
       </div>
     </section>
 
-    <!--
     <section id="docs">
       <div class="container">
         <div class="section-header">
@@ -595,7 +704,62 @@
         </div>
       </div>
     </section>
-    -->
+
+
+    <section id="blog">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>From the RoboTechi Blog</h2>
+            <p>Thoughts, project updates, and creative-tech writing from Almighty Odot on Medium.</p>
+          </div>
+          <a class="btn secondary" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">Visit Medium</a>
+        </div>
+
+        <div class="blog-grid">
+          <article class="section-card blog-card">
+            <span class="eyebrow">RoboTechi Journal</span>
+            <h3>A blog lane for maker culture, product thinking, and tech creativity.</h3>
+            <p>This section gives the site a stronger editorial layer by linking visitors to your Medium presence. It works as a bridge between the service side of RoboTechi and the bigger story behind your builds, experiments, and community vision.</p>
+            <div class="blog-list">
+              <a class="blog-item" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">
+                <div>
+                  <strong>Read the latest posts on Medium</strong>
+                  <span>Open your full RoboTechi writing hub for updates, reflections, and project notes.</span>
+                </div>
+                <span class="blog-tag">Medium</span>
+              </a>
+              <div class="blog-item">
+                <div>
+                  <strong>What this section can feature later</strong>
+                  <span>Recent build logs, event recaps, educational writeups, product diaries, and hardware lessons for your audience.</span>
+                </div>
+                <span class="blog-tag">Ideas</span>
+              </div>
+            </div>
+          </article>
+
+          <aside class="blog-aside">
+            <article class="section-card blog-card">
+              <h3 style="font-size:22px">Why add a blog here?</h3>
+              <p>Placing it above Events helps visitors see your thinking before they see your meetups. That makes RoboTechi feel more like a living brand with documentation, insight, and community behind it.</p>
+              <div class="badge-row">
+                <span class="badge">Build Logs</span>
+                <span class="badge">Thought Pieces</span>
+                <span class="badge">Community Notes</span>
+              </div>
+            </article>
+            <article class="section-card blog-card">
+              <h3 style="font-size:22px">Future upgrade path</h3>
+              <p>Later, this can be turned into a dynamic feed that pulls your latest Medium posts automatically with thumbnails, dates, and excerpts.</p>
+              <div class="hero-actions" style="margin-top:18px">
+                <a class="btn primary" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">Open Blog</a>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
 
     <section id="events">
       <div class="container">
@@ -608,7 +772,17 @@
 
         <div class="events-grid">
           <article class="event-card">
-            <img src="RealmOfMakers.png" alt="Realm Of Makers flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder event-placeholder" style="display:none"><span>Realm Of Makers</span><small>Event flyer placeholder</small></div>
+            <div class="event-media">
+              <img src="RealmOfMakers.png" alt="Realm Of Makers flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder event-placeholder" style="display:none"><span>Realm Of Makers</span><small>Event flyer placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Community Event</span></div>
+                </div>
+                <div class="overlay-chip"><strong>Maker Meetup</strong><span>NYC Build Night</span></div>
+              </div>
+            </div>
             <div class="event-body">
               <div class="event-meta">
                 <span class="event-type">Meetup</span>
@@ -726,6 +900,7 @@
           <a href="#services">Services</a>
           <a href="#products">Products</a>
           <a href="#docs">Docs</a>
+          <a href="#blog">Blog</a>
           <a href="#events">Events</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
