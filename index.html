@@ -1,1018 +1,809 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NodeBlk — Community Resilience Device</title>
-  <meta
-    name="description"
-    content="NodeBlk by RoboTechi — a handheld, offline-first resilience device with a display and keyboard, built for emergency guidance, community preparedness, and real-world utility."
-  />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoboTechi Co. — OdotNYC</title>
+  <meta name="description" content="RoboTechi provides computer repair, hardware and software development, web design, and maker-focused product documentation." />
+  <link rel="icon" type="image/png" href="rtlogo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #ffffff;
-      --bg-soft: #f6f6f7;
-      --panel: #ffffff;
-      --text: #111111;
-      --muted: #6b6b73;
-      --line: rgba(17, 17, 17, 0.08);
-      --accent: #ff7a00;
-      --accent-deep: #dc6803;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-      --radius-xl: 36px;
-      --radius-lg: 24px;
-      --max: 1240px;
+    :root{
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --surface-2:#fff7ef;
+      --surface-3:#fff1df;
+      --text:#1e2430;
+      --muted:#6d7684;
+      --line:rgba(30,36,48,.12);
+      --brand:#f59d0a;
+      --brand-strong:#ff8c00;
+      --brand-deep:#c86f00;
+      --brand-soft:rgba(245,157,10,.12);
+      --gunmetal:#1f2733;
+      --shadow:0 18px 48px rgba(31,39,51,.08);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1260px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      backdrop-filter: saturate(180%) blur(16px);
-      background: rgba(255, 255, 255, 0.78);
-      border-bottom: 1px solid rgba(17,17,17,0.06);
-    }
-
-    .nav {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #ffb066);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
-    }
-
-    .brand small {
-      display: block;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-
-    .brand-wordmark,
-    .hero-wordmark {
-      font-family: "Orbitron", sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: none;
-    }
-
-    .brand-wordmark {
-      display: inline-block;
-      font-size: 1rem;
-      line-height: 1;
-      text-shadow: 0 0 18px rgba(255,122,0,0.14);
-    }
-
-    .hero-wordmark {
-      display: inline-block;
-      letter-spacing: 0.08em;
-      text-shadow: 0 0 26px rgba(255,122,0,0.18);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 0;
-      border-radius: 999px;
-      padding: 14px 22px;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--text);
-      color: white;
-      box-shadow: 0 12px 30px rgba(17,17,17,0.16);
-    }
-
-    .btn-secondary {
-      background: rgba(17,17,17,0.05);
-      color: var(--text);
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 76px 0 52px;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Space Grotesk",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,122,0,0.14), transparent 35%),
-        linear-gradient(180deg, #ffffff 0%, #fbfbfc 100%);
+        radial-gradient(circle at top left, rgba(245,157,10,.14), transparent 24%),
+        radial-gradient(circle at right top, rgba(31,39,51,.05), transparent 18%),
+        linear-gradient(180deg,#ffffff 0%, #fffaf3 100%);
+      line-height:1.5;
     }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(255,122,0,0.08);
-      color: var(--accent-deep);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(255,122,0,0.12);
-    }
-
-    .hero-wrap {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
-      align-items: center;
-      min-height: 78vh;
-    }
-
-    .hero-copy h1 {
-      margin: 18px 0 18px;
-      font-size: clamp(48px, 8vw, 106px);
-      line-height: 0.92;
-      letter-spacing: -0.07em;
-    }
-
-    .hero-copy .subhead {
-      max-width: 700px;
-      font-size: clamp(18px, 2vw, 25px);
-      line-height: 1.45;
-      letter-spacing: -0.03em;
-      color: #2f2f34;
-      margin: 0 0 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      color: var(--muted);
-      font-size: 13px;
-      font-family: "IBM Plex Mono", monospace;
-    }
-
-    .device-stage {
-      position: relative;
-      min-height: 620px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .device-glow {
-      position: absolute;
-      inset: auto 50% 16% auto;
-      transform: translateX(50%);
-      width: 480px;
-      height: 480px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,122,0,0.22), transparent 62%);
-      filter: blur(10px);
-      pointer-events: none;
-    }
-
-    .device {
-      position: relative;
-      width: min(380px, 88%);
-      aspect-ratio: 0.68 / 1;
-      background: linear-gradient(180deg, #1c1c1f 0%, #0d0d0f 100%);
-      border-radius: 38px;
-      padding: 16px;
-      box-shadow: 0 36px 80px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.14);
-    }
-
-    .device::before {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.08);
-      pointer-events: none;
-    }
-
-    .device-screen {
-      height: 72%;
-      border-radius: 26px;
-      overflow: hidden;
-      position: relative;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
-        radial-gradient(circle at top, rgba(255,122,0,0.30), transparent 40%),
-        linear-gradient(180deg, #18191d 0%, #111216 100%);
-      border: 1px solid rgba(255,255,255,0.07);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-      padding: 18px;
-    }
-
-    .screen-ui {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #f5f5f6;
-    }
-
-    .screen-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      font-family: "IBM Plex Mono", monospace;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .screen-card {
-      margin-top: 18px;
-      padding: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      backdrop-filter: blur(12px);
-    }
-
-    .screen-card h3 {
-      margin: 0 0 8px;
-      font-size: 26px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .screen-card p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.78);
-    }
-
-    .screen-modules {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .screen-module {
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 12px;
-      min-height: 82px;
-    }
-
-    .screen-module span {
-      display: block;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 11px;
-      color: rgba(255,255,255,0.58);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-
-    .screen-module strong {
-      font-size: 14px;
-      line-height: 1.3;
-    }
-
-    .device-controls {
-      height: 28%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      align-items: center;
-      gap: 14px;
-      padding: 18px 10px 6px;
-    }
-
-    .control-pad,
-    .control-center,
-    .control-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .dpad {
-      width: 94px;
-      height: 94px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, #19191c, #101013);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-      position: relative;
-    }
-
-    .dpad::before,
-    .dpad::after {
-      content: "";
-      position: absolute;
-      background: rgba(255,255,255,0.08);
-      border-radius: 12px;
-    }
-
-    .dpad::before {
-      width: 24px;
-      height: 74px;
-      top: 10px;
-      left: 35px;
-    }
-
-    .dpad::after {
-      width: 74px;
-      height: 24px;
-      top: 35px;
-      left: 10px;
-    }
-
-    .center-pills {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .pill {
-      width: 14px;
-      height: 44px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.12);
-    }
-
-    .actions {
-      display: grid;
-      grid-template-columns: repeat(2, 44px);
-      grid-auto-rows: 44px;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .action-btn {
-      border-radius: 999px;
-      background: linear-gradient(180deg, #292a2f, #17181c);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-    }
-
-    .scroll-note {
-      padding: 18px 0 0;
-      text-align: center;
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .section {
-      padding: 96px 0;
-    }
-
-    .section-head {
-      max-width: 860px;
-      margin: 0 auto 44px;
-      text-align: center;
-    }
-
-    .section-head h2 {
-      margin: 0 0 12px;
-      font-size: clamp(34px, 5vw, 72px);
-      line-height: 0.97;
-      letter-spacing: -0.06em;
-    }
-
-    .section-head p {
-      margin: 0;
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.5;
-      color: #404046;
-      letter-spacing: -0.03em;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .feature-card {
-      position: relative;
-      background: linear-gradient(180deg, #ffffff, #f7f7f8);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      min-height: 530px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .feature-label {
-      display: inline-block;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-deep);
-      margin-bottom: 12px;
-    }
-
-    .feature-card h3 {
-      margin: 0 0 14px;
-      font-size: clamp(30px, 3vw, 44px);
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .feature-card p {
-      margin: 0;
-      max-width: 520px;
-      color: #44444b;
-      font-size: 18px;
-      line-height: 1.6;
-      letter-spacing: -0.02em;
-    }
-
-    .feature-visual {
-      position: absolute;
-      left: 32px;
-      right: 32px;
-      bottom: 32px;
-      height: 250px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, #15161a, #0d0e11);
-      overflow: hidden;
-    }
-
-    .feature-grid-ui {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 20px;
-      height: 100%;
-    }
-
-    .mini-card {
-      border-radius: 20px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 16px;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .mini-card span {
-      display: block;
-      font-size: 11px;
-      font-family: "IBM Plex Mono", monospace;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.54);
-      margin-bottom: 8px;
-      letter-spacing: 0.08em;
-    }
-
-    .mini-card strong {
-      display: block;
-      font-size: 16px;
-      line-height: 1.35;
-    }
-
-    .map-visual {
-      position: absolute;
-      inset: 24px 24px 24px 24px;
-      border-radius: 24px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,122,0,0.20), transparent 28%),
-        linear-gradient(135deg, #131418, #0b0c10);
-    }
-
-    .map-visual::before,
-    .map-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: 0.35;
+        linear-gradient(rgba(31,39,51,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31,39,51,.025) 1px, transparent 1px);
+      background-size:42px 42px;
+      pointer-events:none;
+      opacity:.6;
+    }
+    img{max-width:100%;display:block}
+    .image-placeholder{
+      width:100%;aspect-ratio:16/10;border-radius:16px;border:1px dashed rgba(245,157,10,.42);
+      background:linear-gradient(135deg, rgba(245,157,10,.14), rgba(255,255,255,.95));
+      display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+      text-align:center;padding:18px;color:var(--gunmetal);font-weight:600;
+    }
+    .image-placeholder small{color:var(--muted);font-weight:500}
+    .event-placeholder{aspect-ratio:3/4;border-radius:0;border-bottom:1px solid var(--line)}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(var(--max),92vw);margin:0 auto;position:relative;z-index:1}
+    .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+    .topbar{
+      background:#ffffff;
+      color:var(--gunmetal);
+      border-bottom:1px solid var(--line);
+      font-size:13px;
+    }
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      padding:10px 0;
+      flex-wrap:wrap;
     }
 
-    .map-route {
-      position: absolute;
-      width: 64%;
-      height: 42%;
-      top: 28%;
-      left: 18%;
-      border: 3px solid rgba(255,122,0,0.7);
-      border-color: rgba(255,122,0,0.0) rgba(255,122,0,0.0) rgba(255,122,0,0.7) rgba(255,122,0,0.7);
-      border-radius: 0 0 28px 28px;
-      transform: skewX(-14deg);
-      filter: drop-shadow(0 0 18px rgba(255,122,0,0.22));
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:40;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:16px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .brand img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 16px rgba(201,162,74,.18))}
+    .brand-name{font-size:18px;font-weight:700;margin:0}
+    .brand-sub{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .nav-links{
+      display:none;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .nav-links a{
+      padding:10px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:500;
+      transition:.2s ease;
+    }
+    .nav-links a:hover{background:var(--surface-2);color:var(--brand-strong)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .menu-btn,.btn{
+      border:1px solid var(--line);
+      background:var(--surface-2);
+      color:var(--gunmetal);
+      border-radius:999px;
+      padding:11px 16px;
+      cursor:pointer;
+      font-weight:600;
+      transition:.2s ease;
+    }
+    .btn:hover,.menu-btn:hover{transform:translateY(-1px);border-color:rgba(201,162,74,.5)}
+    .btn.primary{
+      background:var(--brand);
+      border-color:var(--brand);
+      color:#ffffff;
+      box-shadow:0 12px 26px rgba(201,162,74,.24);
+    }
+    .btn.primary:hover{background:var(--brand-strong)}
+    .btn.secondary{
+      background:var(--brand-soft);
+      border-color:rgba(201,162,74,.28);
+      color:var(--brand-strong);
+    }
+    .mobile-drawer{
+      display:none;
+      padding:0 0 16px;
+    }
+    .mobile-drawer a{
+      display:block;
+      padding:12px 14px;
+      border-radius:14px;
+      color:var(--muted);
+    }
+    .mobile-drawer a:hover{background:var(--surface-2);color:var(--brand-strong)}
+
+    .hero{padding:42px 0 24px}
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:20px;align-items:stretch}
+    .hero-copy,.hero-media,.intro-strip,.section-card,.contact-card,.event-card,.service-card,.product-card,.about-card,.doc-card,.docs-sidebar,.docs-callout{
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,247,239,.98));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(4px);
+    }
+    .hero-copy{padding:38px}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--brand-soft);
+      color:var(--brand-strong);
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      border:1px solid rgba(201,162,74,.24);
+    }
+    .hero h1{
+      margin:18px 0 14px;
+      font-size:clamp(34px,5vw,60px);
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+    .hero p.lead{margin:0;color:var(--muted);font-size:18px;max-width:60ch}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+    .stat{padding:14px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line)}
+    .stat strong{display:block;font-size:22px;color:var(--brand-strong)}
+    .stat span{font-size:13px;color:var(--muted)}
+
+    .hero-media{overflow:hidden}
+    .hero-media-top{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .hero-media-top h2{margin:0;font-size:18px}
+    .hero-media-top p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .video-shell{aspect-ratio:16/9;background:#fff3e1}
+    .video-shell iframe{width:100%;height:100%;border:0}
+
+    .intro-strip{margin-top:18px;padding:18px 20px;display:grid;grid-template-columns:1fr;gap:16px}
+    .intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    .mini-panel{padding:20px;border-radius:18px;border:1px solid var(--line);background:var(--surface-2)}
+    .mini-panel h3,.mini-panel h4{margin:0 0 8px}
+    .mini-panel p{margin:0;color:var(--muted)}
+    .thumb-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;border:1px solid var(--line);background:#fff3e1}
+    .thumb-card .fallback{
+      aspect-ratio:16/10;
+      border-radius:14px;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      border:1px dashed rgba(201,162,74,.35);
+      background:#ffffff;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      padding:18px;
     }
 
-    .map-pin {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 10px rgba(255,122,0,0.12);
+    section{padding:26px 0}
+    .section-header{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+    .section-header h2{margin:0;font-size:30px;letter-spacing:-.02em;color:var(--brand-strong)}
+    .section-header p{margin:0;color:var(--muted)}
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .service-card{padding:20px;display:grid;gap:14px;transition:transform .18s ease, box-shadow .18s ease;cursor:pointer}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(201,162,74,.2), 0 24px 42px rgba(0,0,0,.35)}
+    .service-media,.event-media{position:relative;overflow:hidden;border-radius:16px}
+    .service-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#fff3e1;transition:transform .35s ease, filter .35s ease}
+    .service-icon{
+      width:42px;height:42px;border-radius:14px;background:var(--brand-soft);color:var(--brand-strong);
+      display:grid;place-items:center;font-weight:700;font-size:12px;border:1px solid rgba(201,162,74,.24);
+    }
+    
+    .brand-overlay{
+      position:absolute;inset:auto 12px 12px 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+      pointer-events:none;z-index:2;
+    }
+    .brand-overlay::before{
+      content:"";position:absolute;inset:-18px -18px -12px -18px;
+      background:linear-gradient(180deg, rgba(31,39,51,0) 0%, rgba(31,39,51,.18) 28%, rgba(31,39,51,.78) 100%);
+      z-index:-1;border-radius:22px;
+    }
+    .overlay-mark{
+      display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;
+      background:rgba(255,255,255,.88);border:1px solid rgba(245,157,10,.28);backdrop-filter:blur(10px);
+      box-shadow:0 10px 24px rgba(31,39,51,.12);max-width:78%;
+    }
+    .overlay-mark img{width:30px;height:30px;aspect-ratio:auto;object-fit:contain;border:none;background:transparent;border-radius:0;flex:0 0 30px;filter:none;transition:none}
+    .overlay-mark strong,.overlay-chip strong{display:block;font-size:12px;line-height:1;color:var(--gunmetal);text-transform:uppercase;letter-spacing:.08em}
+    .overlay-mark span,.overlay-chip span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+    .overlay-chip{
+      padding:10px 12px;border-radius:16px;background:linear-gradient(135deg, rgba(245,157,10,.95), rgba(255,140,0,.92));
+      color:white;border:1px solid rgba(255,255,255,.3);box-shadow:0 12px 24px rgba(245,157,10,.28);min-width:110px
+    }
+    .service-card:hover img,.event-card:hover img{transform:scale(1.04);filter:saturate(1.02)}
+    .service-card:hover .brand-overlay,.event-card:hover .brand-overlay{transform:translateY(-2px)}
+    .service-card .brand-overlay,.event-card .brand-overlay{transition:transform .25s ease}
+
+    .service-card h3{margin:0;font-size:19px}
+    .service-card p{margin:0;color:var(--muted)}
+    .bullet-list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+    .bullet-list li{display:flex;gap:10px;color:#334155;font-size:14px}
+    .bullet-list li::before{
+      content:"✓";width:20px;height:20px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);
+      display:inline-grid;place-items:center;flex:0 0 20px;font-size:12px;font-weight:700;margin-top:1px;
     }
 
-    .map-pin.one { top: 32%; left: 24%; }
-    .map-pin.two { bottom: 26%; right: 22%; }
+    .product-layout{display:grid;grid-template-columns:1.12fr .88fr;gap:18px}
+    .product-card,.section-card,.about-card,.contact-card,.doc-card,.docs-sidebar,.docs-callout{padding:24px}
+    .product-hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;align-items:start}
+    .product-hero img{width:100%;aspect-ratio:1/1;object-fit:contain;padding:18px;background:var(--surface-2);border:1px solid var(--line);border-radius:18px}
+    .product-hero .fallback{width:100%;aspect-ratio:1/1;display:none;align-items:center;justify-content:center;text-align:center;background:var(--surface-2);border:1px dashed rgba(201,162,74,.35);border-radius:18px;color:var(--muted);padding:20px}
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    .badge{padding:8px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:13px;color:#3d4857}
+    .product-card h3,.doc-card h3,.docs-sidebar h3{margin:0 0 10px;font-size:30px}
+    .product-card p,.doc-card p,.docs-sidebar p,.docs-callout p{margin:0;color:var(--muted)}
 
-    .full-bleed {
-      background: linear-gradient(180deg, #101114, #17181c);
-      color: white;
+    .product-subgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+    .mini-spec{padding:16px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line)}
+    .mini-spec strong{display:block;color:var(--brand-strong);margin-bottom:4px}
+    .mini-spec span{color:var(--muted);font-size:14px}
+
+    .docs-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:18px}
+    .docs-sidebar{display:grid;gap:14px;align-content:start}
+    .doc-nav{display:grid;gap:10px}
+    .doc-link{display:flex;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line);color:var(--text);transition:.2s ease}
+    .doc-link:hover{border-color:rgba(201,162,74,.35);transform:translateY(-1px)}
+    .doc-link span:last-child{color:var(--brand-strong)}
+    .docs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .doc-card h4{margin:0 0 10px;font-size:20px}
+    .doc-card .doc-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:12px;color:var(--muted);font-size:12px}
+    .docs-callout{margin-top:16px;background:linear-gradient(180deg, rgba(245,157,10,.12), rgba(255,255,255,.95));border:1px solid rgba(245,157,10,.2)}
+    .docs-callout h4{margin:0 0 8px;font-size:22px;color:var(--brand-strong)}
+
+    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .event-card{overflow:hidden}
+    .event-card img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#fff3e1;border-bottom:1px solid var(--line);transition:transform .35s ease, filter .35s ease}
+    .event-body{padding:18px}
+    .event-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:10px}
+    .event-type{padding:6px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);font-weight:700}
+    .event-card h3{margin:0 0 8px;font-size:20px}
+    .event-card p{margin:0 0 14px;color:var(--muted)}
+
+    .about-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+    .about-card h3,.contact-card h3{margin:0 0 12px;font-size:24px}
+    .about-card p{margin:0 0 14px;color:var(--muted)}
+
+    form{display:grid;gap:14px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{display:grid;gap:8px;font-size:14px;font-weight:600}
+    input,select,textarea{width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:#ffffff;color:var(--text)}
+    textarea{min-height:140px;resize:vertical}
+    input::placeholder, textarea::placeholder{color:#94a3b8}
+
+
+    .btn.ar-link{
+      background:linear-gradient(135deg, var(--brand), var(--brand-strong));
+      border-color:transparent;
+      color:#fff;
+      box-shadow:0 12px 26px rgba(245,157,10,.24);
     }
+    .btn.ar-link:hover{background:linear-gradient(135deg, var(--brand-strong), var(--brand-deep));}
 
-    .full-bleed .section-head p,
-    .full-bleed .spec-copy p,
-    .full-bleed .story-copy p,
-    .full-bleed .spec-list li,
-    .full-bleed .story-kicker {
-      color: rgba(255,255,255,0.75);
+    .blog-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .blog-card{padding:24px}
+    .blog-card h3{margin:0 0 10px;font-size:28px}
+    .blog-card p{margin:0;color:var(--muted)}
+    .blog-list{display:grid;gap:12px;margin-top:18px}
+    .blog-item{
+      display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+      padding:16px 18px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line);
+      transition:.2s ease;
     }
+    .blog-item:hover{transform:translateY(-2px);border-color:rgba(245,157,10,.32)}
+    .blog-item strong{display:block;font-size:17px;margin-bottom:6px}
+    .blog-item span{display:block;color:var(--muted);font-size:14px;max-width:44ch}
+    .blog-tag{white-space:nowrap;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid rgba(245,157,10,.24);color:var(--brand-strong);font-size:12px;font-weight:700}
+    .blog-aside{display:grid;gap:16px}
+    footer{margin-top:24px;padding:28px 0 40px;border-top:1px solid var(--line);background:rgba(255,255,255,.7)}
+    .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:14px}
+    .footer-links{display:flex;gap:14px;flex-wrap:wrap}
 
-    .story-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 36px;
-      align-items: center;
+    @media (max-width: 1080px){
+      .hero-grid,.product-layout,.about-layout,.intro-grid,.product-hero,.docs-layout,.blog-grid{grid-template-columns:1fr}
+      .services-grid,.events-grid,.docs-grid{grid-template-columns:repeat(2,1fr)}
     }
-
-    .story-visual {
-      min-height: 640px;
-      border-radius: 36px;
-      background:
-        radial-gradient(circle at 50% 20%, rgba(255,122,0,0.22), transparent 30%),
-        linear-gradient(180deg, #1d1f24 0%, #0e0f12 100%);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.24);
-      position: relative;
-      overflow: hidden;
-      padding: 24px;
+    @media (max-width: 760px){
+      .nav-links{display:none!important}
+      .menu-btn{display:inline-flex}
+      .hero-copy,.product-card,.section-card,.about-card,.contact-card,.doc-card,.docs-sidebar,.docs-callout{padding:20px}
+      .hero-stats,.field-grid,.services-grid,.events-grid,.docs-grid,.product-subgrid{grid-template-columns:1fr}
+      .topbar .container,.section-header,.footer-inner{align-items:flex-start}
     }
-
-    .story-device-stack {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .story-device-stack .device {
-      transform: scale(0.9) rotate(-8deg) translateX(-40px);
-      opacity: 0.88;
-    }
-
-    .story-device-stack .device:nth-child(2) {
-      position: absolute;
-      transform: scale(0.95) rotate(10deg) translateX(72px) translateY(22px);
-      opacity: 0.58;
-      filter: blur(0.4px);
-    }
-
-    .story-kicker {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .story-copy h2 {
-      margin: 0 0 16px;
-      font-size: clamp(40px, 5vw, 76px);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-    }
-
-    .story-copy p {
-      margin: 0 0 18px;
-      font-size: 20px;
-      line-height: 1.65;
-      letter-spacing: -0.02em;
-    }
-
-    .specs-wrap {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 30px;
-      align-items: start;
-    }
-
-    .spec-copy h2 {
-      margin: 0 0 12px;
-      font-size: clamp(38px, 4vw, 62px);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
-    }
-
-    .spec-copy p {
-      margin: 0;
-      font-size: 19px;
-      line-height: 1.65;
-    }
-
-    .spec-panel {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 30px;
-      overflow: hidden;
-    }
-
-    .spec-row {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 20px;
-      padding: 22px 24px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .spec-row:first-child { border-top: 0; }
-
-    .spec-row span {
-      color: rgba(255,255,255,0.52);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .spec-row strong {
-      font-size: 17px;
-      line-height: 1.5;
-      font-weight: 600;
-    }
-
-    .cta {
-      padding: 110px 0 120px;
-      text-align: center;
-      background: linear-gradient(180deg, #ffffff 0%, #faf7f3 100%);
-    }
-
-    .cta-card {
-      max-width: 940px;
-      margin: 0 auto;
-      padding: 54px 28px;
-      border-radius: 36px;
-      background: linear-gradient(180deg, #ffffff, #f7f3ee);
-      border: 1px solid rgba(17,17,17,0.08);
-      box-shadow: var(--shadow);
-    }
-
-    .cta-card h2 {
-      margin: 0 0 12px;
-      font-size: clamp(38px, 6vw, 78px);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-    }
-
-    .cta-card p {
-      margin: 0 auto 24px;
-      max-width: 700px;
-      color: #44444b;
-      font-size: 20px;
-      line-height: 1.65;
-      letter-spacing: -0.02em;
-    }
-
-    footer {
-      padding: 28px 0 42px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 1060px) {
-      .hero-wrap,
-      .split,
-      .story-grid,
-      .specs-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .device-stage {
-        min-height: auto;
-      }
-
-      .story-visual {
-        min-height: 520px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 42px;
-      }
-
-      .hero-wrap {
-        min-height: auto;
-        gap: 28px;
-      }
-
-      .hero-copy h1 {
-        font-size: clamp(46px, 18vw, 76px);
-      }
-
-      .hero-copy .subhead,
-      .section-head p,
-      .story-copy p,
-      .spec-copy p,
-      .cta-card p {
-        font-size: 17px;
-      }
-
-      .feature-card {
-        min-height: 500px;
-        padding: 24px;
-      }
-
-      .feature-visual {
-        left: 24px;
-        right: 24px;
-        bottom: 24px;
-        height: 220px;
-      }
-
-      .device {
-        width: min(330px, 96%);
-      }
-
-      .section {
-        padding: 76px 0;
-      }
-
-      .spec-row {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-card {
-        padding: 42px 20px;
-      }
+    @media (min-width: 761px){
+      .menu-btn,.mobile-drawer{display:none!important}
+      .nav-links{display:flex}
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <a href="#top" class="brand" aria-label="NodeBlk home">
-        <div class="brand-mark"></div>
-        <div>
-          <span class="brand-wordmark">NodeBlk</span>
-          <small>by RoboTechi</small>
+  <div class="topbar">
+    <div class="container">
+      <div class="mono">Computer Repair • Hardware/Software Development • Web Design</div>
+      <div class="mono">RoboTechi maker workflows, product pages, and docs inspired by Arduino-style clarity</div>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="RoboTechi Home">
+          <img src="rtlogo.png" alt="RoboTechi logo">
+          <div>
+            <p class="brand-name">RoboTechi</p>
+            <p class="brand-sub mono">White • Gunmetal • Orange</p>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#products">Products</a>
+          <a href="#docs">Docs</a>
+          <a href="#blog">Blog</a>
+          <a href="#events">Events</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileDrawer">Menu</button>
+          <a class="btn ar-link" href="https://odotofrva.github.io/OdotNYC-AR/" target="_blank" rel="noopener">AR-OdotNYC</a>
+          <a class="btn primary" href="#contact">Get a Quote</a>
         </div>
-      </a>
+      </div>
 
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#overview">Overview</a>
-        <a href="#features">Features</a>
-        <a href="#story">Why NodeBlk</a>
-        <a href="#prototype">Prototype</a>
-        <a href="#specs">Specs</a>
-        <a href="#investors">Investors</a>
-      </nav>
-
-      <a class="btn btn-secondary" href="#cta">Partner With Us</a>
+      <div class="mobile-drawer" id="mobileDrawer">
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#docs">Docs</a>
+        <a href="#blog">Blog</a>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="https://odotofrva.github.io/OdotNYC-AR/" target="_blank" rel="noopener">AR-OdotNYC</a>
+      </div>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero" id="overview">
-      <div class="container hero-wrap">
-        <div class="hero-copy">
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Portable intelligence by RoboTechi
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">RoboTechi Co.</span>
+            <h1>Build smarter hardware and digital products with RoboTechi.</h1>
+   
+            <div class="hero-actions">
+              <a class="btn primary" href="#products">Explore Thumbtroller</a>
+              <a class="btn secondary" href="#docs">Open Docs</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat"><strong>3</strong><span>Focused service lanes</span></div>
+              <div class="stat"><strong>1</strong><span>Featured product page</span></div>
+              <div class="stat"><strong>4</strong><span>Starter documentation panels</span></div>
+            </div>
           </div>
 
-          <h1><span class="hero-wordmark">NodeBlk</span></h1>
-          <p class="subhead">
-            A handheld, offline-first resilience device with a display and keyboard —
-            built to deliver emergency guidance, survival knowledge, and community-centered
-            tools when networks fail and critical systems go dark.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#features" class="btn btn-primary">Explore NodeBlk</a>
-            <a href="#story" class="btn btn-secondary">See the vision</a>
-          </div>
-
-          <div class="hero-meta">
-            <span>Offline-first</span>
-            <span>Display + keyboard</span>
-            <span>LilyGO T-Deck prototype path</span>
-            <span>Community-focused design</span>
+          <div class="hero-media">
+            <div class="hero-media-top">
+              <div>
+                <h2>What We Create</h2>
+                <p class="mono">Repairs • Prototype Builds • Product Docs</p>
+              </div>
+              <div class="mono" style="color:var(--muted)">DREAM • PLAN • CREATE</div>
+            </div>
+            <div class="video-shell">
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID"
+                title="RoboTechi Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
           </div>
         </div>
 
-        <div class="device-stage" aria-hidden="true">
-          <div class="device-glow"></div>
-          <div class="device">
-            <div class="device-screen">
-              <div class="screen-ui">
+        <div class="intro-strip">
+          <div class="intro-grid">
+            <div class="mini-panel">
+              <h3>About RoboTechi</h3>
+              <p>RoboTechi is the technology division within the OdotNYC ecosystem — focused on electronics, modern embedded systems, hardware concepts, creative coding, and educational innovation for the next wave of builders.</p>
+            </div>
+            <div class="mini-panel thumb-card">
+              <h4>Featured Product</h4>
+              <img src="thumbtroller.png" alt="Thumbtroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="fallback">Thumbtroller image placeholder</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Services</h2>
+            <p>Tap a service to prefill the quote form below.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card" tabindex="0" role="button" data-service="Computer Repair">
+            <div class="service-media">
+              <img src="pcrepair.png" alt="Computer Repair" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display:none"><span>Computer Repair</span><small>Image placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Repair Service</span></div>
+                </div>
+                <div class="overlay-chip"><strong>Fast Support</strong><span>PC / Laptop Care</span></div>
+              </div>
+            </div>
+            <div class="service-icon">PC</div>
+            <h3>Computer Repair</h3>
+            <p>Diagnostics, upgrades, cleanup, optimization, and support for personal systems or small teams.</p>
+            <ul class="bullet-list">
+              <li>Hardware upgrades + installs</li>
+              <li>OS repair + basic recovery support</li>
+              <li>Maintenance plans for creators and small businesses</li>
+            </ul>
+          </article>
+
+          <article class="service-card" tabindex="0" role="button" data-service="Hardware/Software Development">
+            <div class="service-media">
+              <img src="softwaredev.png" alt="Hardware and Software Development" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display:none"><span>Hardware / Software Development</span><small>Image placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Build Systems</span></div>
+                </div>
+                <div class="overlay-chip"><strong>Prototype Ready</strong><span>Hardware + Code</span></div>
+              </div>
+            </div>
+            <div class="service-icon">DEV</div>
+            <h3>Hardware/Software Development</h3>
+            <p>Concept-to-prototype builds covering embedded hardware, PCB workflows, firmware, tools, and supporting software systems.</p>
+            <ul class="bullet-list">
+              <li>Schematics, PCB layout, and prototype bring-up</li>
+              <li>Firmware, interfaces, and MVP utility builds</li>
+              <li>Build notes, BOM thinking, and handoff-ready direction</li>
+            </ul>
+          </article>
+
+          <article class="service-card" tabindex="0" role="button" data-service="Web Design">
+            <div class="service-media">
+              <img src="webdev.png" alt="Web Design" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder" style="display:none"><span>Web Design</span><small>Image placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Digital Presence</span></div>
+                </div>
+                <div class="overlay-chip"><strong>Clean UX</strong><span>Web Launch</span></div>
+              </div>
+            </div>
+            <div class="service-icon">WEB</div>
+            <h3>Web Design</h3>
+            <p>Modern websites that feel clean, premium, and easy to navigate across desktop and mobile.</p>
+            <ul class="bullet-list">
+              <li>Landing pages + branded portfolio sites</li>
+              <li>Layout refreshes and UX cleanup</li>
+              <li>Product storytelling and contact funnels</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Products in Development</h2>
+            <p>A more complete Arduino-style product section for your current featured build, paired with practical device support messaging.</p>
+          </div>
+        </div>
+
+        <div class="product-layout">
+          <article class="product-card">
+            <div class="product-hero">
+              <div>
+                <img src="thumbtroller.png" alt="Thumbtroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="fallback">Thumbtroller image placeholder</div>
+              </div>
+              <div>
+                <span class="eyebrow">In Development</span>
+                <h3>Thumbtroller</h3>
+                <p>Thumbtroller is a RoboTechi controller concept inspired by the classic NES profile, rebuilt with thumb-stick control for smoother movement and a more modern feel. This section now reads more like a real product page with highlights, use cases, and quick specs.</p>
+                <div class="badge-row">
+                  <span class="badge">Thumb Stick Input</span>
+                  <span class="badge">NES-Inspired Shell</span>
+                  <span class="badge">Prototype Build</span>
+                  <span class="badge">Maker Showcase</span>
+                </div>
+                <ul class="bullet-list">
+                  <li>Compact controller layout for early prototyping</li>
+                  <li>Built to showcase RoboTechi hardware design direction</li>
+                  <li>Easy to expand with board photos, CAD views, or BOM notes later</li>
+                </ul>
+                <div class="hero-actions" style="margin-top:18px">
+                  <a class="btn primary" href="#docs">View product docs</a>
+                  <a class="btn secondary" href="#contact">Ask about this build</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-subgrid">
+              <div class="mini-spec">
+                <strong>Intended feel</strong>
+                <span>Retro-inspired handheld control with modern thumb navigation.</span>
+              </div>
+              <div class="mini-spec">
+                <strong>Use case</strong>
+                <span>Prototype controller concepts, showcases, and maker demos.</span>
+              </div>
+              <div class="mini-spec">
+                <strong>Next build step</strong>
+                <span>Board revision, enclosure testing, and button placement refinement.</span>
+              </div>
+              <div class="mini-spec">
+                <strong>Future add-ons</strong>
+                <span>Assembly guide, firmware notes, gallery, and rev history.</span>
+              </div>
+            </div>
+          </article>
+
+          <aside class="section-card">
+            <h3 style="margin-top:0;font-size:24px">Basic maintenance support</h3>
+            <ul class="bullet-list">
+              <li>Computer tune-ups, cleanup, and upgrade guidance</li>
+              <li>Tablet troubleshooting for charging, performance, and setup issues</li>
+              <li>Smartphone maintenance support for storage, software, and everyday optimization</li>
+            </ul>
+
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="docs">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Documentation</h2>
+            
+          </div>
+        </div>
+
+        <div class="docs-layout">
+          <aside class="docs-sidebar">
+            <h3 style="font-size:24px">RoboTechi Docs</h3>
+
+            <div class="doc-nav">
+              <a class="doc-link" href="#doc-overview"><span>Overview</span><span>01</span></a>
+              <a class="doc-link" href="#doc-setup"><span>Getting Started</span><span>02</span></a>
+              <a class="doc-link" href="#doc-hardware"><span>Hardware Notes</span><span>03</span></a>
+              <a class="doc-link" href="#doc-roadmap"><span>Roadmap</span><span>04</span></a>
+            </div>
+          </aside>
+
+          <div>
+            <div class="docs-grid">
+              <article class="doc-card" id="doc-overview">
+                <div class="doc-meta">
+                  <span class="eyebrow">Overview</span>
+                  <span class="mono">Thumbtroller / v0</span>
+                </div>
+                <h4>Project Overview</h4>
+                <p>...</p>
+                <div class="badge-row">
+                  <span class="badge">Summary</span>
+                  <span class="badge">Vision</span>
+                </div>
+              </article>
+
+              <article class="doc-card" id="doc-setup">
+                <div class="doc-meta">
+                  <span class="eyebrow">Getting Started</span>
+                  <span class="mono">New users</span>
+                </div>
+                <h4>Quick Start</h4>
+                <p>...</p>
+                <div class="badge-row">
+                  <span class="badge">Setup</span>
+                  <span class="badge">Tools</span>
+                </div>
+              </article>
+
+              <article class="doc-card" id="doc-hardware">
+                <div class="doc-meta">
+                  <span class="eyebrow">Hardware</span>
+                  <span class="mono">Build notes</span>
+                </div>
+                <h4>Hardware Notes</h4>
+                <p>...</p>
+                <div class="badge-row">
+                  <span class="badge">PCB</span>
+                  <span class="badge">Inputs</span>
+                </div>
+              </article>
+
+              <article class="doc-card" id="doc-roadmap">
+                <div class="doc-meta">
+                  <span class="eyebrow">Roadmap</span>
+                  <span class="mono">Forward path</span>
+                </div>
+                <h4>Roadmap & Revisions</h4>
+                <p>...</p>
+                <div class="badge-row">
+                  <span class="badge">Milestones</span>
+                  <span class="badge">Revisions</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="blog">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>From the RoboTechi Blog</h2>
+            <p>Thoughts, project updates, and creative-tech writing from Almighty Odot on Medium.</p>
+          </div>
+          <a class="btn secondary" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">Visit Medium</a>
+        </div>
+
+        <div class="blog-grid">
+          <article class="section-card blog-card">
+            <span class="eyebrow">RoboTechi Journal of OdotNYC</span>
+            <h3>A blog lane for maker culture, product thinking, and tech creativity.</h3>
+            <p>Step into the world of RoboTechi where tech, creativity, and real-life building collide. From hands-on experiments in electronics and AR/VR to raw insights on startup growth and digital culture, this blog is a behind-the-scenes look at innovation in motion. Tap in and build with the vision.</p>
+            <div class="blog-list">
+              <a class="blog-item" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">
                 <div>
-                  <div class="screen-top">
-                    <span>NODEBLK OS</span>
-                    <span>87%</span>
-                  </div>
-
-                  <div class="screen-card">
-                    <h3>Action, ready.</h3>
-                    <p>
-                      Fast access to water, power, emergency, and community coordination
-                      guidance — directly on-device, even without signal.
-                    </p>
-                  </div>
-
-                  <div class="screen-modules">
-                    <div class="screen-module">
-                      <span>Mode</span>
-                      <strong>Resilience OS</strong>
-                    </div>
-                    <div class="screen-module">
-                      <span>Access</span>
-                      <strong>Emergency Guides</strong>
-                    </div>
-                    <div class="screen-module">
-                      <span>Input</span>
-                      <strong>Keyboard + tactile nav</strong>
-                    </div>
-                    <div class="screen-module">
-                      <span>Focus</span>
-                      <strong>Community resilience</strong>
-                    </div>
-                  </div>
+                  <strong>Read the latest posts on Medium</strong>
+                  <span>Open your full RoboTechi writing hub for updates, reflections, and project notes.</span>
                 </div>
-
-                <div class="screen-top">
-                  <span>Portable Intelligence</span>
-                  <span>RBT-01</span>
+                <span class="blog-tag">Medium</span>
+              </a>
+              <div class="blog-item">
+                <div>
+                  <strong>What this section can feature later</strong>
+                  <span>Recent build logs, event recaps, educational writeups, product diaries, and hardware lessons for your audience.</span>
                 </div>
+                <span class="blog-tag">Ideas</span>
               </div>
             </div>
+          </article>
 
-            <div class="device-controls">
-              <div class="control-pad"><div class="dpad"></div></div>
-              <div class="control-center">
-                <div class="center-pills">
-                  <div class="pill"></div>
-                  <div class="pill"></div>
-                </div>
-              </div>
-              <div class="control-actions">
-                <div class="actions">
-                  <div class="action-btn"></div>
-                  <div class="action-btn"></div>
-                  <div class="action-btn"></div>
-                  <div class="action-btn"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
-
-      <div class="container scroll-note">Built for resilience. Built for real life.</div>
     </section>
 
-    <section class="section" id="features">
+    <section id="events">
       <div class="container">
-        <div class="section-head">
-          <h2>Built for the moments systems break down.</h2>
-          <p>
-            NodeBlk combines a handheld device, offline-first software, and practical
-            guidance to deliver clarity under pressure for both investors evaluating the
-            opportunity and communities who need the product most.
-          </p>
+        <div class="section-header">
+          <div>
+            <h2>RoboTechi Events</h2>
+            <p>Workshops, pop-ups, and community builds.</p>
+          </div>
         </div>
 
-        <div class="split">
-          <article class="feature-card">
-            <span class="feature-label">Offline-first system</span>
-            <h3>Your essential library, always within reach.</h3>
-            <p>
-              Access curated guides for water, food, first response, power, communication,
-              and local preparedness — all stored directly on-device for use when internet
-              access is limited or unavailable.
-            </p>
-            <div class="feature-visual">
-              <div class="feature-grid-ui">
-                <div class="mini-card">
-                  <span>Library</span>
-                  <strong>Water, food, shelter, first aid, and emergency response guides</strong>
+        <div class="events-grid">
+          <article class="event-card">
+            <div class="event-media">
+              <img src="RealmOfMakers.png" alt="Realm Of Makers flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="image-placeholder event-placeholder" style="display:none"><span>Realm Of Makers</span><small>Event flyer placeholder</small></div>
+              <div class="brand-overlay">
+                <div class="overlay-mark">
+                  <img src="rtlogo.png" alt="RoboTechi mark">
+                  <div><strong>RoboTechi</strong><span>Community Event</span></div>
                 </div>
-                <div class="mini-card">
-                  <span>Knowledge</span>
-                  <strong>Localized, community-centered information with fast on-device access</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Utility</span>
-                  <strong>Designed to be readable and usable under pressure</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Updates</span>
-                  <strong>Expandable with future regional packs and preparedness modules</strong>
-                </div>
+                <div class="overlay-chip"><strong>Maker Meetup</strong><span>NYC Build Night</span></div>
+              </div>
+            </div>
+            <div class="event-body">
+              <div class="event-meta">
+                <span class="event-type">Meetup</span>
+                <span class="mono">TBA • 2026</span>
+              </div>
+              <h3>Realm Of Makers</h3>
+              <p>Realm Of Makers is a creative meetup designed for builders, innovators, and tech enthusiasts who love working with AdaFruit, Arduino, and Raspberry Pi devices.</p>
+              <div class="badge-row">
+                <span class="badge">NYC</span>
+                <span class="badge">Time TBA</span>
               </div>
             </div>
           </article>
 
-          <article class="feature-card">
-            <span class="feature-label">Real-world guidance</span>
-            <h3>Hardware people can trust in uncertain situations.</h3>
-            <p>
-              The prototype direction uses a LilyGO T-Deck style platform with an integrated
-              display and keyboard, allowing NodeBlk to feel immediate, tangible, and ready
-              for investor demos as well as real-world field use.
-            </p>
-            <div class="feature-visual">
-              <div class="map-visual">
-                <div class="map-route"></div>
-                <div class="map-pin one"></div>
-                <div class="map-pin two"></div>
+          <article class="event-card">
+            <img src="IntroToCircuits.png" alt="Intro To Circuits flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder event-placeholder" style="display:none"><span>Intro To Circuits</span><small>Event flyer placeholder</small></div>
+            <div class="event-body">
+              <div class="event-meta">
+                <span class="event-type">Meetup</span>
+                <span class="mono">TBD • 2026</span>
+              </div>
+              <h3>Intro To Circuits</h3>
+              <p>A hands-on beginner workshop focused on electronics fundamentals, practical experimentation, and project-based learning with RoboTechi.</p>
+              <div class="badge-row">
+                <span class="badge">Brooklyn, New York</span>
+                <span class="badge">Time TBA</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <img src="InnovateConcrete.png" alt="Innovate Concrete flyer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="image-placeholder event-placeholder" style="display:none"><span>Innovate Concrete</span><small>Event flyer placeholder</small></div>
+            <div class="event-body">
+              <div class="event-meta">
+                <span class="event-type">Community</span>
+                <span class="mono">TBD • 2026</span>
+              </div>
+              <h3>Innovate Concrete</h3>
+              <p>A collaborative ideation event where creators and builders work on tech solutions that strengthen and uplift the community.</p>
+              <div class="badge-row">
+                <span class="badge">Online / Hybrid</span>
+                <span class="badge">Time TBA</span>
               </div>
             </div>
           </article>
@@ -1020,261 +811,143 @@
       </div>
     </section>
 
-    <section class="section full-bleed" id="story">
-      <div class="container story-grid">
-        <div class="story-copy">
-          <div class="story-kicker">Why NodeBlk</div>
-          <h2>Technology should serve the people who are helped last.</h2>
-          <p>
-            NodeBlk was shaped by the aftermath of Hurricane Helene in Asheville, North Carolina,
-            where outages in cellular service, fuel access, and clean water exposed just how fragile
-            daily systems can become.
-          </p>
-          <p>
-            It also exposed a deeper inequity: African American and underprivileged communities were
-            often left waiting longer for support while tourist-centered areas recovered first. NodeBlk
-            responds to that gap with a handheld device focused on resilience, access, and practical
-            knowledge that stays available even when infrastructure does not.
-          </p>
-        </div>
-
-        <div class="story-visual" aria-hidden="true">
-          <div class="story-device-stack">
-            <div class="device">
-              <div class="device-screen">
-                <div class="screen-ui">
-                  <div>
-                    <div class="screen-top"><span>ACCESS</span><span>LOCAL</span></div>
-                    <div class="screen-card">
-                      <h3>Find clarity.</h3>
-                      <p>Focused information, less noise, and a tighter path to action.</p>
-                    </div>
-                  </div>
-                  <div class="screen-top"><span>NodeBlk</span><span>Ready</span></div>
-                </div>
-              </div>
-              <div class="device-controls">
-                <div class="control-pad"><div class="dpad"></div></div>
-                <div class="control-center"><div class="center-pills"><div class="pill"></div><div class="pill"></div></div></div>
-                <div class="control-actions"><div class="actions"><div class="action-btn"></div><div class="action-btn"></div><div class="action-btn"></div><div class="action-btn"></div></div></div>
-              </div>
-            </div>
-            <div class="device">
-              <div class="device-screen"></div>
-              <div class="device-controls"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-    <section class="section" id="prototype">
+    <section id="about">
       <div class="container">
-        <div class="section-head">
-          <h2>A prototype investors can understand in minutes.</h2>
-          <p>
-            NodeBlk is being prototyped around the LilyGO T-Deck — a compact platform that gives
-            us a display, keyboard, portable form factor, and a fast path to a credible investor demo.
-          </p>
+        <div class="section-header">
+          <div>
+            <h2>About RoboTechi</h2>
+            <p>Maker-first. Results always.</p>
+          </div>
         </div>
 
-        <div class="split">
-          <article class="feature-card">
-            <span class="feature-label">Prototype workflow</span>
-            <h3>Move from concept to demonstration fast.</h3>
-            <p>
-              The immediate goal is a polished MVP: boot screen, menu navigation, offline knowledge
-              categories, and a tactile interface that proves the product direction without waiting on
-              a full custom hardware cycle.
-            </p>
-            <div class="feature-visual">
-              <div class="feature-grid-ui">
-                <div class="mini-card">
-                  <span>Step 01</span>
-                  <strong>Flash the T-Deck and validate display + keyboard input</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Step 02</span>
-                  <strong>Build the NodeBlk UI flow and offline guide system</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Step 03</span>
-                  <strong>Package the prototype in a premium branded enclosure</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Step 04</span>
-                  <strong>Capture product photos, video, and investor-facing assets</strong>
-                </div>
-              </div>
+        <div class="about-layout">
+          <article class="about-card">
+            <h3>Tech that empowers people.</h3>
+            <p>RoboTechi is built for builders, students, creators, small businesses, and community programs. The mission is to make electronics and modern web tech accessible, practical, and professional.</p>
+            <p>Whether you need a repair, a prototype brought to life, or a clean website that helps sell your idea, RoboTechi delivers with documentation and a strong handoff.</p>
+            <div class="badge-row">
+              <span class="badge">Electronics</span>
+              <span class="badge">Prototyping</span>
+              <span class="badge">Web Design</span>
+              <span class="badge">Documentation</span>
             </div>
           </article>
 
-          <article class="feature-card">
-            <span class="feature-label">What the MVP shows</span>
-            <h3>Small device. Clear proof.</h3>
-            <p>
-              The prototype is designed to communicate value quickly: water and food guidance, emergency
-              response steps, power and energy references, and community coordination tools — all available
-              offline on a handheld device built for resilience.
-            </p>
-            <div class="feature-visual">
-              <div class="feature-grid-ui">
-                <div class="mini-card">
-                  <span>Boot</span>
-                  <strong>NodeBlk OS startup experience with clear brand identity</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Menu</span>
-                  <strong>Fast navigation through essential survival and preparedness modules</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Interface</span>
-                  <strong>Readable screen layouts with tactile keyboard-driven control</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Demo</span>
-                  <strong>Investor-ready proof of product, mission, and market direction</strong>
-                </div>
+          <article class="contact-card" id="contact">
+            <h3>Request a Quote</h3>
+            <form id="contactForm">
+              <div class="field-grid">
+                <label>
+                  Name
+                  <input id="name" name="name" autocomplete="name" placeholder="Your name" required>
+                </label>
+                <label>
+                  Email
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>
+                </label>
               </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section class="section full-bleed" id="specs">
-      <div class="container specs-wrap">
-        <div class="spec-copy">
-          <h2>Prototype specifications, grounded in a real build path.</h2>
-          <p>
-            The first investor-facing NodeBlk unit is centered around the LilyGO T-Deck and
-            a focused offline software experience. The goal is not final manufacturing yet —
-            it is a credible, compelling proof of product and market need.
-          </p>
-        </div>
+              <label>
+                Service
+                <select id="service" name="service">
+                  <option>Computer Repair</option>
+                  <option>Hardware/Software Development</option>
+                  <option>Web Design</option>
+                </select>
+              </label>
 
-        <div class="spec-panel">
-          <div class="spec-row">
-            <span>Category</span>
-            <strong>Handheld resilience device / offline-first knowledge platform</strong>
-          </div>
-          <div class="spec-row">
-            <span>Core focus</span>
-            <strong>Offline access, emergency guidance, preparedness tools, localized support</strong>
-          </div>
-          <div class="spec-row">
-            <span>Interface</span>
-            <strong>Integrated display, physical keyboard, tactile navigation, low-distraction UI</strong>
-          </div>
-          <div class="spec-row">
-            <span>System vision</span>
-            <strong>LilyGO T-Deck based MVP with expandable offline modules and future custom hardware path</strong>
-          </div>
-          <div class="spec-row">
-            <span>Designed by</span>
-            <strong>RoboTechi within the OdotNYC ecosystem</strong>
-          </div>
-        </div>
-      </div>
-    </section>
+              <label>
+                Project details
+                <textarea id="message" name="message" placeholder="What do you need? Timeline? Budget range?"></textarea>
+              </label>
 
-
-    <section class="section" id="investors">
-      <div class="container">
-        <div class="section-head">
-          <h2>Built for community impact. Positioned for growth.</h2>
-          <p>
-            NodeBlk is being developed as a startup-ready platform that can speak to multiple audiences:
-            communities that need preparedness tools, institutions that need resilience solutions, and
-            investors looking for a mission-driven hardware + software opportunity.
-          </p>
-        </div>
-
-        <div class="split">
-          <article class="feature-card">
-            <span class="feature-label">Why it matters</span>
-            <h3>A clear problem with a lived-experience origin.</h3>
-            <p>
-              NodeBlk is rooted in firsthand disaster experience and a visible service gap in how recovery
-              reaches underserved communities. That gives the product a story, a purpose, and a credible
-              reason to exist beyond trend-driven hardware.
-            </p>
-            <div class="feature-visual">
-              <div class="feature-grid-ui">
-                <div class="mini-card">
-                  <span>Need</span>
-                  <strong>Disaster response information often disappears when connectivity fails</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Gap</span>
-                  <strong>Underserved communities can be last to receive resources and support</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Answer</span>
-                  <strong>Portable, offline access to practical community-centered knowledge</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Vision</span>
-                  <strong>A scalable resilience platform beyond the first prototype</strong>
-                </div>
+              <div class="hero-actions" style="margin-top:0">
+                <button class="btn primary" type="submit">Send Request</button>
               </div>
-            </div>
+            </form>
           </article>
-
-          <article class="feature-card">
-            <span class="feature-label">Who it serves</span>
-            <h3>Designed for customers and stakeholders alike.</h3>
-            <p>
-              NodeBlk can be positioned for direct users, nonprofits, schools, emergency preparedness
-              partners, municipalities, and impact-driven funding organizations looking to back resilient
-              community technology.
-            </p>
-            <div class="feature-visual">
-              <div class="feature-grid-ui">
-                <div class="mini-card">
-                  <span>Customer</span>
-                  <strong>Individuals and families preparing for outages and emergencies</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Institution</span>
-                  <strong>Schools, nonprofits, and local resilience programs</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Funding</span>
-                  <strong>Grants, pilot partners, and impact-oriented investors</strong>
-                </div>
-                <div class="mini-card">
-                  <span>Next</span>
-                  <strong>Prototype pilots, content expansion, and future hardware refinement</strong>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="cta">
-      <div class="container">
-        <div class="cta-card">
-          <h2>NodeBlk is ready for its next stage.</h2>
-          <p>
-            A product vision rooted in resilience, equity, and portable intelligence —
-            built to help investors, partners, and future customers see where this platform can go.
-          </p>
-          <div class="hero-actions" style="justify-content:center; margin-bottom:0;">
-            <a href="#top" class="btn btn-primary">Back to top</a>
-            <a href="#investors" class="btn btn-secondary">Review investor case</a>
-          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-row">
-      <div>© 2026 RoboTechi. NodeBlk investor and product concept page.</div>
-      <div>Portable resilience. Real-world utility.</div>
+    <div class="container">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> RoboTechi. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#products">Products</a>
+          <a href="#docs">Docs</a>
+          <a href="#blog">Blog</a>
+          <a href="#events">Events</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileDrawer.style.display === 'block';
+      mobileDrawer.style.display = open ? 'none' : 'block';
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    mobileDrawer?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.style.display = 'none';
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const serviceSelect = document.getElementById('service');
+    const messageBox = document.getElementById('message');
+
+    function focusBooking(serviceName){
+      if(serviceSelect){
+        const options = [...serviceSelect.options].map(opt => opt.value);
+        if(options.includes(serviceName)) serviceSelect.value = serviceName;
+      }
+      if(messageBox && messageBox.value.trim() === ''){
+        messageBox.value = `I'm interested in: ${serviceName}\n\nDetails:\n- What I need help with:\n- Timeline:\n- Budget range:\n`;
+      }
+      document.getElementById('contact')?.scrollIntoView({behavior:'smooth', block:'start'});
+      setTimeout(() => document.getElementById('name')?.focus(), 250);
+    }
+
+    document.querySelectorAll('.service-card').forEach(card => {
+      const serviceName = card.dataset.service;
+      card.addEventListener('click', () => focusBooking(serviceName));
+      card.addEventListener('keydown', event => {
+        if(event.key === 'Enter' || event.key === ' '){
+          event.preventDefault();
+          focusBooking(serviceName);
+        }
+      });
+    });
+
+    document.getElementById('contactForm')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
+
+      const subject = encodeURIComponent(`RoboTechi Quote Request — ${service}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject Details:\n${message}\n`
+      );
+
+      const to = 'YOUR_EMAIL@DOMAIN.COM';
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
