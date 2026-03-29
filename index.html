@@ -347,19 +347,102 @@
     .blog-item span{display:block;color:var(--muted);font-size:14px;max-width:44ch}
     .blog-tag{white-space:nowrap;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid rgba(245,157,10,.24);color:var(--brand-strong);font-size:12px;font-weight:700}
     .blog-aside{display:grid;gap:16px}
+
+    .funnel-shell{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+    .funnel-card{padding:26px;position:relative;overflow:hidden}
+    .funnel-card::before{
+      content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(circle at top right, rgba(245,157,10,.18), transparent 26%),
+        linear-gradient(135deg, rgba(31,39,51,.03), transparent 58%);
+      pointer-events:none;
+    }
+    .funnel-card > *{position:relative;z-index:1}
+    .funnel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .funnel-step{
+      padding:18px;border-radius:20px;border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,241,223,.9));
+      box-shadow:0 14px 28px rgba(31,39,51,.06);
+    }
+    .funnel-step strong{display:block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-strong);margin-bottom:8px}
+    .funnel-step h3{margin:0 0 8px;font-size:20px}
+    .funnel-step p{margin:0;color:var(--muted);font-size:14px}
+    .trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .trust-pill{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.82);border:1px solid rgba(245,157,10,.2);font-size:14px}
+    .trust-pill strong{display:block;color:var(--brand-strong);margin-bottom:4px}
+    .lead-panel{padding:26px;position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(31,39,51,.97), rgba(42,52,68,.94));color:#eef4ff;border:1px solid rgba(245,157,10,.22);box-shadow:0 22px 48px rgba(31,39,51,.18)}
+    .lead-panel::before{
+      content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(245,157,10,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent 34%),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size:auto,auto,28px 28px,28px 28px;
+      pointer-events:none;
+    }
+    .lead-panel > *{position:relative;z-index:1}
+    .lead-panel h3{margin:0 0 10px;font-size:28px;letter-spacing:-.02em}
+    .lead-panel p{margin:0;color:rgba(238,244,255,.76)}
+    .signal-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+    .signal-list li{display:flex;gap:10px;align-items:flex-start;color:#eef4ff}
+    .signal-list li::before{content:"◆";color:var(--brand);font-size:12px;margin-top:4px}
+
+    .blog-grid{grid-template-columns:1.05fr .95fr}
+    .blog-card.futuristic{
+      position:relative;overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(17,24,39,.98), rgba(30,41,59,.94)),
+        linear-gradient(135deg, rgba(245,157,10,.1), transparent 40%);
+      border:1px solid rgba(245,157,10,.22);
+      box-shadow:0 24px 52px rgba(15,23,42,.22);
+      color:#eef4ff;
+    }
+    .blog-card.futuristic::before{
+      content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(circle at top right, rgba(245,157,10,.16), transparent 24%),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size:auto,30px 30px,30px 30px;
+      pointer-events:none;
+      opacity:.9;
+    }
+    .blog-card.futuristic > *{position:relative;z-index:1}
+    .blog-card.futuristic h3{font-size:34px;line-height:1.02}
+    .blog-card.futuristic p{color:rgba(238,244,255,.76)}
+    .blog-console{margin-top:20px;padding:18px;border-radius:20px;border:1px solid rgba(245,157,10,.22);background:rgba(255,255,255,.04);backdrop-filter:blur(6px)}
+    .console-line{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px}
+    .console-line:last-child{border-bottom:none}
+    .console-line span:last-child{color:var(--brand)}
+    .blog-item.futuristic-item{
+      position:relative;overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,247,239,.98));
+      border:1px solid rgba(245,157,10,.18);
+      box-shadow:0 16px 34px rgba(31,39,51,.08);
+    }
+    .blog-item.futuristic-item::after{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+      background:linear-gradient(180deg, var(--brand), var(--brand-strong));
+    }
+    .blog-item.futuristic-item strong{color:var(--gunmetal)}
+    .blog-item.futuristic-item span{color:var(--muted)}
+    .blog-side-note{padding:22px;border-radius:22px;background:linear-gradient(180deg, rgba(255,241,223,.96), rgba(255,255,255,.98));border:1px solid rgba(245,157,10,.18);box-shadow:var(--shadow)}
+    .blog-side-note h4{margin:0 0 10px;font-size:22px;color:var(--brand-strong)}
+    .blog-side-note p{margin:0;color:var(--muted)}
     footer{margin-top:24px;padding:28px 0 40px;border-top:1px solid var(--line);background:rgba(255,255,255,.7)}
     .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:14px}
     .footer-links{display:flex;gap:14px;flex-wrap:wrap}
 
     @media (max-width: 1080px){
-      .hero-grid,.product-layout,.about-layout,.intro-grid,.product-hero,.docs-layout,.blog-grid{grid-template-columns:1fr}
-      .services-grid,.events-grid,.docs-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-grid,.product-layout,.about-layout,.intro-grid,.product-hero,.docs-layout,.blog-grid,.funnel-shell{grid-template-columns:1fr}
+      .services-grid,.events-grid,.docs-grid,.funnel-grid,.trust-row{grid-template-columns:repeat(2,1fr)}
     }
     @media (max-width: 760px){
       .nav-links{display:none!important}
       .menu-btn{display:inline-flex}
-      .hero-copy,.product-card,.section-card,.about-card,.contact-card,.doc-card,.docs-sidebar,.docs-callout{padding:20px}
-      .hero-stats,.field-grid,.services-grid,.events-grid,.docs-grid,.product-subgrid{grid-template-columns:1fr}
+      .hero-copy,.product-card,.section-card,.about-card,.contact-card,.doc-card,.docs-sidebar,.docs-callout,.funnel-card,.lead-panel{padding:20px}
+      .hero-stats,.field-grid,.services-grid,.events-grid,.docs-grid,.product-subgrid,.funnel-grid,.trust-row{grid-template-columns:1fr}
       .topbar .container,.section-header,.footer-inner{align-items:flex-start}
     }
     @media (min-width: 761px){
@@ -389,8 +472,7 @@
 
         <nav class="nav-links" aria-label="Primary">
           <a href="#services">Services</a>
-          <a href="#products">Products</a>
-          <a href="#docs">Docs</a>
+          <a href="#funnel">Start Here</a>
           <a href="#blog">Blog</a>
           <a href="#events">Events</a>
           <a href="#about">About</a>
@@ -406,8 +488,7 @@
 
       <div class="mobile-drawer" id="mobileDrawer">
         <a href="#services">Services</a>
-        <a href="#products">Products</a>
-        <a href="#docs">Docs</a>
+        <a href="#funnel">Start Here</a>
         <a href="#blog">Blog</a>
         <a href="#events">Events</a>
         <a href="#about">About</a>
@@ -426,8 +507,8 @@
             <h1>Build smarter hardware and digital products with RoboTechi.</h1>
    
             <div class="hero-actions">
-              <a class="btn primary" href="#products">Explore RoboTechi</a>
-              <a class="btn secondary" href="#docs">Open Docs</a>
+              <a class="btn primary" href="#funnel">Start Your Project</a>
+              <a class="btn secondary" href="#blog">Enter the Lab Notes</a>
             </div>
           </div>
 
@@ -559,192 +640,114 @@
       </div>
     </section>
 
-    <section id="products">
+    <section id="funnel">
       <div class="container">
         <div class="section-header">
           <div>
-            <h2>Products in Development</h2>
-            <p>A more complete Arduino-style product section centered around NodeBlk, paired with practical device support messaging.</p>
+            <h2>Start Your Build With RoboTechi</h2>
+            <p>A cleaner lead-gen path for clients who need repair, development, or a strong digital presence.</p>
           </div>
         </div>
 
-        <div class="product-layout">
-          <article class="product-card">
-            <div class="product-hero">
-              <div>
-                <img src="front.png" alt="NodeBlk" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="fallback">NodeBlk image placeholder</div>
+        <div class="funnel-shell">
+          <article class="section-card funnel-card">
+            <span class="eyebrow">Lead-Gen Funnel</span>
+            <h3 style="margin:14px 0 10px;font-size:32px">From idea to execution without the confusion.</h3>
+            <p style="margin:0;color:var(--muted)">Whether you need a system repaired, a prototype mapped out, or a site that helps your brand convert, RoboTechi makes the next step clear. This section is built to move visitors from interest to inquiry faster.</p>
+
+            <div class="funnel-grid">
+              <div class="funnel-step">
+                <strong>01 / Discover</strong>
+                <h3>Choose the lane</h3>
+                <p>Visitors quickly identify whether they need computer repair, hardware/software development, or web design support.</p>
               </div>
-              <div>
-                <span class="eyebrow">In Development</span>
-                <h3>NodeBlk</h3>
-                <p>NodeBlk is a pocket-ready RoboTechi device concept built to deliver practical tools, offline-first resources, and community-centered utility in one focused platform. Designed as a modern handheld for learning, preparedness, and accessible information, this section now reads more like a real product page with highlights, use cases, and quick specs.</p>
-                <div class="badge-row">
-                  <span class="badge">Pocket Device</span>
-                  <span class="badge">Offline-First Utility</span>
-                  <span class="badge">Prototype Build</span>
-                  <span class="badge">Community Tech</span>
-                </div>
-                <ul class="bullet-list">
-                  <li>Compact handheld layout designed for portable everyday use</li>
-                  <li>Built to showcase RoboTechi hardware, interface, and product-thinking direction</li>
-                  <li>Easy to expand later with UI screens, board photos, CAD views, and BOM notes</li>
-                </ul>
-                <div class="hero-actions" style="margin-top:18px">
-                  <a class="btn primary" href="#docs">View product docs</a>
-                  <a class="btn secondary" href="#contact">Ask about this build</a>
-                </div>
+              <div class="funnel-step">
+                <strong>02 / Align</strong>
+                <h3>See the fit</h3>
+                <p>Service cards, event activity, and blog credibility give users a stronger reason to trust the brand and inquire.</p>
+              </div>
+              <div class="funnel-step">
+                <strong>03 / Convert</strong>
+                <h3>Request the quote</h3>
+                <p>The quote form becomes the main destination, turning curiosity into a direct project conversation.</p>
               </div>
             </div>
 
-            <div class="product-subgrid">
-              <div class="mini-spec">
-                <strong>Intended feel</strong>
-                <span>A focused, pocketable digital tool built for clarity, speed, and real-world usefulness.</span>
-              </div>
-              <div class="mini-spec">
-                <strong>Use case</strong>
-                <span>Portable access to resources, guides, utilities, and community-centered digital support.</span>
-              </div>
-              <div class="mini-spec">
-                <strong>Next build step</strong>
-                <span>UI prototyping, board selection, enclosure planning, and feature validation.</span>
-              </div>
-              <div class="mini-spec">
-                <strong>Future add-ons</strong>
-                <span>Emergency guides, offline datasets, expanded tools, and documented rev history.</span>
-              </div>
+            <div class="trust-row">
+              <div class="trust-pill"><strong>Fast entry point</strong>Clear CTA flow from hero to inquiry form.</div>
+              <div class="trust-pill"><strong>Brand authority</strong>Blog, events, and maker-focused positioning support trust.</div>
+              <div class="trust-pill"><strong>Client clarity</strong>Less clutter, more direction, and easier decision making.</div>
             </div>
           </article>
 
-          <aside class="section-card">
-            <h3 style="margin-top:0;font-size:24px">Basic maintenance support</h3>
-            <ul class="bullet-list">
-              <li>Computer tune-ups, cleanup, and upgrade guidance</li>
-              <li>Tablet troubleshooting for charging, performance, and setup issues</li>
-              <li>Smartphone maintenance support for storage, software, and everyday optimization</li>
+          <aside class="lead-panel">
+            <span class="eyebrow">Best next move</span>
+            <h3>Ready to turn a visitor into a real lead?</h3>
+            <p>Guide them straight into your contact flow with a focused call-to-action that feels premium, capable, and future-facing.</p>
+            <ul class="signal-list">
+              <li>Use this section to frame RoboTechi as the solution, not just the portfolio.</li>
+              <li>Pair service selections with a simple, friction-light quote request.</li>
+              <li>Keep the CTA pointed at the form so every strong scroll has a clear destination.</li>
             </ul>
-
+            <div class="hero-actions" style="margin-top:22px">
+              <a class="btn primary" href="#contact">Get a Quote</a>
+              <a class="btn secondary" href="#services">View Services</a>
+            </div>
           </aside>
         </div>
       </div>
     </section>
-
-    <section id="docs">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <h2>Documentation</h2>
-            
-          </div>
-        </div>
-
-        <div class="docs-layout">
-          <aside class="docs-sidebar">
-            <h3 style="font-size:24px">RoboTechi Docs</h3>
-
-            <div class="doc-nav">
-              <a class="doc-link" href="#doc-overview"><span>Overview</span><span>01</span></a>
-              <a class="doc-link" href="#doc-setup"><span>Getting Started</span><span>02</span></a>
-              <a class="doc-link" href="#doc-hardware"><span>Hardware Notes</span><span>03</span></a>
-              <a class="doc-link" href="#doc-roadmap"><span>Roadmap</span><span>04</span></a>
-            </div>
-          </aside>
-
-          <div>
-            <div class="docs-grid">
-              <article class="doc-card" id="doc-overview">
-                <div class="doc-meta">
-                  <span class="eyebrow">Overview</span>
-                  <span class="mono">NodeBlk / v0</span>
-                </div>
-                <h4>Project Overview</h4>
-                <p>NodeBlk is a pocket device concept focused on useful tools, accessible information, and a hardware-software workflow that can grow from MVP into a real field-ready platform.</p>
-                <div class="badge-row">
-                  <span class="badge">Summary</span>
-                  <span class="badge">Vision</span>
-                </div>
-              </article>
-
-              <article class="doc-card" id="doc-setup">
-                <div class="doc-meta">
-                  <span class="eyebrow">Getting Started</span>
-                  <span class="mono">New users</span>
-                </div>
-                <h4>Quick Start</h4>
-                <p>Start with the UI flow, core features, and MVP hardware stack. Define the main screens, offline content structure, and the simplest working prototype path first.</p>
-                <div class="badge-row">
-                  <span class="badge">UI Flow</span>
-                  <span class="badge">MVP Stack</span>
-                </div>
-              </article>
-
-              <article class="doc-card" id="doc-hardware">
-                <div class="doc-meta">
-                  <span class="eyebrow">Hardware</span>
-                  <span class="mono">Build notes</span>
-                </div>
-                <h4>Hardware Notes</h4>
-                <p>Early NodeBlk documentation can cover board choice, power strategy, display options, controls, enclosure ideas, and future sensor or connectivity expansion.</p>
-                <div class="badge-row">
-                  <span class="badge">Boards</span>
-                  <span class="badge">Power + I/O</span>
-                </div>
-              </article>
-
-              <article class="doc-card" id="doc-roadmap">
-                <div class="doc-meta">
-                  <span class="eyebrow">Roadmap</span>
-                  <span class="mono">Forward path</span>
-                </div>
-                <h4>Roadmap & Revisions</h4>
-                <p>Track the MVP build, UI milestones, testing notes, enclosure revisions, and the path from proof-of-concept to a polished prototype for funding and demos.</p>
-                <div class="badge-row">
-                  <span class="badge">Milestones</span>
-                  <span class="badge">Revisions</span>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
 
     <section id="blog">
       <div class="container">
         <div class="section-header">
           <div>
             <h2>From the RoboTechi Blog</h2>
-            <p>Thoughts, project updates, and creative-tech writing from Almighty Odot on Medium.</p>
+            <p>Lab notes, build culture, and forward-facing ideas from the RoboTechi world.</p>
           </div>
           <a class="btn secondary" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">Visit Medium</a>
         </div>
 
         <div class="blog-grid">
-          <article class="section-card blog-card">
-            <span class="eyebrow">RoboTechi Journal of OdotNYC</span>
-            <h3>A blog lane for maker culture, product thinking, and tech creativity.</h3>
-            <p>Step into the world of RoboTechi where tech, creativity, and real-life building collide. From hands-on experiments in electronics and AR/VR to raw insights on startup growth and digital culture, this blog is a behind-the-scenes look at innovation in motion. Tap in and build with the vision.</p>
-            <div class="blog-list">
-              <a class="blog-item" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">
-                <div>
-                  <strong>Read the latest posts on Medium</strong>
-                  <span>Open your full RoboTechi writing hub for updates, reflections, and project notes.</span>
-                </div>
-                <span class="blog-tag">Medium</span>
-              </a>
-              <div class="blog-item">
-                <div>
-                  <strong>What this section can feature later</strong>
-                  <span>Recent build logs, event recaps, educational writeups, product diaries, and hardware lessons for your audience.</span>
-                </div>
-                <span class="blog-tag">Ideas</span>
-              </div>
+          <article class="section-card blog-card futuristic">
+            <span class="eyebrow">Signal Feed / RoboTechi Journal</span>
+            <h3>Where code, hardware, and culture sync into one creative signal.</h3>
+            <p>This section now feels more like a futuristic control room than a basic blog block. It frames your writing as an active stream of ideas, experiments, and product thinking instead of just a standard list of posts.</p>
+
+            <div class="blog-console">
+              <div class="console-line"><span class="mono">Build Logs</span><span>ACTIVE</span></div>
+              <div class="console-line"><span class="mono">Product Thinking</span><span>SYNCED</span></div>
+              <div class="console-line"><span class="mono">Creative Tech Culture</span><span>LIVE</span></div>
+            </div>
+
+            <div class="hero-actions" style="margin-top:22px">
+              <a class="btn primary" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">Open the Feed</a>
+              <a class="btn secondary" href="#contact">Work With RoboTechi</a>
             </div>
           </article>
 
+          <div class="blog-aside">
+            <a class="blog-item futuristic-item" href="https://medium.com/@almightyodot" target="_blank" rel="noopener">
+              <div>
+                <strong>Read the latest RoboTechi writing on Medium</strong>
+                <span>Open the main publishing lane for project updates, reflections, and behind-the-build insights.</span>
+              </div>
+              <span class="blog-tag">Live Feed</span>
+            </a>
 
+            <div class="blog-item futuristic-item">
+              <div>
+                <strong>What this feed can highlight</strong>
+                <span>Prototype diaries, electronics education, startup experiments, AR/VR workflows, and maker-first lessons.</span>
+              </div>
+              <span class="blog-tag">Coverage</span>
+            </div>
+
+            <div class="blog-side-note">
+              <h4>Future-forward storytelling</h4>
+              <p>Use the blog to reinforce trust before the quote form. When visitors see consistent ideas, build notes, and original thinking, the site feels alive — and that makes the brand easier to hire.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -886,8 +889,7 @@
         <div>© <span id="year"></span> RoboTechi. All rights reserved.</div>
         <div class="footer-links">
           <a href="#services">Services</a>
-          <a href="#products">Products</a>
-          <a href="#docs">Docs</a>
+          <a href="#funnel">Start Here</a>
           <a href="#blog">Blog</a>
           <a href="#events">Events</a>
           <a href="#about">About</a>
