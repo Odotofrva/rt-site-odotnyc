@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RoboTechi Co. — OdotNYC</title>
+  <title>RoboTechi Co. — OdotNYC </title>
   <meta name="description" content="RoboTechi provides computer repair, hardware and software development, web design, and maker-focused product documentation centered around the NodeBlk device." />
   <link rel="icon" type="image/png" href="rtlogo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,8 +211,37 @@
       .hero-side{grid-column:1 / -1; grid-template-columns:1fr 1fr}
     }
     @media (max-width:760px){
+      .nav-inner{flex-wrap:wrap; align-items:center; gap:12px; padding:12px 0}
+      .brand{flex:1 1 auto; min-width:0}
+      .brand img{width:44px; height:44px}
+      .brand-name{font-size:18px}
+      .brand-sub{font-size:11px}
       .nav-links{display:none!important}
-      .menu-btn{display:inline-flex}
+      .nav-actions{
+        width:100%;
+        justify-content:space-between;
+        align-items:center;
+        gap:8px;
+      }
+      .nav-actions .btn{
+        padding:10px 12px;
+        font-size:12px;
+        line-height:1.1;
+      }
+      .nav-actions > a:not(.primary){display:none}
+      .menu-btn{
+        display:inline-flex;
+        padding:10px 14px;
+        font-size:12px;
+        align-items:center;
+        justify-content:center;
+      }
+      .nav-actions .btn.primary{
+        margin-left:auto;
+      }
+      .utility-inner{gap:10px}
+      .utility-tags{gap:8px}
+      .utility-tag{padding:6px 10px; font-size:12px}
       .hero-grid,.platform-grid,.bottom-grid,.resources-grid,.events-grid,.services-grid,.hero-side,.field-grid,.hero-metrics{grid-template-columns:1fr}
       .hero-main,.hero-side,.module,.service-card,.resource-card,.event-body,.about-card,.contact-card,.story-card{padding:20px}
       .section-head,.footer-inner,.utility-inner{align-items:flex-start}
@@ -462,11 +491,11 @@
         <div class="resources-grid">
           <article class="resource-card">
             <h3>Signal Feed / RoboTechi Journal</h3>
-            <p>Signals / Systems Analysis of RoboTechi Co Products...</p>
+            <p>This is the thinking space behind RoboTechi—where experiments, lessons, and innovations are documented in real time. From embedded systems to digital culture, each entry reflects the mindset of building with purpose and evolving through creation.</p>
             <div class="resource-list">
-              <div class="resource-link"><span>NodeBlk-RT1</span><span>ACTIVE</span></div>
-              <div class="resource-link"><span>RT-ONE</span><span>SYNCED</span></div>
-              <div class="resource-link"><span>SmarTiny Sec</span><span>LIVE</span></div>
+              <div class="resource-link"><span>Build Logs</span><span>ACTIVE</span></div>
+              <div class="resource-link"><span>Product Thinking</span><span>SYNCED</span></div>
+              <div class="resource-link"><span>Creative Tech Culture</span><span>LIVE</span></div>
             </div>
           </article>
 
