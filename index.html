@@ -249,6 +249,99 @@
     @media (min-width:761px){
       .mobile-drawer,.menu-btn{display:none!important}
     }
+  
+    .promo-overlay{
+      position:fixed; inset:0; z-index:120;
+      display:none; align-items:center; justify-content:center;
+      padding:20px; background:rgba(15,23,38,.56); backdrop-filter:blur(8px);
+    }
+    .promo-overlay.show{display:flex}
+    .promo-modal{
+      width:min(680px, 100%);
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(215,226,240,.98);
+      border-radius:28px;
+      box-shadow:0 28px 80px rgba(17,24,39,.2);
+      overflow:hidden;
+      animation:promoRise .28s ease;
+    }
+    .promo-top{
+      padding:26px 26px 18px;
+      background:
+        radial-gradient(circle at top right, rgba(124,58,237,.16), transparent 34%),
+        radial-gradient(circle at left center, rgba(37,99,235,.12), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      border-bottom:1px solid var(--line);
+    }
+    .promo-kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(124,58,237,.1); color:#7c3aed;
+      font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    }
+    .promo-modal h3{
+      margin:14px 0 10px;
+      font-size:clamp(28px, 4vw, 40px);
+      line-height:1.02;
+    }
+    .promo-modal p{
+      margin:0;
+      color:var(--muted);
+    }
+    .promo-body{padding:22px 26px 26px}
+    .promo-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin:0 0 18px;
+    }
+    .promo-card{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,#fff,#f7fbff);
+    }
+    .promo-card strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:15px;
+    }
+    .promo-card span{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .promo-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:20px;
+    }
+    .promo-close{
+      position:absolute;
+      top:14px; right:14px;
+      width:42px; height:42px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font-size:20px;
+      line-height:1;
+      color:var(--text);
+    }
+    .promo-wrap{position:relative}
+    @keyframes promoRise{
+      from{opacity:0; transform:translateY(12px) scale(.98)}
+      to{opacity:1; transform:translateY(0) scale(1)}
+    }
+    @media (max-width:760px){
+      .promo-top,.promo-body{padding:20px}
+      .promo-grid{grid-template-columns:1fr}
+      .promo-close{top:10px; right:10px}
+    }
+
   </style>
 </head>
 <body>
@@ -305,6 +398,39 @@
       </div>
     </div>
   </header>
+
+  <div class="promo-overlay" id="promoOverlay" aria-hidden="true">
+    <div class="promo-modal promo-wrap" role="dialog" aria-modal="true" aria-labelledby="promoTitle">
+      <button class="promo-close" id="promoClose" type="button" aria-label="Close popup">×</button>
+      <div class="promo-top">
+        <span class="promo-kicker">RoboTechi Services</span>
+        <h3 id="promoTitle">Need web design and branding services?</h3>
+        <p>RoboTechi helps creators, startups, and small businesses shape a cleaner digital presence with modern web design, visual branding direction, and product-focused storytelling that feels professional across desktop and mobile.</p>
+      </div>
+      <div class="promo-body">
+        <div class="promo-grid">
+          <div class="promo-card">
+            <strong>Web Design</strong>
+            <span>Landing pages, portfolio sites, brand sites, and layout refreshes built to look polished and easy to navigate.</span>
+          </div>
+          <div class="promo-card">
+            <strong>Branding Support</strong>
+            <span>Visual direction, messaging flow, section copy, and a stronger presentation that helps your business feel more complete.</span>
+          </div>
+          <div class="promo-card">
+            <strong>Launch Ready</strong>
+            <span>We create clean user flows, contact funnels, and service-focused sections that help turn interest into real leads.</span>
+          </div>
+        </div>
+        <p>Whether you are starting from scratch or upgrading an existing page, RoboTechi can help build a sharper look for your brand while keeping the experience simple, modern, and conversion friendly.</p>
+        <div class="promo-actions">
+          <a class="btn primary" href="#contact" id="promoQuoteBtn">Yes, I Need That</a>
+          <button class="btn secondary" id="promoLaterBtn" type="button">Maybe Later</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <main id="top">
     <section class="hero">
@@ -466,11 +592,11 @@
               <span class="stack-pill pill-gold">Launch</span>
             </div>
             <h3>Web Design</h3>
-            <p>Modern websites that feel clean, premium, and easy to navigate across desktop and mobile.</p>
+            <p>Modern websites and brand-led digital experiences that feel clean, premium, and easy to navigate across desktop and mobile.</p>
             <ul class="bullet-list">
               <li>Landing pages + branded portfolio sites</li>
               <li>Layout refreshes and UX cleanup</li>
-              <li>Product storytelling and contact funnels</li>
+              <li>Product storytelling, branding direction, and contact funnels</li>
             </ul>
           </article>
         </div>
@@ -773,6 +899,49 @@
       const to = 'YOUR_EMAIL@DOMAIN.COM';
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     });
+
+
+    const promoOverlay = document.getElementById('promoOverlay');
+    const promoClose = document.getElementById('promoClose');
+    const promoLaterBtn = document.getElementById('promoLaterBtn');
+    const promoQuoteBtn = document.getElementById('promoQuoteBtn');
+
+    function openPromo(){
+      if(!promoOverlay) return;
+      const dismissed = sessionStorage.getItem('robotechiPromoDismissed');
+      if(dismissed === 'true') return;
+      promoOverlay.classList.add('show');
+      promoOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePromo(){
+      if(!promoOverlay) return;
+      promoOverlay.classList.remove('show');
+      promoOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      sessionStorage.setItem('robotechiPromoDismissed', 'true');
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(openPromo, 900);
+    });
+
+    promoClose?.addEventListener('click', closePromo);
+    promoLaterBtn?.addEventListener('click', closePromo);
+    promoQuoteBtn?.addEventListener('click', () => {
+      closePromo();
+      focusBooking('Web Design');
+    });
+
+    promoOverlay?.addEventListener('click', (event) => {
+      if(event.target === promoOverlay) closePromo();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if(event.key === 'Escape' && promoOverlay?.classList.contains('show')) closePromo();
+    });
+
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
