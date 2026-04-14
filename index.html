@@ -342,6 +342,105 @@
       .promo-close{top:10px; right:10px}
     }
 
+  
+    .event-promo-overlay{
+      position:fixed; inset:0; z-index:121;
+      display:none; align-items:center; justify-content:center;
+      padding:20px; background:rgba(15,23,38,.6); backdrop-filter:blur(8px);
+    }
+    .event-promo-overlay.show{display:flex}
+    .event-promo-modal{
+      width:min(940px, 100%);
+      max-height:min(90vh, 920px);
+      overflow:auto;
+      background:rgba(255,255,255,.97);
+      border:1px solid rgba(215,226,240,.98);
+      border-radius:28px;
+      box-shadow:0 28px 80px rgba(17,24,39,.22);
+      animation:promoRise .28s ease;
+    }
+    .event-promo-wrap{position:relative}
+    .event-promo-close{
+      position:absolute;
+      top:14px; right:14px;
+      width:42px; height:42px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font-size:20px;
+      line-height:1;
+      color:var(--text);
+      z-index:2;
+    }
+    .event-promo-top{
+      padding:26px 26px 18px;
+      background:
+        radial-gradient(circle at top left, rgba(16,185,129,.16), transparent 36%),
+        radial-gradient(circle at right center, rgba(124,58,237,.12), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      border-bottom:1px solid var(--line);
+    }
+    .event-promo-kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(16,185,129,.12); color:#0f9a7d;
+      font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    }
+    .event-promo-top h3{
+      margin:14px 0 10px;
+      font-size:clamp(28px, 4vw, 42px);
+      line-height:1.04;
+    }
+    .event-promo-top p,
+    .event-promo-body p{margin:0; color:var(--muted)}
+    .event-promo-body{padding:22px 26px 26px}
+    .event-promo-actions{
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:18px 0 20px;
+    }
+    .event-promo-gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:12px;
+    }
+    .event-promo-item{
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#fff,#f7fbff);
+      box-shadow:0 12px 28px rgba(17,24,39,.06);
+    }
+    .event-promo-item img{
+      width:100%;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      background:#edf3fb;
+      border-bottom:1px solid var(--line);
+    }
+    .event-promo-copy{
+      padding:16px;
+    }
+    .event-promo-copy strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:18px;
+      font-family:"Chakra Petch", sans-serif;
+    }
+    .event-promo-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    @media (max-width:900px){
+      .event-promo-gallery{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
+      .event-promo-top,.event-promo-body{padding:20px}
+      .event-promo-close{top:10px; right:10px}
+    }
+
   </style>
 </head>
 <body>
@@ -426,6 +525,49 @@
         <div class="promo-actions">
           <a class="btn primary" href="#contact" id="promoQuoteBtn">Yes, I Need That</a>
           <button class="btn secondary" id="promoLaterBtn" type="button">Maybe Later</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="event-promo-overlay" id="eventPromoOverlay" aria-hidden="true">
+    <div class="event-promo-modal event-promo-wrap" role="dialog" aria-modal="true" aria-labelledby="eventPromoTitle">
+      <button class="event-promo-close" id="eventPromoClose" type="button" aria-label="Close event popup">×</button>
+      <div class="event-promo-top">
+        <span class="event-promo-kicker">RoboTechi Events</span>
+        <h3 id="eventPromoTitle">Interested in sponsoring or joining a RoboTechi event?</h3>
+        <p>RoboTechi events are built to connect builders, learners, brands, and community supporters through hands-on tech experiences. If you want to sponsor a future event or take part as an attendee, this is your invitation to connect.</p>
+      </div>
+      <div class="event-promo-body">
+        <p>Sponsors can help support education, visibility, and community impact. Guests and participants can join workshops, meetups, and creative technology sessions designed around real engagement and learning.</p>
+        <div class="event-promo-actions">
+          <a class="btn primary" href="#contact" id="eventSponsorBtn">I Want to Sponsor</a>
+          <a class="btn secondary" href="#events" id="eventJoinBtn">I Want to Join an Event</a>
+        </div>
+        <div class="event-promo-gallery">
+          <article class="event-promo-item">
+            <img src="RealmOfMakers.png" alt="Realm Of Makers flyer" onerror="this.style.display='none';">
+            <div class="event-promo-copy">
+              <strong>Realm Of Makers</strong>
+              <span>A creative meetup for builders, innovators, and tech enthusiasts working with maker platforms and modern ideas.</span>
+            </div>
+          </article>
+          <article class="event-promo-item">
+            <img src="IntroToCircuits.png" alt="Intro To Circuits flyer" onerror="this.style.display='none';">
+            <div class="event-promo-copy">
+              <strong>Intro To Circuits</strong>
+              <span>A beginner-friendly hands-on workshop focused on electronics foundations, experimentation, and project learning.</span>
+            </div>
+          </article>
+          <article class="event-promo-item">
+            <img src="InnovateConcrete.png" alt="Innovate Concrete flyer" onerror="this.style.display='none';">
+            <div class="event-promo-copy">
+              <strong>Innovate Concrete</strong>
+              <span>A collaborative community event centered on solving real problems through practical tech and creative thinking.</span>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -857,6 +999,65 @@
         menuBtn?.setAttribute('aria-expanded', 'false');
       });
     });
+
+
+    const eventsSection = document.getElementById('events');
+    const eventPromoOverlay = document.getElementById('eventPromoOverlay');
+    const eventPromoClose = document.getElementById('eventPromoClose');
+    const eventSponsorBtn = document.getElementById('eventSponsorBtn');
+    let eventPromoShown = false;
+
+    function openEventPromo(){
+      if(!eventPromoOverlay || eventPromoShown) return;
+      const dismissed = sessionStorage.getItem('robotechiEventPromoDismissed');
+      if(dismissed === 'true') return;
+      eventPromoOverlay.classList.add('show');
+      eventPromoOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      eventPromoShown = true;
+    }
+
+    function closeEventPromo(){
+      if(!eventPromoOverlay) return;
+      eventPromoOverlay.classList.remove('show');
+      eventPromoOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      sessionStorage.setItem('robotechiEventPromoDismissed', 'true');
+    }
+
+    const eventsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          openEventPromo();
+        }
+      });
+    }, { threshold: 0.45 });
+
+    if(eventsSection){
+      eventsObserver.observe(eventsSection);
+    }
+
+    eventPromoClose?.addEventListener('click', closeEventPromo);
+
+    document.getElementById('eventJoinBtn')?.addEventListener('click', () => {
+      closeEventPromo();
+    });
+
+    eventSponsorBtn?.addEventListener('click', () => {
+      closeEventPromo();
+      if(serviceSelect){
+        const brandingOption = [...serviceSelect.options].find(opt => opt.value === 'Web Design');
+        if(brandingOption) serviceSelect.value = 'Web Design';
+      }
+      if(messageBox && messageBox.value.trim() === ''){
+        messageBox.value = `I'm interested in sponsoring a RoboTechi event.\n\nDetails:\n- Event of interest:\n- Sponsorship idea:\n- Budget range:\n- Best contact method:\n`;
+      }
+    });
+
+    eventPromoOverlay?.addEventListener('click', (event) => {
+      if(event.target === eventPromoOverlay) closeEventPromo();
+    });
+
 
     const serviceSelect = document.getElementById('service');
     const messageBox = document.getElementById('message');
