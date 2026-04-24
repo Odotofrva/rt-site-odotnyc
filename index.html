@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RoboTechi Co. - OdotNYC </title>
+  <title>RoboTechi Co. — OdotNYC </title>
   <meta name="description" content="RoboTechi provides computer repair, hardware and software development, web design, and maker-focused product documentation centered around the NodeBlk device." />
   <link rel="icon" type="image/png" href="rtlogo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -200,6 +200,109 @@
     input,select,textarea{width:100%; padding:14px 16px; border-radius:16px; border:1px solid var(--line); background:#fff; color:var(--text)}
     textarea{min-height:140px; resize:vertical}
     input::placeholder,textarea::placeholder{color:#97a6bc}
+
+
+
+    /* Visual image system + micro interactions */
+    .image-panel{
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:#edf3fb;
+      box-shadow:0 16px 42px rgba(17,24,39,.08);
+      isolation:isolate;
+    }
+    .image-panel img{
+      width:100%;
+      height:100%;
+      min-height:280px;
+      object-fit:cover;
+      filter:saturate(1.05) contrast(1.02);
+      transform:scale(1.01);
+      transition:transform .7s ease, filter .7s ease;
+    }
+    .image-panel:hover img{transform:scale(1.07); filter:saturate(1.18) contrast(1.05)}
+    .image-panel::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, transparent 42%, rgba(15,23,38,.72));
+      z-index:1;
+      pointer-events:none;
+    }
+    .image-caption{
+      position:absolute;
+      left:18px; right:18px; bottom:18px;
+      z-index:2;
+      color:#fff;
+    }
+    .image-caption strong{display:block; font-size:20px; font-family:"Chakra Petch", sans-serif}
+    .image-caption span{display:block; margin-top:4px; color:rgba(255,255,255,.82); font-size:13px}
+    .visual-strip{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px}
+    .mini-visual{
+      min-height:240px;
+      transform:translateZ(0);
+    }
+    .service-media{
+      margin:-2px -2px 0;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#edf3fb;
+    }
+    .service-media img{
+      width:100%;
+      aspect-ratio:16/10;
+      object-fit:cover;
+      transition:transform .55s ease, filter .55s ease;
+    }
+    .service-card:hover .service-media img{transform:scale(1.08); filter:saturate(1.15)}
+    .resource-card,.event-card,.service-card,.story-card,.about-card,.contact-card,.module,.rail-item,.metric,.stack-item{
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+    }
+    .resource-card:hover,.event-card:hover,.story-card:hover,.about-card:hover,.contact-card:hover,.module:hover,.rail-item:hover,.metric:hover,.stack-item:hover{
+      transform:translateY(-3px);
+      box-shadow:0 22px 50px rgba(17,24,39,.10);
+      border-color:rgba(37,99,235,.22);
+    }
+    .btn{position:relative; overflow:hidden; display:inline-flex; align-items:center; justify-content:center; gap:8px}
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.32) 45%, transparent 70%);
+      transform:translateX(-130%);
+      transition:transform .55s ease;
+    }
+    .btn:hover::after{transform:translateX(130%)}
+    .badge,.stack-pill,.utility-tag{transition:transform .2s ease, background .2s ease}
+    .badge:hover,.stack-pill:hover,.utility-tag:hover{transform:translateY(-2px)}
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .65s ease, transform .65s ease;
+    }
+    .reveal.in-view{opacity:1; transform:translateY(0)}
+    .mouse-glow{position:relative; overflow:hidden}
+    .mouse-glow::before{
+      content:"";
+      position:absolute;
+      width:220px; height:220px;
+      left:var(--mx, 50%); top:var(--my, 50%);
+      transform:translate(-50%, -50%);
+      background:radial-gradient(circle, rgba(37,99,235,.13), transparent 62%);
+      opacity:0;
+      transition:opacity .25s ease;
+      pointer-events:none;
+    }
+    .mouse-glow:hover::before{opacity:1}
+    @media (max-width:900px){
+      .visual-strip{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
+      .image-panel img{min-height:220px}
+      .mini-visual{min-height:220px}
+    }
 
     footer{margin-top:18px; padding:26px 0 40px; border-top:1px solid var(--line); background:rgba(255,255,255,.76)}
     .footer-inner{display:flex; justify-content:space-between; gap:16px; align-items:center; flex-wrap:wrap; color:var(--muted); font-size:14px}
@@ -648,6 +751,14 @@
             </div>
           </div>
 
+          <div class="image-panel mouse-glow">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Close up of electronics circuit board">
+            <div class="image-caption">
+              <strong>Hardware-first creativity</strong>
+              <span>Electronics, repair, and prototype energy for the RoboTechi ecosystem.</span>
+            </div>
+          </div>
+
           <div class="module">
             <h3 class="module-title">Dream // Plan // Create</h3>
             <p class="mono">RoboTechi // Modern builder ecosystem</p>
@@ -703,6 +814,21 @@
             </div>
           </div>
         </div>
+
+        <div class="visual-strip">
+          <div class="image-panel mini-visual mouse-glow">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80" alt="Creator working on a laptop and hardware project">
+            <div class="image-caption"><strong>Digital builds</strong><span>Clean web, software, and creator-focused systems.</span></div>
+          </div>
+          <div class="image-panel mini-visual mouse-glow">
+            <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=1000&q=80" alt="Electronics workstation with components">
+            <div class="image-caption"><strong>Electronics lab</strong><span>Circuits, boards, and hardware learning made approachable.</span></div>
+          </div>
+          <div class="image-panel mini-visual mouse-glow">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80" alt="Laptop showing code and workspace">
+            <div class="image-caption"><strong>Launch presence</strong><span>Websites that help ideas feel polished and real.</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -721,6 +847,7 @@
               <div class="service-icon">FIX</div>
               <span class="stack-pill pill-green">Support</span>
             </div>
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80" alt="Laptop repair and computer workspace"></div>
             <h3>Computer Repair</h3>
             <p>Diagnostics, upgrades, cleanup, optimization, and support for personal systems or small teams.</p>
             <ul class="bullet-list">
@@ -735,6 +862,7 @@
               <div class="service-icon">DEV</div>
               <span class="stack-pill pill-blue">Prototype</span>
             </div>
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1603732551658-5fabbafa84eb?auto=format&fit=crop&w=900&q=80" alt="Electronics prototype board and hardware components"></div>
             <h3>Hardware/Software Development</h3>
             <p>Concept-to-prototype builds covering embedded hardware, PCB workflows, firmware, tools, and supporting software systems.</p>
             <ul class="bullet-list">
@@ -749,6 +877,7 @@
               <div class="service-icon">WEB</div>
               <span class="stack-pill pill-gold">Launch</span>
             </div>
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Web design code on laptop screen"></div>
             <h3>Web Design</h3>
             <p>Modern websites and brand-led digital experiences that feel clean, premium, and easy to navigate across desktop and mobile.</p>
             <ul class="bullet-list">
@@ -773,6 +902,7 @@
 
         <div class="resources-grid">
           <article class="resource-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80" alt="Team collaborating around laptops"></div>
             <h3>Signal Feed / RoboTechi Journal</h3>
             <p>This is the thinking space behind RoboTechi—where experiments, lessons, and innovations are documented in real time. From embedded systems to digital culture, each entry reflects the mindset of building with purpose and evolving through creation.</p>
             <div class="resource-list">
@@ -783,6 +913,7 @@
           </article>
 
           <article class="resource-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80" alt="Writing notebook and laptop desk"></div>
             <h3>Read the latest RoboTechi writing on Medium</h3>
             <p>Open the main publishing lane for project updates, reflections, and behind-the-build insights.</p>
             <div class="resource-list">
@@ -793,6 +924,7 @@
           </article>
 
           <article class="resource-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80" alt="Cyber security and technology screen"></div>
             <h3>Where code, hardware, and culture sync into one creative signal.</h3>
             <p>The RoboTechi Blog is built for makers—sharing hands-on workflows, project breakdowns, and practical insights you can actually use. Whether you're learning, building, or refining your craft, this is where ideas turn into action.</p>
             <div class="hero-actions" style="margin-top:18px">
@@ -900,6 +1032,10 @@
           </article>
 
           <div class="feature-rail">
+            <div class="image-panel mouse-glow">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1100&q=80" alt="Students learning together with laptops">
+              <div class="image-caption"><strong>Community learning</strong><span>Hands-on education for future builders.</span></div>
+            </div>
             <div class="rail-item">
               <div class="rail-icon">01</div>
               <div>
@@ -1157,6 +1293,33 @@
 
     document.addEventListener('keydown', (event) => {
       if(event.key === 'Escape' && promoOverlay?.classList.contains('show')) closePromo();
+    });
+
+
+    // Micro-interactions: scroll reveal and cursor glow
+    const revealItems = document.querySelectorAll('section, .service-card, .resource-card, .event-card, .story-card, .about-card, .contact-card, .module, .rail-item, .metric, .image-panel');
+    revealItems.forEach((item, index) => {
+      item.classList.add('reveal');
+      item.style.transitionDelay = `${Math.min(index % 6, 5) * 45}ms`;
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(item => revealObserver.observe(item));
+
+    document.querySelectorAll('.mouse-glow').forEach(card => {
+      card.addEventListener('pointermove', event => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+      });
     });
 
 
