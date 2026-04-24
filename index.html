@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RoboTechi Co. — OdotNYC </title>
+  <title>RoboTechi Co. - OdotNYC </title>
   <meta name="description" content="RoboTechi provides computer repair, hardware and software development, web design, and maker-focused product documentation centered around the NodeBlk device." />
   <link rel="icon" type="image/png" href="rtlogo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -337,9 +337,25 @@
       to{opacity:1; transform:translateY(0) scale(1)}
     }
     @media (max-width:760px){
-      .promo-top,.promo-body{padding:20px}
-      .promo-grid{grid-template-columns:1fr}
-      .promo-close{top:10px; right:10px}
+      .promo-overlay{padding:14px}
+      .promo-modal{
+        width:min(92vw, 420px);
+        max-height:82vh;
+        overflow:auto;
+        border-radius:22px;
+      }
+      .promo-top,.promo-body{padding:16px}
+      .promo-modal h3{font-size:24px; line-height:1.08}
+      .promo-modal p{font-size:14px}
+      .promo-card{padding:12px}
+      .promo-actions{gap:10px; margin-top:16px}
+      .promo-actions .btn{
+        width:100%;
+        justify-content:center;
+        padding:12px 14px;
+      }
+      .promo-grid{grid-template-columns:1fr; gap:10px}
+      .promo-close{top:10px; right:10px; width:38px; height:38px}
     }
 
   
