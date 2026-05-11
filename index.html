@@ -75,11 +75,11 @@ const csTabs=document.getElementById('cheatSheetTabs'),csImg=document.getElement
 function setCheatSheet(i){const item=cheatSheetLibrary[i];csImg.src=item.file;csImg.alt=item.title;csTitle.textContent=item.title;csDesc.textContent=item.desc;csDownload.href=item.file;csTabs.querySelectorAll('.blueprint-tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));}
 cheatSheetLibrary.forEach((item,i)=>{const tab=document.createElement('button');tab.type='button';tab.className='blueprint-tab'+(i===0?' active':'');tab.textContent=item.title.replace(' Cheat Sheet','').replace(' Quick Reference','');tab.addEventListener('click',()=>setCheatSheet(i));csTabs?.appendChild(tab);});
 const blueprintLibrary=[
-{title:'Raspberry Pi 4B Blueprint',file:'RP4B.png',desc:'A clean technical blueprint for the Raspberry Pi 4 Model B with board layout, ports, GPIO, and measurement-style learning details.'},
+{title:'Raspberry Pi 4B Blueprint',file:'pi4bsg.png',desc:'A clean technical blueprint for the Raspberry Pi 4 Model B with board layout, ports, GPIO, and measurement-style learning details.'},
 {title:'Arduino Uno Blueprint',file:'ardunounosg.png',desc:'A downloadable Arduino Uno board blueprint for beginner electronics, pin identification, and classroom handouts.'},
 {title:'ESP32 Blueprint',file:'esp32sg.png',desc:'A WiFi and Bluetooth microcontroller blueprint for IoT lessons, embedded projects, and maker workshop references.'},
 {title:'RP2040 Blueprint',file:'rp2040sg.png',desc:'A technical reference blueprint for the RP2040 microcontroller platform and learning-focused hardware explanations.'},
-{title:'Raspberry Pi 5 Blueprint',file:'Rpi5sg.png',desc:'A downloadable Raspberry Pi 5 blueprint for teaching single-board computer layout, ports, and component placement.'}
+{title:'Raspberry Pi 5 Blueprint',file:'pi5sg.png',desc:'A downloadable Raspberry Pi 5 blueprint for teaching single-board computer layout, ports, and component placement.'}
 ];
 const tabs=document.getElementById('blueprintTabs'),bpImg=document.getElementById('blueprintImage'),bpTitle=document.getElementById('blueprintTitle'),bpDesc=document.getElementById('blueprintDesc'),bpDownload=document.getElementById('downloadBlueprint');
 function setBlueprint(i){const item=blueprintLibrary[i];bpImg.src=item.file;bpImg.alt=item.title;bpTitle.textContent=item.title;bpDesc.textContent=item.desc;bpDownload.href=item.file;bpDownload.setAttribute('download', item.file);tabs.querySelectorAll('.blueprint-tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));}
