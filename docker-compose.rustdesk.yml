@@ -1,0 +1,25 @@
+# RustDesk Server OSS starter for RoboTechi Remote Support
+# Run on a Linux VPS or server with Docker installed.
+# Replace remote.robotechi.example in README with your real domain/IP.
+# Required public firewall ports:
+# 21115/tcp, 21116/tcp, 21116/udp, 21117/tcp
+# Optional web-client support ports: 21118/tcp, 21119/tcp
+services:
+  hbbs:
+    container_name: robotechi-rustdesk-hbbs
+    image: rustdesk/rustdesk-server:latest
+    command: hbbs
+    volumes:
+      - ./rustdesk-data:/root
+    network_mode: "host"
+    depends_on:
+      - hbbr
+    restart: unless-stopped
+  hbbr:
+    container_name: robotechi-rustdesk-hbbr
+    image: rustdesk/rustdesk-server:latest
+    command: hbbr
+    volumes:
+      - ./rustdesk-data:/root
+    network_mode: "host"
+    restart: unless-stopped

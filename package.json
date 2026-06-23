@@ -1,0 +1,17 @@
+{
+  "name": "robotechi-remote-support-portal",
+  "version": "1.0.0",
+  "description": "RoboTechi remote support portal with consent-based ticket backend and RustDesk self-host starter.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "PORT=3000 ADMIN_KEY=change-me node server.js"
+  },
+  "keywords": [
+    "remote-support",
+    "rustdesk",
+    "helpdesk",
+    "robotechi"
+  ],
+  "license": "MIT"
+}
